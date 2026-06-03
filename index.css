@@ -19,6 +19,44 @@ body{
 body::-webkit-scrollbar{
     display: none;
 }
+.menu-extension{
+    background: #D4AF37;
+    width: 150px;
+    left: -150px;
+    height: 500px;
+    position: absolute;
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+    top: 70px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: 0.4s ease;
+    align-items: center;
+}
+.menu-extension.active{
+    left: 0;
+    z-index: 9999;
+}
+
+
+
+
+
+
+
+
+.tab{
+    width: 76%;
+}
+.menu-img-box{
+    margin-top: 30px;
+    margin-bottom: 25px;
+    height: 40px;
+    width: 40px;
+    border: 0.3px solid red;
+    border-radius: 50%;
+}
 .hero-box{
     height: 250px;
     width: 300px;
