@@ -13,6 +13,9 @@
     --card-gradient-bg: linear-gradient(145deg, #FFF8E7, #F8E6B5);
     --box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
+html{
+    scroll-behavior: smooth;
+}
 body{
     background: var(--backgorund);
 }
@@ -39,22 +42,18 @@ body::-webkit-scrollbar{
     z-index: 9999;
 }
 
-
-
-
-
-
-
-
 .tab{
     width: 76%;
 }
 .menu-img-box{
     margin-top: 30px;
     margin-bottom: 25px;
-    height: 40px;
-    width: 40px;
+    height: 60px;
+    width: 60px;
     border: 0.3px solid red;
+    background-image: url(raamji.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
     border-radius: 50%;
 }
 .hero-box{
@@ -66,7 +65,7 @@ body::-webkit-scrollbar{
     border-bottom-right-radius: 20%;
     margin-left: 28px;
     margin-top: 20px;
-    padding: 10%;
+    /* padding: 10%; */
     background-image: url(raamji.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -640,6 +639,63 @@ body::-webkit-scrollbar{
     font-size: 0.95rem;
 }
 
+
+.notice-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    z-index:99999;
+}
+
+.notice-box{
+    width:100%;
+    max-width:500px;
+    background:#fff;
+    border-radius:18px;
+    padding:22px;
+    position:relative;
+    box-sizing:border-box;
+    max-height:80vh;
+    overflow:auto;
+}
+
+.notice-box h3{
+    margin:0 0 15px;
+    text-align:center;
+}
+
+.notice-box p{
+    line-height:1.7;
+    font-size:15px;
+}
+
+.close-notice{
+    position:absolute;
+    top:12px;
+    right:15px;
+    cursor:pointer;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.notice-actions{
+    display:flex;
+    justify-content:space-between;
+    margin-top:18px;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.notice-link{
+    cursor:pointer;
+    color:#8B0000;
+    text-decoration:underline;
+    font-weight:600;
+}
 @media (max-width:480px){
     .countdown-grid{
         gap:8px;

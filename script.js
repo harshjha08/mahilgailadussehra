@@ -37,20 +37,24 @@ function closerollview8(){
     day8roll.style.display = "none";
 }
 // ===== CUSTOMIZE HERE =====
-const eventName = "विजयादशमी";
+const eventName = "🚩विजयादशमी🚩";
 const targetDate = "2026-10-20 00:00:00";
+
 // ==========================
 
 document.getElementById("eventName").textContent =
-    `${eventName} Countdown`;
+    `${eventName}`;
 
-document.getElementById("countdownMessage").textContent =
-    `${eventName} starts in...`;
+// document.getElementById("countdownMessage").textContent =
+//     `${eventName} starts in...`;
 
 function updateCountdown() {
 
     const target = new Date(targetDate).getTime();
     const now = new Date().getTime();
+    
+
+  
 
     const diff = target - now;
 
@@ -62,7 +66,7 @@ function updateCountdown() {
         document.getElementById("seconds").textContent = "00";
 
         document.getElementById("countdownMessage").textContent =
-            `${eventName} has arrived! 🎉`;
+            `${eventName} की हार्दिक शुभकामनाएँ`;
 
         return;
     }
@@ -87,3 +91,51 @@ function updateCountdown() {
 
 updateCountdown();
 setInterval(updateCountdown, 1000);
+
+const noticeHindi = `
+यह वेबसाइट रामलीला में विभिन्न पात्रों की भूमिका निभाने वाले कलाकारों एवं इच्छुक व्यक्तियों की सुविधा हेतु बनाई गई है। यह वेबसाइट किसी भी प्रकार से रामलीला वेलफेयर कमेटी द्वारा आधिकारिक रूप से संचालित, प्रायोजित अथवा प्रकाशित नहीं की गई है। इस वेबसाइट पर उपलब्ध सामग्री का उद्देश्य केवल सुविधा प्रदान करना है। यद्यपि सामग्री यथासंभव सही रखने का प्रयास किया गया है, फिर bhi इसका समिति से कोई आधिकारिक संबंध नहीं है। यदि आपको इस वेबसाइट की किसी सामग्री अथवा संचालन से कोई आपत्ति या शिकायत है, तो कृपया नीचे दिए गए शिकायत विकल्प का उपयोग करें।
+`;
+
+const noticeEnglish = `
+This website has been created for the convenience of Ramleela performers and interested participants.This website is not officially managed, sponsored, published, or endorsed by the Ramleela Welfare Committee Mahil Gaila.The content available here is provided solely for convenience and reference purposes. Although efforts have been made to keep the information accurate, it should not be considered official committee content.If you have any objection, concern, or complaint regarding this website or its content, please use the complaint option provided below.
+`;
+
+let currentLanguage = "hi";
+
+window.addEventListener("load", () => {
+
+    const noticeSeen = localStorage.getItem("noticeSeen");
+
+    if(noticeSeen){
+        document.getElementById("noticeOverlay").style.display = "none";
+    }
+    //document.getElementById("noticeOverlay").style.display = "flex";
+
+});
+
+function closeNotice(){
+
+    localStorage.setItem("noticeSeen","false");
+    document.getElementById("noticeOverlay").style.display = "none";
+}
+
+function toggleLanguage(){
+
+    const text = document.getElementById("noticeText");
+    const toggle = document.getElementById("langToggle");
+
+    if(currentLanguage === "hi"){
+
+        text.innerText = noticeEnglish;
+        toggle.innerText = "हिन्दी";
+
+        currentLanguage = "en";
+
+    }else{
+
+        text.innerText = noticeHindi;
+        toggle.innerText = "English";
+
+        currentLanguage = "hi";
+    }
+}
