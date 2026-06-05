@@ -476,5 +476,119 @@ body::-webkit-scrollbar{
 
 }
 
+
+
+/* .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 9998;
+}
+
+.center-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    z-index: 9999;
+
+    width: 300px;
+    max-width: 90vw;
+    min-height: 150px;
+
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+} */
+ /* .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 9998;
+}
+
+.center-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    z-index: 9999;
+
+    width: 300px;
+    max-width: 90vw;
+    min-height: 150px;
+
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+} */
+ /* Background Overlay */
+.roll-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Popup Box */
+.roll-box {
+    position: relative;
+    z-index: 9999;
+
+    width: 300px;
+    max-width: 90vw;
+    min-height: 150px;
+
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Close (X) Button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    width: 30px;
+    height: 30px;
+
+    border: none;
+    background: transparent;
+
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Optional hover effect */
+.close-btn:hover {
+    opacity: 0.7;
+}
+
+/* Content area */
+.content {
+    margin-top: 20px;
+    
+}
+.content p{
+    border-bottom: 2px solid var(--accent);
+    min-height: 45px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-evenly;
+}
 /* play btn
 <i class="fa-solid fa-play"></i> */

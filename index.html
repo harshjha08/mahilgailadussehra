@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dusshera Mahi Gaila</title>
+  <meta name="theme-color" content="#B22222">
+  <title>Dusshera Mahil Gaila</title>
   <link rel="stylesheet" href="index.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -69,37 +70,42 @@
             <div class="img-box-navratra" id="day2-img"></div>
             <h4>द्वितीय नवरात्रि</h4>
             <div class="btn-box">
-                <button type="button">Download</button>
+                <button onclick="day2rollview()" type="button">Download</button>
             </div>
         </div>
         <div class="card-navratra" id="day-3">
             <div class="img-box-navratra" id="day3-img"></div>
             <h4>तृतीय नवरात्रि</h4>
             <div class="btn-box">
-                <button type="button">Download</button>
+                <a href="Raamleela_Day3.pdf" target="_blank">
+                    <button type="button">Download</button>
+                </a>
+                
             </div>
         </div>
         <div class="card-navratra" id="day-4">
             <div class="img-box-navratra" id="day4-img"></div>
             <h4>चतुर्थ नवरात्रि</h4>
+
             <div class="btn-box">
                 <a href="Raamleela_Day4.pdf" target="_blank">
                     <button type="button">Download</button>
                 </a>
             </div>
+
         </div>
         <div class="card-navratra" id="day-5">
             <div class="img-box-navratra" id="day5-img"></div>
             <h4>पंचम नवरात्रि</h4>
             <div class="btn-box">
-                <button type="button">Download</button>
+                <button onclick="day5rollview()" type="button">Download</button>
             </div>
         </div>
         <div class="card-navratra" id="day-6">
             <div class="img-box-navratra" id="day6-img"></div>
             <h4>षष्ठ नवरात्रि</h4>
             <div class="btn-box">
-                <button type="button">Download</button>
+                <button onclick="day6rollview()" type="button">Download</button>
             </div>
         </div>
       
@@ -107,7 +113,7 @@
             <div class="img-box-navratra" id="day8-img"></div>
             <h4>अष्टम नवरात्रि</h4>
             <div class="btn-box">
-                <button type="button">Download</button>
+                <button onclick="day8rollview()" type="button">Download</button>
             </div>
         </div>
         <div class="card-navratra" id="day-9">
@@ -286,6 +292,70 @@
         <div class="tab">संपर्क करें</div> 
 </div>
 
-<script src="script.js"></script>
+
+
+
+
+<div class="roll-overlay" id="day2-roll">
+    <div class="roll-box">
         
+        <button onclick="closerollview2()"  class="close-btn">&times;</button>
+
+        
+         <h4>पुत्रकामेष्टि यज्ञ</h4>
+        <div class="content">
+            <p>भाग 1<a href="Raamleela_Day2(1).pdf" target="_blank">View</a></p>
+            <p>भाग 2 <a href="Raamleela_Day2.pdf" target="_blank">View</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="roll-overlay" id="day5-roll">
+    <div class="roll-box">
+        
+        <button onclick="closerollview5()"  class="close-btn">&times;</button>
+
+        
+         <h4>ताड़का वध</h4>
+        <div class="content">
+            <p>भाग 1<a href="Raamleela_Day5.pdf" target="_blank">View</a></p>
+            <p>भाग 2 <a href="Raamleela_Day5_b.pdf" target="_blank">View</a></p>
+            <p>भाग 3 <a href="Raamleela_Day5_c.pdf" target="_blank">View</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="roll-overlay" id="day6-roll">
+    <div class="roll-box">
+        
+        <button onclick="closerollview6()"  class="close-btn">&times;</button>
+
+        
+         <h4>सीता स्वयंवर</h4>
+        <div class="content">
+            <p>भाग 1<a href="Raamleela_Day6.pdf" target="_blank">View</a></p>
+            <p>भाग 2 <a href="Raamleela_Day6_b.pdf" target="_blank">View</a></p>
+            <p>भाग 3 <a href="Raamleela_Day6_c.pdf" target="_blank">View</a></p>
+            <p>भाग 4 <a href="Raamleela_day6_d_Ravan_Banasur.pdf" target="_blank">View</a></p>
+        </div>
+    </div>
+</div>
+<div class="roll-overlay" id="day8-roll">
+    <div class="roll-box">
+        
+        <button onclick="closerollview8()" class="close-btn">&times;</button>
+
+        
+         <h4>सीता हरण</h4>
+        <div class="content">
+            <p>भाग 1<a href="Raamleela_Day8.pdf" target="_blank">View</a></p>
+            <p>भाग 2 <a href="Raamleela_Day8_b.pdf" target="_blank">View</a></p>
+            <p>भाग 3 <a href="Raamleela_day8_Ravan-Marich-seeta.pdf" target="_blank">View</a></p>
+            
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>       
 </body>
+
