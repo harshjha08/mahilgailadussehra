@@ -213,8 +213,9 @@ body::-webkit-scrollbar{
     padding: 20px;
      background: var(--card-gradient-bg);
     line-height: 1.8;
-    height: 500px;
+    min-height: 500px;
     margin: 10px;
+    height: fit-content;
     border-radius: 10px;
     /* justify-content: center;
     align-items: center; */
@@ -592,3 +593,63 @@ body::-webkit-scrollbar{
 }
 /* play btn
 <i class="fa-solid fa-play"></i> */
+.countdown-card {
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 22px;
+    border-radius: 22px;
+    background: linear-gradient(135deg,#8B0000 0%,#B22222 50%,#D4AF37 100%);
+    color: #fff;
+    text-align: center;
+    box-sizing: border-box;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+}
+
+.countdown-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 10px;
+}
+
+.time-box {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(6px);
+    border-radius: 14px;
+    padding: 12px 5px;
+}
+
+.time-box span {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.time-box small {
+    font-size: 0.75rem;
+}
+
+.countdown-message {
+    margin-top: 18px;
+    font-size: 0.95rem;
+}
+
+@media (max-width:480px){
+    .countdown-grid{
+        gap:8px;
+    }
+
+    .time-box span{
+        font-size:1.2rem;
+    }
+
+    .time-box small{
+        font-size:.7rem;
+    }
+}
