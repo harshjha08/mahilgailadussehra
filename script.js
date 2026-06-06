@@ -5,6 +5,7 @@ menuBtn.addEventListener("click", () => {
     sideBar.classList.toggle("active");
 });
 
+//document.addEventListener("contextmenu", e => e.preventDefault());
 
 let day2roll = document.getElementById("day2-roll");
 let day5roll = document.getElementById("day5-roll");
@@ -37,10 +38,10 @@ function closerollview8(){
     day8roll.style.display = "none";
 }
 // ===== CUSTOMIZE HERE =====
-const eventName = "🚩विजयादशमी🚩";
+const eventName = "🚩विजयदशमी🚩";
 const targetDate = "2026-10-20 00:00:00";
 
-// ==========================
+
 
 document.getElementById("eventName").textContent =
     `${eventName}`;
@@ -93,7 +94,7 @@ updateCountdown();
 setInterval(updateCountdown, 1000);
 
 const noticeHindi = `
-यह वेबसाइट रामलीला में विभिन्न पात्रों की भूमिका निभाने वाले कलाकारों एवं इच्छुक व्यक्तियों की सुविधा हेतु बनाई गई है। यह वेबसाइट किसी भी प्रकार से रामलीला वेलफेयर कमेटी द्वारा आधिकारिक रूप से संचालित, प्रायोजित अथवा प्रकाशित नहीं की गई है। इस वेबसाइट पर उपलब्ध सामग्री का उद्देश्य केवल सुविधा प्रदान करना है। यद्यपि सामग्री यथासंभव सही रखने का प्रयास किया गया है, फिर bhi इसका समिति से कोई आधिकारिक संबंध नहीं है। यदि आपको इस वेबसाइट की किसी सामग्री अथवा संचालन से कोई आपत्ति या शिकायत है, तो कृपया नीचे दिए गए शिकायत विकल्प का उपयोग करें।
+यह वेबसाइट रामलीला में विभिन्न पात्रों की भूमिका निभाने वाले कलाकारों एवं इच्छुक व्यक्तियों की सुविधा हेतु बनाई गई है। यह वेबसाइट किसी भी प्रकार से रामलीला वेलफेयर कमेटी माहिल गहिला द्वारा आधिकारिक रूप से संचालित, प्रायोजित अथवा प्रकाशित नहीं की गई है। इस वेबसाइट पर उपलब्ध सामग्री का उद्देश्य केवल सुविधा प्रदान करना है। यद्यपि सामग्री यथासंभव सही रखने का प्रयास किया गया है, फिर भी इसका समिति से कोई आधिकारिक संबंध नहीं है। यदि आपको इस वेबसाइट की किसी सामग्री अथवा संचालन से कोई आपत्ति या शिकायत है, तो कृपया नीचे दिए गए शिकायत विकल्प का उपयोग करें।
 `;
 
 const noticeEnglish = `
@@ -139,3 +140,56 @@ function toggleLanguage(){
         currentLanguage = "hi";
     }
 }
+
+
+const images = [
+   "highlightImages/dussehra2501.jpeg",
+   "highlightImages/dussehra2502.jpeg",
+   "highlightImages/dussehra2503.jpeg",
+   "highlightImages/dussehra2504.jpeg",
+   "highlightImages/dussehra2505.jpeg",
+   "highlightImages/dussehra2506.jpeg",
+   "highlightImages/dussehra2507.jpeg"
+];
+let currentImage = 0;
+
+const galleryImage = document.getElementById("galleryImage");
+
+function showImage(index){
+    galleryImage.src = images[index];
+}
+
+function showImage(){
+    const img = document.getElementById("galleryImage");
+    img.style.transform = "scale(1.03)";
+    img.style.opacity = "0";
+    setTimeout(() => {
+        img.src = images[currentImage];
+        img.style.opacity = "1";
+        img.style.transform = "scale(1)";
+        
+    },400)
+}
+function nextImage(){
+
+    currentImage++;
+
+    if(currentImage >= images.length){
+        currentImage = 0;
+    }
+
+    showImage(currentImage);
+}
+
+function previousImage(){
+
+    currentImage--;
+
+    if(currentImage < 0){
+        currentImage = images.length - 1;
+    }
+
+    showImage(currentImage);
+}
+showImage();
+setInterval(nextImage, 4000);
