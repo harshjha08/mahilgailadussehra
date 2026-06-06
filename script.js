@@ -143,13 +143,13 @@ function toggleLanguage(){
 
 
 const images = [
-   "highlightImages/dussehra2501.jpeg",
-   "highlightImages/dussehra2502.jpeg",
-   "highlightImages/dussehra2503.jpeg",
-   "highlightImages/dussehra2504.jpeg",
-   "highlightImages/dussehra2505.jpeg",
-   "highlightImages/dussehra2506.jpeg",
-   "highlightImages/dussehra2507.jpeg"
+   "dussehra2501.jpeg",
+   "dussehra2502.jpeg",
+   "dussehra2503.jpeg",
+   "dussehra2504.jpeg",
+   "dussehra2505.jpeg",
+   "dussehra2506.jpeg",
+   "dussehra2507.jpeg"
 ];
 let currentImage = 0;
 
