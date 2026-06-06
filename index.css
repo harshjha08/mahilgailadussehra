@@ -13,11 +13,12 @@
     --card-gradient-bg: linear-gradient(145deg, #FFF8E7, #F8E6B5);
     --box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
-html{
+/* html{
     scroll-behavior: smooth;
-}
+} */
 body{
     background: var(--backgorund);
+    scroll-behavior: smooth;
 }
 body::-webkit-scrollbar{
     display: none;
