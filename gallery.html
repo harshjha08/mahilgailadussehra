@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>चित्र दीर्घा</title>
+
+    <link
+        rel="stylesheet"
+        href="gallery.css"
+    >
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <h1>
+            📸 चित्र दीर्घा
+        </h1>
+
+        <p>
+            रामलीला एवं अन्य कार्यक्रमों की यादगार झलकियाँ
+        </p>
+
+    </header>
+
+    <!-- SEARCH -->
+
+    <section class="search-section">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="चित्र श्रेणी खोजें..."
+        >
+
+    </section>
+
+    <!-- CATEGORY GRID -->
+
+    <section
+        class="gallery-grid"
+        id="galleryGrid"
+    >
+
+        <!-- CARD 1 -->
+
+        <div
+            class="gallery-card"
+            data-gallery="diwali2026"
+        >
+
+            <div class="card-image">
+
+                <img
+                    src="https://picsum.photos/id/1015/600/400"
+                    alt=""
+                >
+
+            </div>
+
+            <div class="card-content">
+
+                <h3>
+                    दीपावली 2026
+                </h3>
+
+                <p>
+                    उत्सव की विशेष झलकियाँ
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- CARD 2 -->
+
+        <div
+            class="gallery-card"
+            data-gallery="chhath2026"
+        >
+
+            <div class="card-image">
+
+                <img
+                    src="https://picsum.photos/id/1025/600/400"
+                    alt=""
+                >
+
+            </div>
+
+            <div class="card-content">
+
+                <h3>
+                    छठ पूजा 2026
+                </h3>
+
+                <p>
+                    पावन क्षण
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- CARD 3 -->
+
+        <div
+            class="gallery-card"
+            data-gallery="ramleela2026"
+        >
+
+            <div class="card-image">
+
+                <img
+                    src="https://picsum.photos/id/1035/600/400"
+                    alt=""
+                >
+
+            </div>
+
+            <div class="card-content">
+
+                <h3>
+                    रामलीला 2026
+                </h3>
+
+                <p>
+                    मंचन की झलकियाँ
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- CARD 4 -->
+
+        <div
+            class="gallery-card"
+            data-gallery="dussehra2026"
+        >
+
+            <div class="card-image">
+
+                <img
+                    src="https://picsum.photos/id/1045/600/400"
+                    alt=""
+                >
+
+            </div>
+
+            <div class="card-content">
+
+                <h3>
+                    दशहरा 2026
+                </h3>
+
+                <p>
+                    मुख्य आकर्षण
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- CARD 5 -->
+
+        <div
+            class="gallery-card"
+            data-gallery="holi2026"
+        >
+
+            <div class="card-image">
+
+                <img
+                    src="https://picsum.photos/id/1055/600/400"
+                    alt=""
+                >
+
+            </div>
+
+            <div class="card-content">
+
+                <h3>
+                    होली 2026
+                </h3>
+
+                <p>
+                    रंगों का उत्सव
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- CARD 6 -->
+
+        <div
+            class="gallery-card"
+            data-gallery="janmashtami2026"
+        >
+
+            <div class="card-image">
+
+                <img
+                    src="https://picsum.photos/id/1065/600/400"
+                    alt=""
+                >
+
+            </div>
+
+            <div class="card-content">
+
+                <h3>
+                    जन्माष्टमी 2026
+                </h3>
+
+                <p>
+                    भक्तिमय क्षण
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- CARD 7 -->
+
+        <div
+            class="gallery-card"
+            data-gallery="birthday2025"
+        >
+
+            <div class="card-image">
+
+                <img
+                    src="https://picsum.photos/id/1075/600/400"
+                    alt=""
+                >
+
+            </div>
+
+            <div class="card-content">
+
+                <h3>
+                    Birthday Celebration
+                </h3>
+
+                <p>
+                    यादगार पल
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- CARD 8 -->
+
+        <div
+            class="gallery-card"
+            data-gallery="annualevent2025"
+        >
+
+            <div class="card-image">
+
+                <img
+                    src="https://picsum.photos/id/1085/600/400"
+                    alt=""
+                >
+
+            </div>
+
+            <div class="card-content">
+
+                <h3>
+                    वार्षिक समारोह
+                </h3>
+
+                <p>
+                    विशेष क्षण
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- MODAL -->
+
+    <div
+        class="modal"
+        id="galleryModal"
+    >
+
+        <div class="modal-top">
+
+            <button
+                id="backBtn"
+                class="icon-btn"
+            >
+                ←
+            </button>
+
+            <div
+                id="galleryTitle"
+                class="modal-title"
+            >
+                Gallery
+            </div>
+
+            <button
+                id="closeBtn"
+                class="icon-btn"
+            >
+                ✕
+            </button>
+
+        </div>
+
+        <div class="slider-area">
+
+            <button
+                id="prevBtn"
+                class="nav-btn left"
+            >
+                ❮
+            </button>
+
+            <img
+                id="galleryImage"
+                src=""
+                alt=""
+            >
+
+            <button
+                id="nextBtn"
+                class="nav-btn right"
+            >
+                ❯
+            </button>
+
+        </div>
+
+        <div class="bottom-bar">
+
+            <div
+                id="imageCounter"
+            >
+                1 / 1
+            </div>
+
+            <button
+                id="autoPlayBtn"
+            >
+                ▶ Auto Slide
+            </button>
+
+        </div>
+
+        <div
+            id="loopNotice"
+            class="loop-notice"
+        >
+            ↻ Gallery Restarted
+        </div>
+
+    </div>
+
+    <script src="gallery.js"></script>
+
+</body>
+</html>
