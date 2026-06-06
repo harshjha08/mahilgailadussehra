@@ -696,6 +696,89 @@ body::-webkit-scrollbar{
     text-decoration:underline;
     font-weight:600;
 }
+
+.gallery{
+    width: 100%;
+    padding: 10px;
+}
+.gallery-container{
+    position:relative;
+    width:100%;
+    max-width:600px;
+    overflow:hidden;
+    border-radius:4px;
+}
+
+.gallery-container img{
+    width:100%;
+    display:block;
+    border: 4px solid var(--accent);
+    aspect-ratio:16/9;
+    object-fit:cover;
+    transition: all .4s ease;
+}
+
+.gallery-btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:50%;
+    background:rgba(0,0,0,.5);
+    color:#fff;
+    font-size:20px;
+    cursor:pointer;
+}
+
+.prev{
+    left:10px;
+}
+
+.next{
+    right:10px;
+}
+.highligh-caption{
+    background: var(--accent);
+    color: #fff;
+    height: max-content;
+    padding: 10px;
+    margin-top: 7px;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+}
+.highligh-caption button{
+    padding: 8px 12px;
+    background: linear-gradient(135deg, #8B0000 0%, #B22222 50%);
+    color: #fff;
+    border: none;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.contact-section{
+    width: 100%;
+    padding: 10px;
+}
+.contact-box{
+    background: var(--card-gradient-bg);
+    box-shadow: var(--box-shadow);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+
+}
 @media (max-width:480px){
     .countdown-grid{
         gap:8px;
