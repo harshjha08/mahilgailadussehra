@@ -13,13 +13,11 @@
     --card-gradient-bg: linear-gradient(145deg, #FFF8E7, #F8E6B5);
     --box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
-/* html{
-    scroll-behavior: smooth;
-} */
+
 body{
     background: var(--backgorund);
     scroll-behavior: smooth;
-}
+    }
 body::-webkit-scrollbar{
     display: none;
 }
@@ -42,7 +40,6 @@ body::-webkit-scrollbar{
     left: 0;
     z-index: 9999;
 }
-
 .tab{
     width: 76%;
 }
@@ -110,7 +107,6 @@ body::-webkit-scrollbar{
 .scripts-box::-webkit-scrollbar{
     display: none;
 }
-
 .scrol-cards{
     display: flex;
     width: max-content;
@@ -157,7 +153,6 @@ body::-webkit-scrollbar{
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;   
 }
-
 #day1-img{
     background: url(ND1.jpeg);
     background-repeat: no-repeat;
@@ -260,13 +255,7 @@ body::-webkit-scrollbar{
     line-height: 30px;
 }
 
-/* .footer{
-    background: var(--main-gradient-bg);
-    height: 750px;
-    width: 100%;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-} */
+/* footer styling */
 .footer{
     background: linear-gradient(
         180deg,
@@ -278,39 +267,32 @@ body::-webkit-scrollbar{
     padding:40px 20px 20px;
     border-top:3px solid #D4AF37;
 }
-
 .footer-top{
     text-align:center;
     margin-bottom:30px;
 }
-
 .footer-top h2{
     color:#D4AF37;
     font-size:1.8rem;
     margin-bottom:10px;
 }
-
 .footer-top p{
     opacity:.9;
 }
-
 .footer-links{
     display:flex;
     justify-content:space-between;
     gap:30px;
     flex-wrap:wrap;
 }
-
 .footer-section{
     flex:1;
     min-width:220px;
 }
-
 .footer-section h3{
     color:#D4AF37;
     margin-bottom:15px;
 }
-
 .footer-section a{
     display:block;
     text-decoration:none;
@@ -318,28 +300,23 @@ body::-webkit-scrollbar{
     margin-bottom:10px;
     transition:.3s;
 }
-
 .footer-section a:hover{
     color:#D4AF37;
     transform:translateX(5px);
 }
-
 .footer-section p{
     line-height:1.8;
 }
-
 .footer-quote{
     text-align:center;
     margin-top:30px;
     padding-top:20px;
     border-top:1px solid rgba(255,255,255,.15);
 }
-
 .footer-quote p{
     color:#D4AF37;
     font-style:italic;
 }
-
 .footer-bottom{
     text-align:center;
     margin-top:20px;
@@ -388,6 +365,8 @@ body::-webkit-scrollbar{
 .sangeetramayan-img{
     background-image: url(sangeet_ramayan_thumbnail.jpeg);
 }
+
+/* Youtube Card css */
 .youtubeRefernces{
     padding: 10px;
     display: flex;
@@ -421,9 +400,7 @@ body::-webkit-scrollbar{
     color: var(--primary);
 }
 .ytCard-thumbnail-box{
-    /* border-top-left-radius: 20px;
-    border-top-right-radius: 20px; */
-     border-radius: 8px;
+    border-radius: 8px;
     height: 250px;
     width: 100%;
     background-repeat: no-repeat;
@@ -526,13 +503,12 @@ body::-webkit-scrollbar{
     border-radius: 12px;
     padding: 20px;
 } */
- /* Background Overlay */
+/* Roll Cards Overlay/popup box */
 .roll-overlay {
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.5);
     z-index: 9998;
-
     display: none;
     align-items: center;
     justify-content: center;
@@ -542,43 +518,36 @@ body::-webkit-scrollbar{
 .roll-box {
     position: relative;
     z-index: 9999;
-
     width: 300px;
     max-width: 90vw;
     min-height: 150px;
-
     background: #fff;
     border-radius: 12px;
     padding: 20px;
-
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
-
 /* Close (X) Button */
 .close-btn {
     position: absolute;
     top: 10px;
     right: 10px;
-
     width: 30px;
     height: 30px;
-
     border: none;
     background: transparent;
-
     font-size: 24px;
     line-height: 1;
     cursor: pointer;
-
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
 /* Optional hover effect */
 .close-btn:hover {
     opacity: 0.7;
 }
+
+
 
 /* Content area */
 .content {
@@ -592,8 +561,8 @@ body::-webkit-scrollbar{
     display: flex;
     justify-content: space-evenly;
 }
-/* play btn
-<i class="fa-solid fa-play"></i> */
+
+/*Countdown box styling*/
 .countdown-card {
     width: 100%;
     max-width: 500px;
@@ -606,42 +575,36 @@ body::-webkit-scrollbar{
     box-sizing: border-box;
     box-shadow: 0 10px 25px rgba(0,0,0,0.18);
 }
-
 .countdown-title {
     font-size: 1.4rem;
     font-weight: 700;
     margin-bottom: 18px;
 }
-
 .countdown-grid {
     display: grid;
     grid-template-columns: repeat(4,1fr);
     gap: 10px;
 }
-
 .time-box {
     background: rgba(255,255,255,0.15);
     backdrop-filter: blur(6px);
     border-radius: 14px;
     padding: 12px 5px;
 }
-
 .time-box span {
     display: block;
     font-size: 1.5rem;
     font-weight: bold;
 }
-
 .time-box small {
     font-size: 0.75rem;
 }
-
 .countdown-message {
     margin-top: 18px;
     font-size: 0.95rem;
 }
 
-
+/* Notice on site loading styling */
 .notice-overlay{
     position:fixed;
     inset:0;
@@ -652,7 +615,6 @@ body::-webkit-scrollbar{
     padding:20px;
     z-index:99999;
 }
-
 .notice-box{
     width:100%;
     max-width:500px;
@@ -664,17 +626,14 @@ body::-webkit-scrollbar{
     max-height:80vh;
     overflow:auto;
 }
-
 .notice-box h3{
     margin:0 0 15px;
     text-align:center;
 }
-
 .notice-box p{
     line-height:1.7;
     font-size:15px;
 }
-
 .close-notice{
     position:absolute;
     top:12px;
@@ -683,7 +642,6 @@ body::-webkit-scrollbar{
     font-size:20px;
     font-weight:bold;
 }
-
 .notice-actions{
     display:flex;
     justify-content:space-between;
@@ -691,7 +649,6 @@ body::-webkit-scrollbar{
     flex-wrap:wrap;
     gap:10px;
 }
-
 .notice-link{
     cursor:pointer;
     color:#8B0000;
@@ -710,7 +667,6 @@ body::-webkit-scrollbar{
     overflow:hidden;
     border-radius:4px;
 }
-
 .gallery-container img{
     width:100%;
     display:block;
@@ -792,5 +748,158 @@ body::-webkit-scrollbar{
 
     .time-box small{
         font-size:.7rem;
+    }
+}
+
+.contact-section{
+    padding:80px 20px;
+    display:flex;
+    justify-content:center;
+}
+
+.contact-box{
+    width:100%;
+    max-width:750px;
+    padding:40px 30px;
+    text-align:center;
+
+    border-radius:28px;
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(255,153,51,.18),
+        rgba(255,215,0,.12),
+        rgba(255,87,34,.18)
+    );
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,.25),
+    inset 0 1px 0 rgba(255,255,255,.15);
+}
+
+.contact-icon{
+    width:80px;
+    height:80px;
+    margin:auto;
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:2rem;
+
+    background:rgba(255,255,255,.12);
+
+    margin-bottom:20px;
+}
+
+.contact-box h2{
+    font-size:2rem;
+    margin-bottom:15px;
+}
+
+.contact-box > p{
+    line-height:1.8;
+    max-width:550px;
+    margin:0 auto 35px;
+    opacity:.9;
+}
+
+.contact-links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:18px;
+    justify-content:center;
+}
+
+.contact-item{
+    flex:1;
+    min-width:260px;
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    padding:18px;
+
+    text-decoration:none;
+    color:inherit;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.08);
+
+    transition:.3s ease;
+}
+
+.contact-item:hover{
+    transform:translateY(-5px);
+    background:rgba(255,255,255,.12);
+}
+
+.contact-item span{
+    font-size:2rem;
+}
+
+.contact-item h4{
+    margin:0;
+    text-align:left;
+}
+
+.contact-item p{
+    margin:4px 0 0;
+    text-align:left;
+    opacity:.85;
+}
+
+.contact-btn{
+    display:inline-block;
+    margin-top:35px;
+
+    padding:14px 32px;
+
+    text-decoration:none;
+    color:#fff;
+
+    font-weight:600;
+
+    border-radius:999px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ff9933,
+        #ff5722
+    );
+
+    box-shadow:
+    0 10px 25px rgba(255,87,34,.35);
+
+    transition:.3s ease;
+}
+
+.contact-btn:hover{
+    transform:translateY(-3px) scale(1.03);
+}
+
+@media(max-width:600px){
+
+    .contact-box{
+        padding:30px 20px;
+    }
+
+    .contact-item{
+        min-width:100%;
+    }
+
+    .contact-box h2{
+        font-size:1.7rem;
     }
 }

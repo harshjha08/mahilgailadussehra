@@ -9,32 +9,47 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <div class="nav" id="nav-section">
-        <div class="menu">
-            <i id="menuBtn">&#8801;</i>
-        </div>
-        <div class="heading">
-            <p>श्री रामलीला</p>
-        </div>
+<!--Navbar-->
+<div class="nav" id="nav-section">
+    <div class="menu">
+        <i id="menuBtn">&#8801;</i>
     </div>
-    <div class="hero-box">
-        
+    <div class="heading">
+        <p>श्री रामलीला</p>
     </div>
-    <div class="hero-section-about">
-        <h4>हमारे बारे में</h4>
-        <br>
-        <p>मर्यादा पुरुषोत्तम भगवान श्रीराम के जीवन पर आधारित
-        भव्य एवं पारंपरिक रामलीला प्रस्तुति में आपका स्वागत है।
-        हमारी रामलीला समिति कई वर्षों से भगवान श्रीराम के
-        आदर्श जीवन, त्याग, मर्यादा और धर्म की स्थापना के संदेश
-        को जन-जन तक पहुँचाने का कार्य कर रही है।<br><br>ग्राम माहिल गहिला, जिला शहीद भगत सिंह नगर, पंजाब।
+</div>
 
+<!--Menu On Nav-->
+<div class="menu-extension">
+    <div class="menu-img-box"></div>
+        <div class="tab">मुख्य पृष्ठ</div>
+        <div class="tab">नवरात्रि स्क्रिप्ट</div>
+        <div class="tab">पात्र परिचय</div>
+        <div class="tab">कार्यक्रम तालिका</div>
+        <div class="tab"><a style="text-decoration: none; color: #000;" href="gallery.html">चित्रावली</a></div>
+        <div class="tab">वीडियो गैलरी</div>
+        <div class="tab">समिति सदस्य</div>
+        <div class="tab"><a style="text-decoration: none; color: #000;" href="https://forms.gle/V7MyPy6air9JkBq76" target="_blank">संपर्क करें</a></div> 
+</div>
 
+<!--Hero Section-->
+    <!--Hero box Image-->
+<div class="hero-box"></div>
+    <!--Hero section About box-->
+<div class="hero-section-about">
+    <h4>हमारे बारे में</h4>
+    <br>
+    <p>मर्यादा पुरुषोत्तम भगवान श्रीराम के जीवन पर आधारित
+    भव्य एवं पारंपरिक रामलीला प्रस्तुति में आपका स्वागत है।
+    हमारी रामलीला समिति कई वर्षों से भगवान श्रीराम के
+    आदर्श जीवन, त्याग, मर्यादा और धर्म की स्थापना के संदेश
+    को जन-जन तक पहुँचाने का कार्य कर रही है।<br><br>ग्राम माहिल गहिला, जिला शहीद भगत सिंह नगर, पंजाब।
+    <a href="https://en.wikipedia.org/wiki/Mahil_Gaila" target="_blank">अधिक जानें</a> 
+    </p>
+</div>
 
-        <a href="https://en.wikipedia.org/wiki/Mahil_Gaila" target="_blank">अधिक जानें</a> 
-        </p>
-    </div>
-    <h4 style="padding: 20px; font-size: larger; color: rgb(250, 157, 43);">आगामी कार्यक्रम</h4>
+<!-- Upcoming Events Section with countdown -->
+<h4 style="padding: 20px; font-size: larger; color: rgb(250, 157, 43);">आगामी कार्यक्रम</h4>
     <div class="upcomingEventsdetails">
         <h3>दशहरा महोत्सव 2026</h3>
         <p>ध्वजारोहण      : will be announced soon<br>
@@ -43,13 +58,12 @@
            महानवमी      : 19 अक्टूबर 2026 सोमवार <br>
            विजयादशमी    : 20 अक्टूबर 2026 मंगलवार</p>
            <a href="https://www.drikpanchang.com" target="_blank"><button type="button">अधिक जानकारी</button></a>
-          
-          <p id="eventNote">*नोट: उपरोक्त तिथियों में आंशिक अंतर संभव है। तिथियों की अंतिम एवं आधिकारिक पुष्टि हेतु कृपया अधिकृत पंचांग अथवा संबंधित आधिकारिक स्रोत का संदर्भ लें। 
-          </p>
+        <p id="eventNote">*नोट: उपरोक्त तिथियों में आंशिक अंतर संभव है। 
+            तिथियों की अंतिम एवं आधिकारिक पुष्टि हेतु कृपया अधिकृत पंचांग 
+            अथवा संबंधित आधिकारिक स्रोत का संदर्भ लें। 
+        </p>
 
-
-
-    <!-- countdown html -->
+    <!-- countdown in event box -->
     <div class="countdown-card">
         <div class="countdown-title" id="eventName"></div>
         <div class="countdown-grid">
@@ -76,99 +90,82 @@
     </p>
     </div>
 
-
-    <h4 style="padding: 20px; font-size: larger; color: rgb(250, 157, 43);">विशेष झलकियाँ</h4>
-    <div class="gallery">
-     <div class="gallery-container">
-
+<!--Higlight window with sliding Images-->
+<h4 style="padding: 20px; font-size: larger; color: rgb(250, 157, 43);">विशेष झलकियाँ</h4>
+<div class="gallery">
+    <div class="gallery-container">
     <img id="galleryImage" alt="Gallery Image">
-
-    <!-- <button class="gallery-btn prev" onclick="previousImage()">
-        ❮
-    </button>
-
-    <button class="gallery-btn next" onclick="nextImage()">
-        ❯
-    </button> -->
-    
-
-</div>
-<div class="highligh-caption">दशहरा महोत्सव 2025 <a href="gallery.html"><button>View Photos</button></a></div>
+    </div>
+    <div class="highligh-caption">दशहरा महोत्सव 2025 <a href="gallery.html"><button>View Photos</button></a></div>
 </div>
 
-
-
-    <h4 style="padding: 20px; font-size: larger; color: rgb(250, 157, 43);">स्क्रिप्ट डाउनलोड करें</h4>
-    <div class="scripts-box" id="script-box">
-        <div class="scrol-cards">
+<!--Roll downloader-->
+<h4 style="padding: 20px; font-size: larger; color: rgb(250, 157, 43);">स्क्रिप्ट डाउनलोड करें</h4>
+<div class="scripts-box" id="script-box">
+    <div class="scrol-cards">
+        <!--Card 1-->
         <div class="card-navratra" id="day-1">
-            <div class="img-box-navratra" id="day1-img">
-
-            </div>
+            <div class="img-box-navratra" id="day1-img"></div>
             <h4>प्रथम नवरात्रि: जय-विजय श्राप</h4>
-            
             <div class="btn-box">
                 <a href="Raamleela_Day1.pdf" target="_blank">
                     <button type="button">Download</button>
                 </a>
             </div>
-           
         </div>
+        <!--Card 2-->
         <div class="card-navratra" id="day-2">
             <div class="img-box-navratra" id="day2-img"></div>
             <h4>द्वितीय नवरात्रि: पुत्रकामेष्टि यज्ञ</h4>
-            
             <div class="btn-box">
                 <button onclick="day2rollview()" type="button">Download</button>
             </div>
         </div>
+        <!--Card 3-->
         <div class="card-navratra" id="day-3">
             <div class="img-box-navratra" id="day3-img"></div>
             <h4>तृतीय नवरात्रि: नामकरण संस्कार</h4>
-            
             <div class="btn-box">
                 <a href="Raamleela_Day3.pdf" target="_blank">
                     <button type="button">Download</button>
-                </a>
-                
+                </a>   
             </div>
         </div>
+        <!--Card 4-->
         <div class="card-navratra" id="day-4">
             <div class="img-box-navratra" id="day4-img"></div>
-            <h4>चतुर्थ नवरात्रि: सीता प्राकट्य</h4>
-            
+            <h4>चतुर्थ नवरात्रि: सीता प्राकट्य</h4>           
             <div class="btn-box">
                 <a href="Raamleela_Day4.pdf" target="_blank">
                     <button type="button">Download</button>
                 </a>
             </div>
-
         </div>
+        <!--Card 5-->
         <div class="card-navratra" id="day-5">
             <div class="img-box-navratra" id="day5-img"></div>
             <h4>पंचम नवरात्रि: ताड़का वध</h4>
-            
             <div class="btn-box">
                 <button onclick="day5rollview()" type="button">Download</button>
             </div>
         </div>
+        <!--Card 6-->
         <div class="card-navratra" id="day-6">
             <div class="img-box-navratra" id="day6-img"></div>
             <h4>षष्ठ नवरात्रि: सीता स्वयंवर</h4>
-            
             <div class="btn-box">
                 <button onclick="day6rollview()" type="button">Download</button>
             </div>
         </div>
-      
+        <!--Card 7-->
         <div class="card-navratra" id="day-8">
             <div class="img-box-navratra" id="day8-img"></div>
             <h4>अष्टम नवरात्रि: सीता हरण</h4>
-            
             <div class="btn-box">
                 <button onclick="day8rollview()" type="button">Download</button>
             </div>
         </div>
+        <!--Card 8-->
         <div class="card-navratra" id="day-9">
             <div class="img-box-navratra" id="day9-img"></div>
             <h4>नवम नवरात्रि: लक्ष्मण मूर्छा</h4>
@@ -176,155 +173,243 @@
                 <a href="Raamleela_Day9.pdf" target="_blank">
                     <button type="button">Download</button>
                 </a>
-                
             </div>
         </div>
+
+    </div>     
+</div>
+
+<!--Overlay on roll downloadable cards-->
+<div class="roll-overlay" id="day2-roll">
+    <div class="roll-box">
+        <button onclick="closerollview2()"  class="close-btn">&times;</button>
+        <h4>पुत्रकामेष्टि यज्ञ</h4>
+        <div class="content">
+            <p>भाग 1<a href="Raamleela_Day2(1).pdf" target="_blank">View</a></p>
+            <p>भाग 2 <a href="Raamleela_Day2.pdf" target="_blank">View</a></p>
         </div>
-        
     </div>
+</div>
 
-    <div class="text-box">
-        <h5>॥ जय श्री राम ॥</h5>
-        <p>परहित सरिस धरम नहि भाई।<br>
-        रघुकुल रीति सदा चली आई,<br>
-        प्राण जाए पर वचन न जाई।
-        </p>
+<div class="roll-overlay" id="day5-roll">
+    <div class="roll-box">
+        <button onclick="closerollview5()"  class="close-btn">&times;</button>
+        <h4>ताड़का वध</h4>
+        <div class="content">
+            <p>भाग 1<a href="Raamleela_Day5.pdf" target="_blank">View</a></p>
+            <p>भाग 2 <a href="Raamleela_Day5_b.pdf" target="_blank">View</a></p>
+            <p>भाग 3 <a href="Raamleela_Day5_c.pdf" target="_blank">View</a></p>
+        </div>
     </div>
+</div>
 
+<div class="roll-overlay" id="day6-roll">
+    <div class="roll-box">
+        <button onclick="closerollview6()"  class="close-btn">&times;</button>
+        <h4>सीता स्वयंवर</h4>
+        <div class="content">
+            <p>भाग 1<a href="Raamleela_Day6.pdf" target="_blank">View</a></p>
+            <p>भाग 2 <a href="Raamleela_Day6_b.pdf" target="_blank">View</a></p>
+            <p>भाग 3 <a href="Raamleela_Day6_c.pdf" target="_blank">View</a></p>
+            <p>भाग 4 <a href="Raamleela_day6_d_Ravan_Banasur.pdf" target="_blank">View</a></p>
+        </div>
+    </div>
+</div>
 
-    <h4 style="padding: 20px; font-size: larger; color: rgb(250, 157, 43);">धार्मिक साहित्य</h4>
-    <div class="sunderkand-card">
-        <div class="sunder-kand-img"></div>
+<div class="roll-overlay" id="day8-roll">
+    <div class="roll-box">
+        <button onclick="closerollview8()" class="close-btn">&times;</button>
+        <h4>सीता हरण</h4>
+        <div class="content">
+            <p>भाग 1<a href="Raamleela_Day8.pdf" target="_blank">View</a></p>
+            <p>भाग 2 <a href="Raamleela_Day8_b.pdf" target="_blank">View</a></p>
+            <p>भाग 3 <a href="Raamleela_day8_Ravan-Marich-seeta.pdf" target="_blank">View</a></p>   
+        </div>
+    </div>
+</div>
+
+<!--txt box for chaupai-->
+<div class="text-box">
+    <h5>॥ जय श्री राम ॥</h5>
+    <p>परहित सरिस धरम नहि भाई।<br>
+    रघुकुल रीति सदा चली आई,<br>
+    प्राण जाए पर वचन न जाई।
+    </p>
+</div>
+
+<!--Spiritual Sources-->
+<h4 style="padding: 20px; font-size: larger; color: rgb(250, 157, 43);">धार्मिक साहित्य</h4>
+<div class="sunderkand-card">
+    <div class="sunder-kand-img"></div>
         <p>श्री सुन्दरकाण्ड<br>रचयिता: गोस्वामी तुलसीदास जी</p>
-        <div class="btn-container">
-            <a href="sunderKand.pdf" target="_blank">
-                <button type="button">डाउनलोड करें</button>
-            </a>
-        </div>
+    <div class="btn-container">
+        <a href="sunderKand.pdf" target="_blank">
+            <button type="button">डाउनलोड करें</button>
+        </a>
     </div>
-    <div class="sangeetramayan-card">
-        <div class="sangeetramayan-img"></div>
+</div>
+<div class="sangeetramayan-card">
+    <div class="sangeetramayan-img"></div>
         <p>आर्य संगीत रामायण<br>रचयिता: यशवंत सिंह वर्मा</p>
-        <div class="btn-container">
+    <div class="btn-container">
             <a href="arya_sangeet_ramayan.pdf" target="_blank">
                 <button type="button">डाउनलोड करें</button>
             </a>
-        </div>
     </div>
-    <div class="text-box">
-        <h5>धर्मो रक्षति रक्षितः</h5>
-        <p>सियावर रामचंद्र की जय पवनसुत हनुमान की जय
+</div>
 
-        </p>
-    </div>
+<!--txt box for chaupai-->
+<div class="text-box">
+    <h5>धर्मो रक्षति रक्षितः</h5>
+        <p>सियावर रामचंद्र की जय पवनसुत हनुमान की जय</p>
+</div>
     
 <!-- youtube vidio Cards -->
- <h4 style="padding: 20px; font-size: larger; color: rgb(250, 157, 43);">पूर्व प्रसारण &bull;</h4>
-    <div class="youtubeRefernces">
+<h4 style="padding: 20px; font-size: larger; color: rgb(250, 157, 43);">पूर्व प्रसारण &bull;</h4>
+<div class="youtubeRefernces">
         
-        <div class="ytCard">
-            <div class="ytCard-thumbnail-box" id="yt-2025"></div>
-            <p>दशहरा महोत्सव 2025</p>
-            <div class="ytButton-container">
-                <a href="https://www.youtube.com/live/UQ5N3MPz6T4?si=dgTi11PQK0PlDXmJ" target="_blank">
-                    <button><i class="fa-solid fa-play"></i></button>
-                </a>
-            </div>
-        </div>
-
-        <div class="ytCard">
-            <div class="ytCard-thumbnail-box" id="yt-2025-vivaah"></div>
-            <p>सीता राम विवाह 2025</p>
-            <div class="ytButton-container">
-                <a href="https://www.youtube.com/live/y7PD6HslcrM?si=CGja79dgsSfUhYvn" target="_blank">
-                    <button><i class="fa-solid fa-play"></i></button>
-                </a>
-            </div>
-        </div>
-
-        <div class="ytCard">
-            <div class="ytCard-thumbnail-box" id="yt-2024"></div>
-            <p>दशहरा महोत्सव 2024</p>
-            <div class="ytButton-container">
-                <a href="https://www.youtube.com/live/oKe7uc8NFZs?si=f-IEVEkCGUZh677l" target="_blank">
-                    <button><i class="fa-solid fa-play"></i></button>
-                </a>
-            </div>
-        </div>
-        <div class="ytCard">
-            <div class="ytCard-thumbnail-box" id="yt-2023"></div>
-            <p>दशहरा महोत्सव 2023</p>
-            <div class="ytButton-container">
-                <a href="https://www.youtube.com/live/xp3lNdH2QYc?si=VrtXuf3pyk2oVrvW" target="_blank">
-                    <button><i class="fa-solid fa-play"></i></button>
-                </a>
-            </div>
-        </div>
-        <div class="ytCard">
-            <div class="ytCard-thumbnail-box" id="yt-2022"></div>
-            <p>दशहरा महोत्सव 2022</p>
-            <div class="ytButton-container">
-                <a href="https://www.youtube.com/live/_dOO-KbIeqo?si=WtdOWSGHw4tQJ0kl" target="_blank">
-                    <button><i class="fa-solid fa-play"></i></button>
-                </a>
-            </div>
-        </div>
-        <div class="ytCard">
-            <div class="ytCard-thumbnail-box" id="yt-2021"></div>
-            <p>दशहरा महोत्सव 2021</p>
-            <div class="ytButton-container">
-                <a href="https://www.youtube.com/live/dSiqyFEQZIs?si=GZdZVoUP_FfaKFrP" target="_blank">
-                    <button><i class="fa-solid fa-play"></i></button>
-                </a>
-            </div>
-        </div>
-        <div class="ytCard">
-            <div class="ytCard-thumbnail-box" id="yt-2019"></div>
-            <p>दशहरा महोत्सव 2019</p>
-            <div class="ytButton-container">
-                <a href="https://www.youtube.com/live/x46Sx-kYL2E?si=7hKugqHR9TsfBD28" target="_blank">
-                    <button><i class="fa-solid fa-play"></i></button>
-                </a>
-            </div>
-        </div>
-        <div class="ytCard">
-            <div class="ytCard-thumbnail-box" id="yt-2018"></div>
-            <p>दशहरा महोत्सव 2018</p>
-            <div class="ytButton-container">
-                <a href="https://www.youtube.com/live/sZw5-UAUGHA?si=hsHzxJ1jWUJtILE5" target="_blank">
-                    <button><i class="fa-solid fa-play"></i></button>
-                </a>
-            </div>
+    <div class="ytCard">
+        <div class="ytCard-thumbnail-box" id="yt-2025"></div>
+        <p>दशहरा महोत्सव 2025</p>
+        <div class="ytButton-container">
+            <a href="https://www.youtube.com/live/UQ5N3MPz6T4?si=dgTi11PQK0PlDXmJ" target="_blank">
+                <button><i class="fa-solid fa-play"></i></button>
+            </a>
         </div>
     </div>
 
-    
-    <h4 style="padding: 20px; font-size: larger; color: rgb(250, 157, 43);">संपर्क करें</h4>
-    <div class="contact-section">
-        <div class="contact-box">
-            
-            <p>Phone: 9915598229<br>Email: contactramlilaMG@gmail.com<br>
-                ----------------------- OR -----------------------<br>
-                Fill the Form: <a href="https://forms.gle/V7MyPy6air9JkBq76" target="_blank">Google Form</a>
-            </p>
+    <div class="ytCard">
+        <div class="ytCard-thumbnail-box" id="yt-2025-vivaah"></div>
+        <p>सीता राम विवाह 2025</p>
+        <div class="ytButton-container">
+            <a href="https://www.youtube.com/live/y7PD6HslcrM?si=CGja79dgsSfUhYvn" target="_blank">
+                <button><i class="fa-solid fa-play"></i></button>
+            </a>
         </div>
     </div>
 
+    <div class="ytCard">
+        <div class="ytCard-thumbnail-box" id="yt-2024"></div>
+        <p>दशहरा महोत्सव 2024</p>
+        <div class="ytButton-container">
+            <a href="https://www.youtube.com/live/oKe7uc8NFZs?si=f-IEVEkCGUZh677l" target="_blank">
+                <button><i class="fa-solid fa-play"></i></button>
+            </a>
+        </div>
+    </div>
 
+    <div class="ytCard">
+        <div class="ytCard-thumbnail-box" id="yt-2023"></div>
+        <p>दशहरा महोत्सव 2023</p>
+        <div class="ytButton-container">
+            <a href="https://www.youtube.com/live/xp3lNdH2QYc?si=VrtXuf3pyk2oVrvW" target="_blank">
+                <button><i class="fa-solid fa-play"></i></button>
+            </a>
+        </div>
+    </div>
 
-   
+    <div class="ytCard">
+        <div class="ytCard-thumbnail-box" id="yt-2022"></div>
+        <p>दशहरा महोत्सव 2022</p>
+        <div class="ytButton-container">
+            <a href="https://www.youtube.com/live/_dOO-KbIeqo?si=WtdOWSGHw4tQJ0kl" target="_blank">
+                <button><i class="fa-solid fa-play"></i></button>
+            </a>
+        </div>
+    </div>
 
+    <div class="ytCard">
+        <div class="ytCard-thumbnail-box" id="yt-2021"></div>
+        <p>दशहरा महोत्सव 2021</p>
+        <div class="ytButton-container">
+            <a href="https://www.youtube.com/live/dSiqyFEQZIs?si=GZdZVoUP_FfaKFrP" target="_blank">
+                <button><i class="fa-solid fa-play"></i></button>
+            </a>
+        </div>
+    </div>
 
+    <div class="ytCard">
+        <div class="ytCard-thumbnail-box" id="yt-2019"></div>
+        <p>दशहरा महोत्सव 2019</p>
+        <div class="ytButton-container">
+            <a href="https://www.youtube.com/live/x46Sx-kYL2E?si=7hKugqHR9TsfBD28" target="_blank">
+                <button><i class="fa-solid fa-play"></i></button>
+            </a>
+        </div>
+    </div>
 
-    <footer class="footer">
+    <div class="ytCard">
+        <div class="ytCard-thumbnail-box" id="yt-2018"></div>
+        <p>दशहरा महोत्सव 2018</p>
+        <div class="ytButton-container">
+            <a href="https://www.youtube.com/live/sZw5-UAUGHA?si=hsHzxJ1jWUJtILE5" target="_blank">
+                <button><i class="fa-solid fa-play"></i></button>
+            </a>
+        </div>
+    </div>
+</div>
 
+<!--Contact section-->
+<!-- <h4 style="padding: 20px; font-size: larger; color: rgb(250, 157, 43);">संपर्क करें</h4>
+<div class="contact-section">
+    <div class="contact-box">
+        <p>Phone: 9915598229<br>Email: contactramlilaMG@gmail.com<br>
+            ----------------------- OR -----------------------<br>
+            Fill the Form: <a href="https://forms.gle/V7MyPy6air9JkBq76" target="_blank">Google Form</a>
+        </p>
+    </div>
+</div> -->
+<section class="contact-section" id="contact">
+    <div class="contact-box">
+
+        <div class="contact-icon">📩</div>
+
+        <h2>संपर्क करें</h2>
+
+        <p>
+            यदि आपके पास कोई सुझाव, प्रश्न अथवा प्रतिक्रिया हो,
+            तो कृपया हमसे संपर्क करें। आपके विचार हमारे लिए महत्वपूर्ण हैं।
+        </p>
+
+        <div class="contact-links">
+
+            <a href="mailto:hjha1289@gmail.com" class="contact-item">
+                <span>📧</span>
+                <div>
+                    <h4>ई-मेल</h4>
+                    <p>hjha1289@gmail.com</p>
+                </div>
+            </a>
+
+            <a href="tel:+919041749857" class="contact-item">
+                <span>📞</span>
+                <div>
+                    <h4>मोबाइल</h4>
+                    <p>+91 90417 49857</p>
+                </div>
+            </a>
+
+        </div>
+
+        <!-- Google Form Button -->
+
+        <a
+            href="https://forms.gle/V7MyPy6air9JkBq76"
+            target="_blank"
+            class="contact-btn"
+        >
+            संदेश भेजें
+        </a>
+
+    </div>
+</section>
+<!--Footer same for all the pages-->
+<footer class="footer">
     <div class="footer-top">
         <h2>🚩 जय श्री राम 🚩</h2>
         <p>श्री रामलीला एवं दशहरा महोत्सव<br>माहिल गहिला</p>
     </div>
-
     <div class="footer-links">
-
         <div class="footer-section">
             <h3>त्वरित लिंक</h3>
             <a href="index.html">मुख्य पृष्ठ</a>
@@ -332,7 +417,6 @@
             <a href="gallery.html">चित्रावली</a>
             <a href="#">वीडियो गैलरी</a>
         </div>
-
         <div class="footer-section">
             <h3>संपर्क</h3>
             <p>📍 ग्राम माहिल गहिला,<br>
@@ -344,124 +428,36 @@
         </div>
 
     </div>
-
     <div class="footer-quote">
         <p>
             "धर्म की विजय, अधर्म का नाश"
         </p>
     </div>
-
     <div class="footer-bottom">
         © 2026 Developed & Managed by<br>
         Harsh Jha
     </div>
-
 </footer>
 
-<div class="menu-extension">
-    <div class="menu-img-box"></div>
-        <div class="tab">मुख्य पृष्ठ</div>
-        <div class="tab">नवरात्रि स्क्रिप्ट</div>
-        <div class="tab">पात्र परिचय</div>
-        <div class="tab">कार्यक्रम तालिका</div>
-        <div class="tab"><a style="text-decoration: none; color: #000;" href="gallery.html">चित्रावली</a></div>
-        <div class="tab">वीडियो गैलरी</div>
-        <div class="tab">समिति सदस्य</div>
-        <div class="tab"><a style="text-decoration: none; color: #000;" href="https://forms.gle/V7MyPy6air9JkBq76" target="_blank">संपर्क करें</a></div> 
-</div>
-
-
-
-
-
-<div class="roll-overlay" id="day2-roll">
-    <div class="roll-box">
-        
-        <button onclick="closerollview2()"  class="close-btn">&times;</button>
-
-        
-         <h4>पुत्रकामेष्टि यज्ञ</h4>
-        <div class="content">
-            <p>भाग 1<a href="Raamleela_Day2(1).pdf" target="_blank">View</a></p>
-            <p>भाग 2 <a href="Raamleela_Day2.pdf" target="_blank">View</a></p>
-        </div>
-    </div>
-</div>
-
-<div class="roll-overlay" id="day5-roll">
-    <div class="roll-box">
-        
-        <button onclick="closerollview5()"  class="close-btn">&times;</button>
-
-        
-         <h4>ताड़का वध</h4>
-        <div class="content">
-            <p>भाग 1<a href="Raamleela_Day5.pdf" target="_blank">View</a></p>
-            <p>भाग 2 <a href="Raamleela_Day5_b.pdf" target="_blank">View</a></p>
-            <p>भाग 3 <a href="Raamleela_Day5_c.pdf" target="_blank">View</a></p>
-        </div>
-    </div>
-</div>
-
-<div class="roll-overlay" id="day6-roll">
-    <div class="roll-box">
-        
-        <button onclick="closerollview6()"  class="close-btn">&times;</button>
-
-        
-         <h4>सीता स्वयंवर</h4>
-        <div class="content">
-            <p>भाग 1<a href="Raamleela_Day6.pdf" target="_blank">View</a></p>
-            <p>भाग 2 <a href="Raamleela_Day6_b.pdf" target="_blank">View</a></p>
-            <p>भाग 3 <a href="Raamleela_Day6_c.pdf" target="_blank">View</a></p>
-            <p>भाग 4 <a href="Raamleela_day6_d_Ravan_Banasur.pdf" target="_blank">View</a></p>
-        </div>
-    </div>
-</div>
-<div class="roll-overlay" id="day8-roll">
-    <div class="roll-box">
-        
-        <button onclick="closerollview8()" class="close-btn">&times;</button>
-
-        
-         <h4>सीता हरण</h4>
-        <div class="content">
-            <p>भाग 1<a href="Raamleela_Day8.pdf" target="_blank">View</a></p>
-            <p>भाग 2 <a href="Raamleela_Day8_b.pdf" target="_blank">View</a></p>
-            <p>भाग 3 <a href="Raamleela_day8_Ravan-Marich-seeta.pdf" target="_blank">View</a></p>
-            
-        </div>
-    </div>
-</div>
-
-
-
+<!--Notice on loading site-->
 <div id="noticeOverlay" class="notice-overlay">
     <div class="notice-box">
-
         <span class="close-notice" onclick="closeNotice()">✕</span>
-
         <h3>📢 Notice</h3>
-
         <p id="noticeText">
             यह वेबसाइट रामलीला में विभिन्न पात्रों की भूमिका निभाने वाले कलाकारों एवं इच्छुक व्यक्तियों की सुविधा हेतु बनाई गई है।
             यह वेबसाइट किसी भी प्रकार से रामलीला वेलफेयर कमेटी माहिल गहिला द्वारा आधिकारिक रूप से संचालित, प्रायोजित अथवा प्रकाशित नहीं की गई है।
             इस वेबसाइट पर उपलब्ध सामग्री का उद्देश्य केवल सुविधा प्रदान करना है। यद्यपि सामग्री यथासंभव सही रखने का प्रयास किया गया है, फिर भी इसका समिति से कोई आधिकारिक संबंध नहीं है।
             यदि आपको इस वेबसाइट की किसी सामग्री अथवा संचालन से कोई आपत्ति या शिकायत है, तो कृपया नीचे दिए गए शिकायत विकल्प का उपयोग करें।
         </p>
-
         <div class="notice-actions">
-            <span class="notice-link" onclick="toggleLanguage()" id="langToggle">
-    English
-</span>
-
+            <span class="notice-link" onclick="toggleLanguage()" id="langToggle">English</span>
             <a style="text-decoration: none;" href="https://forms.gle/V7MyPy6air9JkBq76" target="_blank" class="notice-link">
                 शिकायत दर्ज करें
             </a>
         </div>
-
     </div>
 </div>
+<!--Adding javascript-->
 <script src="script.js"></script>       
 </body>
-

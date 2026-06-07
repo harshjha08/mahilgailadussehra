@@ -1,391 +1,168 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-
     <meta charset="UTF-8">
     <meta name="theme-color" content="#B22222">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>चित्र दीर्घा</title>
-
-    <link
-        rel="stylesheet"
-        href="gallery.css"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="gallery.css">
     <link rel="stylesheet" href="index.css">
-
 </head>
 
 <body>
+<!-- HEADER -->
+<header class="header"> 
+<h1>चित्र गैलरी</h1>
+<p>रामलीला एवं अन्य कार्यक्रमों की यादगार झलकियाँ</p>
+</header>
+
+<!-- SEARCH -->
+<section class="search-section">
+    <input type="text" id="searchInput" placeholder="चित्र श्रेणी खोजें...">
+</section>
+
+<!-- CATEGORY GRID -->
+<section class="gallery-grid" id="galleryGrid">
+
+    <!-- CARD 1 -->
+<div class="gallery-card" data-gallery="dussehra2025">
+    <div class="card-image">
+        <img src="dussehra2501.jpeg" alt="">
+    </div>
+    <div class="card-content">
+        <h3>दशहरा 2025</h3>
+        <p>उत्सव की विशेष झलकियाँ</p>
+    </div>
+</div>
+
+    <!-- CARD 2 -->
+<div class="gallery-card" data-gallery="dussehra2023">
+    <div class="card-image">
+        <img src="dussehra2301.jpeg" alt="">
+    </div>
+    <div class="card-content">
+        <h3>दशहरा 2023</h3>
+        <p>पावन क्षण</p>
+    </div>
+</div>
+
+    <!-- CARD 3 -->
+<div class="gallery-card" data-gallery="dussehra2022">
+    <div class="card-image">
+        <img src="dussehra2201.jpeg" alt="">
+    </div>
+    <div class="card-content">
+        <h3>दशहरा 2022</h3>
+        <p>मंचन की झलकियाँ</p>
+    </div>
+</div>
+
+    <!-- CARD 4 -->
+<div class="gallery-card" data-gallery="dussehra2021">
+    <div class="card-image">
+        <img src="dussehra2101.jpeg" alt="">
+    </div>
+    <div class="card-content">
+        <h3>दशहरा 2021</h3>
+        <p>मुख्य आकर्षण</p>
+    </div>
+</div>
+
+    <!-- CARD 5 -->
+<div class="gallery-card" data-gallery="dussehra2019">
+    <div class="card-image">
+        <img src="dussehra1901.jpeg" alt="">
+    </div>
+    <div class="card-content">
+        <h3>दशहरा 2019</h3>
+        <p>मुख्य आकर्षण</p>
+    </div>
+</div>
+
+    <!-- CARD 6 -->
+<div class="gallery-card" data-gallery="seetaRamVivah2019">
+    <div class="card-image">
+        <img src="SRVivaah1901.jpeg" alt="">
+    </div>
+    <div class="card-content">
+        <h3>सीता राम विवाह 2019</h3>
+        <p>भक्तिमय क्षण</p>
+    </div>
+</div>
+
+    <!-- CARD 7 -->
+<div class="gallery-card" data-gallery="dussehra2012">
+    <div class="card-image">
+        <img src="dussehra1201.jpg" alt="">
+    </div>
+    <div class="card-content">
+        <h3>दशहरा 2012</h3>
+        <p>यादगार पल</p>
+    </div>
+</div>
+
+    <!-- CARD 8 -->
+<div class="gallery-card" data-gallery="dussehra2011">
+    <div class="card-image">
+        <img src="dussehra1101.jpg" alt="">
+    </div>
+    <div class="card-content">
+        <h3>दशहरा 2011</h3>
+        <p>विशेष क्षण</p>
+    </div>
+</div> 
 
-    <!-- HEADER -->
-
-    <header class="header">
-        
-        <h1>
-            
-            चित्र गैलरी 
-        </h1>
-
-        <p>
-            रामलीला एवं अन्य कार्यक्रमों की यादगार झलकियाँ
-        </p>
-
-    </header>
-
-    <!-- SEARCH -->
-
-    <section class="search-section">
-
-        <input
-            type="text"
-            id="searchInput"
-            placeholder="चित्र श्रेणी खोजें..."
-        >
-
-    </section>
-
-    <!-- CATEGORY GRID -->
-
-    <section
-        class="gallery-grid"
-        id="galleryGrid"
-    >
-
-        <!-- CARD 1 -->
-
-        <div class="gallery-card"
-            data-gallery="dussehra2025">
-
-            <div class="card-image">
-                <img
-                    src="dussehra2501.jpeg"
-                    alt=""
-                >
-            </div>
-            <div class="card-content">
-                <h3>
-                    दशहरा 2025
-                </h3>
-                <p>
-                    उत्सव की विशेष झलकियाँ
-                </p>
-            </div>
-        </div>
-
-        <!-- CARD 2 -->
-
-        <div
-            class="gallery-card"
-            data-gallery="dussehra2023"
-        >
-
-            <div class="card-image">
-
-                <img
-                    src="dussehra2301.jpeg"
-                    alt=""
-                >
-
-            </div>
-
-            <div class="card-content">
-
-                <h3>
-                    दशहरा 2023
-                </h3>
-
-                <p>
-                    पावन क्षण
-                </p>
-
-            </div>
-
-        </div>
-
-        <!-- CARD 3 -->
-
-        <div
-            class="gallery-card"
-            data-gallery="dussehra2022"
-        >
-
-            <div class="card-image">
-
-                <img
-                    src="dussehra2201.jpeg"
-                    alt=""
-                >
-
-            </div>
-
-            <div class="card-content">
-
-                <h3>
-                    दशहरा 2022
-                </h3>
-
-                <p>
-                    मंचन की झलकियाँ
-                </p>
-
-            </div>
-
-        </div>
-
-        <!-- CARD 4 -->
-
-        <div
-            class="gallery-card"
-            data-gallery="dussehra2021"
-        >
-
-            <div class="card-image">
-
-                <img
-                    src="dussehra2101.jpeg"
-                    alt=""
-                >
-
-            </div>
-
-            <div class="card-content">
-
-                <h3>
-                    दशहरा 2021
-                </h3>
-
-                <p>
-                    मुख्य आकर्षण
-                </p>
-
-            </div>
-
-        </div>
-
-        <!-- CARD 5 -->
-
-        <div
-            class="gallery-card"
-            data-gallery="dussehra2019"
-        >
-
-            <div class="card-image">
-
-                <img
-                    src="dussehra1901.jpeg"
-                    alt=""
-                >
-
-            </div>
-
-            <div class="card-content">
-
-                <h3>
-                    दशहरा 2019
-                </h3>
-
-                <p>
-                    मुख्य आकर्षण
-                </p>
-
-            </div>
-
-        </div>
-
-        <!-- CARD 6 -->
-
-        <div
-            class="gallery-card"
-            data-gallery="seetaRamVivah2019"
-        >
-
-            <div class="card-image">
-
-                <img
-                    src="SRVivaah1901.jpeg"
-                    alt=""
-                >
-
-            </div>
-
-            <div class="card-content">
-
-                <h3>
-                    सीता राम विवाह 2019
-                </h3>
-
-                <p>
-                    भक्तिमय क्षण
-                </p>
-
-            </div>
-
-        </div>
-
-        <!-- CARD 7 -->
-
-         <div
-            class="gallery-card"
-            data-gallery="dussehra2012"
-        >
-
-            <div class="card-image">
-
-                <img
-                    src="dussehra1201.jpg"
-                    alt=""
-                >
-
-            </div>
-
-            <div class="card-content">
-
-                <h3>
-                    दशहरा 2012
-                </h3>
-
-                <p>
-                    यादगार पल
-                </p>
-
-            </div>
-
-        </div>
-
-        <!-- CARD 8 -->
-
-        <div
-            class="gallery-card"
-            data-gallery="dussehra2011"
-        >
-
-            <div class="card-image">
-
-                <img
-                    src="dussehra1101.jpg"
-                    alt=""
-                >
-
-            </div>
-
-            <div class="card-content">
-
-                <h3>
-                    दशहरा 2011
-                </h3>
-
-                <p>
-                    विशेष क्षण
-                </p>
-
-            </div>
-
-        </div> 
-
-    </section>
+</section>
 
     <!-- MODAL -->
-
-    <div
-        class="modal"
-        id="galleryModal"
-    >
-
-        <div class="modal-top">
-
-            <button
-                id="backBtn"
-                class="icon-btn"
-            >
-                ←
-            </button>
-
-            <div
-                id="galleryTitle"
-                class="modal-title"
-            >
-                Gallery
-            </div>
-
-            <button
-                id="closeBtn"
-                class="icon-btn"
-            >
-                ✕
-            </button>
-
+<div class="modal" id="galleryModal">
+    <div class="modal-top">
+        <button id="backBtn" class="icon-btn">
+            ←
+        </button>
+        <div id="galleryTitle" class="modal-title">
+            Gallery
         </div>
-
-        <div class="slider-area">
-
-            <button
-                id="prevBtn"
-                class="nav-btn left"
-            >
-                ❮
-            </button>
-
-            <img
-                id="galleryImage"
-                src=""
-                alt=""
-            >
-
-            <button
-                id="nextBtn"
-                class="nav-btn right"
-            >
-                ❯
-            </button>
-
-        </div>
-
-        <div class="bottom-bar">
-
-            <div
-                id="imageCounter"
-            >
-                1 / 1
-            </div>
-
-            <button
-                id="autoPlayBtn"
-            >
-                ▶ Auto Slide
-            </button>
-
-        </div>
-
-        <div
-            id="loopNotice"
-            class="loop-notice"
-        >
-            ↻ Gallery Restarted
-        </div>
-
+        <button id="closeBtn" class="icon-btn">
+            ✕
+        </button>
     </div>
 
-    <footer class="footer">
+    <div class="slider-area">
+        <button id="prevBtn" class="nav-btn left">
+            ❮
+        </button>
+        <img id="galleryImage" src="" alt="">
+        <buttonid="nextBtn"class="nav-btn right">
+            ❯
+        </button>
+    </div>
 
+    <div class="bottom-bar">
+        <div id="imageCounter">
+            1 / 1
+        </div>
+        <button id="autoPlayBtn">
+            ▶ Auto Slide
+        </button>
+    </div>
+    <div id="loopNotice" class="loop-notice">↻ Gallery Restarted</div>
+</div>
+
+<!--Footer same for all the pages-->
+<footer class="footer">
     <div class="footer-top">
         <h2>🚩 जय श्री राम 🚩</h2>
         <p>श्री रामलीला एवं दशहरा महोत्सव<br>माहिल गहिला</p>
     </div>
-
     <div class="footer-links">
-
         <div class="footer-section">
             <h3>त्वरित लिंक</h3>
-            <a href="#nav-section">मुख्य पृष्ठ</a>
+            <a href="index.html">मुख्य पृष्ठ</a>
             <a href="#script-box">नवरात्रि स्क्रिप्ट</a>
             <a href="gallery.html">चित्रावली</a>
             <a href="#">वीडियो गैलरी</a>
         </div>
-
         <div class="footer-section">
             <h3>संपर्क</h3>
             <p>📍 ग्राम माहिल गहिला,<br>
@@ -397,21 +174,18 @@
         </div>
 
     </div>
-
     <div class="footer-quote">
         <p>
             "धर्म की विजय, अधर्म का नाश"
         </p>
     </div>
-
     <div class="footer-bottom">
         © 2026 Developed & Managed by<br>
         Harsh Jha
     </div>
-
 </footer>
-
-    <script src="gallery.js"></script>
+<!--Connecting Javascript-->
+<script src="gallery.js"></script>
 
 </body>
 </html>
