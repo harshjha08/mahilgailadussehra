@@ -20,6 +20,20 @@ const galleries = {
 
     },
 
+    dussehra2024: {
+
+        title: "दशहरा 2024",
+
+        images: [
+            "dussehra2401.png",
+            "dussehra2402.png",
+            "dussehra2403.png",
+            "dussehra2404.png",
+            "dussehra2405.png"    
+        ]
+
+    },
+
     dussehra2023: {
 
         title: "दशहरा 2023",
@@ -27,7 +41,14 @@ const galleries = {
         images: [
             "dussehra2301.jpeg",
             "dussehra2302.jpeg",
-            "dussehra2303.jpeg"
+            "dussehra2303.jpeg",
+            "dussehra2304.jpeg",
+            "dussehra2305.jpeg",
+            "dussehra2306.jpeg",
+            "dussehra2307.jpeg",
+            "dussehra2308.jpeg",
+            "dussehra2309.jpeg",
+            "dussehra2310.jpeg"
         ]
 
     },

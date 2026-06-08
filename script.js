@@ -194,3 +194,37 @@ function previousImage(){
 }
 showImage();
 setInterval(nextImage, 4000);
+
+
+// Flip on tap/click
+document.querySelectorAll(".flip-card").forEach(card => {
+  card.addEventListener("click", () => {
+    card.classList.toggle("flipped");
+  });
+});
+
+
+// Scroll reveal + hint animation
+const cards = document.querySelectorAll(".flip-card");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+
+    if (entry.isIntersecting) {
+      // show card
+      entry.target.classList.add("show");
+
+      // hint animation (only once)
+      entry.target.classList.add("hint");
+
+      setTimeout(() => {
+        entry.target.classList.remove("hint");
+      }, 700);
+    }
+
+  });
+}, {
+  threshold: 0.3
+});
+
+cards.forEach(card => observer.observe(card));
