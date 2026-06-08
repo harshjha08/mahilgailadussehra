@@ -1,27 +1,37 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
+
     <meta charset="UTF-8">
-    <meta name="theme-color" content="#B22222">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Image Gallery</title>
-    <link rel="stylesheet" href="gallery.css">
+
+    <link
+        rel="stylesheet"
+        href="gallery.css"
+    >
     <link rel="stylesheet" href="index.css">
+
 </head>
 
 <body>
-<!-- HEADER -->
+
+    <!-- HEADER -->
 <header class="header"> 
 <h1>चित्र गैलरी</h1>
 <p>रामलीला एवं अन्य कार्यक्रमों की यादगार झलकियाँ</p>
 </header>
 
-<!-- SEARCH -->
+    <!-- SEARCH -->
 <section class="search-section">
     <input type="text" id="searchInput" placeholder="चित्र श्रेणी खोजें...">
 </section>
 
-<!-- CATEGORY GRID -->
+   <!-- CATEGORY GRID -->
 <section class="gallery-grid" id="galleryGrid">
 
     <!-- CARD 1 -->
@@ -115,41 +125,88 @@
 </section>
 
     <!-- MODAL -->
-<div class="modal" id="galleryModal">
-    <div class="modal-top">
-        <button id="backBtn" class="icon-btn">
-            ←
-        </button>
-        <div id="galleryTitle" class="modal-title">
-            Gallery
+
+    <div
+        class="modal"
+        id="galleryModal"
+    >
+
+        <div class="modal-top">
+
+            <button
+                id="backBtn"
+                class="icon-btn"
+            >
+                ←
+            </button>
+
+            <div
+                id="galleryTitle"
+                class="modal-title"
+            >
+                Gallery
+            </div>
+
+            <button
+                id="closeBtn"
+                class="icon-btn"
+            >
+                ✕
+            </button>
+
         </div>
-        <button id="closeBtn" class="icon-btn">
-            ✕
-        </button>
-    </div>
 
-    <div class="slider-area">
-        <button id="prevBtn" class="nav-btn left">
-            ❮
-        </button>
-        <img id="galleryImage" src="" alt="">
-        <buttonid="nextBtn"class="nav-btn right">
-            ❯
-        </button>
-    </div>
+        <div class="slider-area">
 
-    <div class="bottom-bar">
-        <div id="imageCounter">
-            1 / 1
+            <button
+                id="prevBtn"
+                class="nav-btn left"
+            >
+                ❮
+            </button>
+
+            <img
+                id="galleryImage"
+                src=""
+                alt=""
+            >
+
+            <button
+                id="nextBtn"
+                class="nav-btn right"
+            >
+                ❯
+            </button>
+
         </div>
-        <button id="autoPlayBtn">
-            ▶ Auto Slide
-        </button>
-    </div>
-    <div id="loopNotice" class="loop-notice">↻ Gallery Restarted</div>
-</div>
 
-<!--Footer same for all the pages-->
+        <div class="bottom-bar">
+
+            <div
+                id="imageCounter"
+            >
+                1 / 1
+            </div>
+
+            <button
+                id="autoPlayBtn"
+            >
+                ▶ Auto Slide
+            </button>
+
+        </div>
+
+        <div
+            id="loopNotice"
+            class="loop-notice"
+        >
+            ↻ Gallery Restarted
+        </div>
+
+    </div>
+
+
+    <!--Footer same for all the pages-->
 <footer class="footer">
     <div class="footer-top">
         <h2>🚩 जय श्री राम 🚩</h2>
@@ -184,8 +241,6 @@
         Harsh Jha
     </div>
 </footer>
-<!--Connecting Javascript-->
-<script src="gallery.js"></script>
-
+    <script src="gallery.js"></script>
 </body>
 </html>

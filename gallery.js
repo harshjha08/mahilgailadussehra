@@ -630,8 +630,8 @@ document
 
             currentIndex = 0;
 
-            //localStorage.setItem("savedGallery", key);
-            //localStorage.setItem("savedindex", 0);
+            localStorage.setItem("savedGallery", key);
+            localStorage.setItem("savedindex", 0);
 
             galleryTitle.textContent =
             currentGallery.title;
@@ -675,8 +675,8 @@ function closeGallery() {
     modal.style.display =
     "none";
 
-    //localStorage.removeItem("savedGallery");
-    //localStorage.removeItem("savedIndex");
+    localStorage.removeItem("savedGallery");
+    localStorage.removeItem("savedIndex");
 
 }
 
@@ -869,4 +869,3 @@ document.addEventListener(
 
     }
 );
-
