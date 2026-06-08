@@ -630,8 +630,8 @@ document
 
             currentIndex = 0;
 
-            localStorage.setItem("savedGallery", key);
-            localStorage.setItem("savedindex", 0);
+            //localStorage.setItem("savedGallery", key);
+            //localStorage.setItem("savedindex", 0);
 
             galleryTitle.textContent =
             currentGallery.title;
@@ -675,8 +675,8 @@ function closeGallery() {
     modal.style.display =
     "none";
 
-    localStorage.removeItem("savedGallery");
-    localStorage.removeItem("savedIndex");
+    //localStorage.removeItem("savedGallery");
+    //localStorage.removeItem("savedIndex");
 
 }
 
@@ -870,24 +870,3 @@ document.addEventListener(
     }
 );
 
-window.addEventListener(
-    "load",
-    () => {
-        const savedGallery = 
-        localStorage.getItem(
-            "savedGallery"
-        );
-        const savedIndex = 
-        parseInt(
-            localStorage.getItem(
-                "savedIndex"
-            )
-        );
-        if(savedGallery && galleries[savedGallery]){
-            currentIndex = isNan(savedIndex) ? 0: savedIndex;
-            galleryTitle.textContent = currentGallery.tittle;
-            modal.style.display = "flex";
-            showImage();
-        }
-    }
-);

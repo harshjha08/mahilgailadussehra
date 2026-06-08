@@ -1,7 +1,7 @@
-const lastPage = localStorage.getItem("lastPage");
-if(lastPage && window.location.href !== lastPage){
-    window.location.href = lastPage;
-}
+// const lastPage = localStorage.getItem("lastPage");
+// if(lastPage && window.location.href !== lastPage){
+//     window.location.href = lastPage;
+// }
 let sideBar = document.querySelector(".menu-extension");
 let menuBtn = document.querySelector("#menuBtn");
 
