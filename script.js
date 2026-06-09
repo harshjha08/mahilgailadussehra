@@ -228,3 +228,13 @@ const observer = new IntersectionObserver((entries) => {
 });
 
 cards.forEach(card => observer.observe(card));
+
+document.querySelectorAll(".insta-icon").forEach(icon => {
+    icon.addEventListener("click", (e) => { 
+        e.stopPropagation(); // prevent flip
+    });
+});     
+
+
+
+

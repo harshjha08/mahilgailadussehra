@@ -29,7 +29,10 @@ const galleries = {
             "dussehra2402.png",
             "dussehra2403.png",
             "dussehra2404.png",
-            "dussehra2405.png"    
+            "dussehra2405.png",
+            "dussehra2406.heic",   
+            "dussehra2407.heic",   
+            "dussehra2408.heic",  
         ]
 
     },

@@ -952,6 +952,7 @@ body::-webkit-scrollbar{
   color: #000;
   transform: rotateY(180deg);
 }
+
 .front-img-box, .back-img-box{
     height: 100%;
     width: 100%;
@@ -995,6 +996,79 @@ body::-webkit-scrollbar{
 }
 #meghnath-img{
     background-image: url(sheeta_jassi_meghnath.png);
+}
+.cast-box-overlay{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 50px 16px 18px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.65) 40%, rgba(0,0,0,0) 100%);
+    display: flex;
+    justify-content: center;  
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;  
+    align-items: flex-end;
+    /* z-index: 2; */
+}
+.cast-box-overlay-back{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 50px 16px 18px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.65) 40%, rgba(0,0,0,0) 100%);
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+}
+.cast-box-overlay-back h5{
+    color: #F8E6B5;
+}
+.cast-box-overlay-back p{
+    margin: 0;
+    color: var(--accent);
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-shadow: 0 2px 5px rgba(0,0,0,.9), 0 0 10px rgba(255,215,0,.3);
+}
+.cast-box-overlay p{
+    margin: 0;
+    color: #FFD700;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-shadow: 0 2px 5px rgba(0,0,0,.9), 0 0 10px rgba(255,215,0,.3);
+}
+.insta-icon{
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 42px;
+    height: 42px;
+    background: linear-gradient(135deg, rgba(131,58,180,.8), rgba(253,29,29,.8), rgba(252,176,69,.8));
+    backdrop-filter: blur(10px);
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,.25),
+    0 8px 24px rgba(0,0,0,.18),
+    0 0 12px rgba(255,255,255,.12);
+    color: #fff;
+    font-size: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    transition: all .3s ease;
+}
+.insta-icon:hover{
+    background: rgba(255,255,255,0.25);
+    transform: scale(1.08);
 }
 /* ✨ Attention shake when user reaches section */
 @keyframes cardHint {
