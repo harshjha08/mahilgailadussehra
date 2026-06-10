@@ -541,23 +541,55 @@ let autoPlayRunning = false;
 // SHOW IMAGE
 // =====================================
 
+// function showImage() {
+
+//     galleryImage.style.opacity = "0";
+
+//     setTimeout(() => {
+
+//         galleryImage.src =
+//         currentGallery.images[currentIndex];
+
+//         galleryImage.style.opacity = "1";
+
+//         imageCounter.textContent =
+//         `${currentIndex + 1} / ${currentGallery.images.length}`;
+
+//     }, 100);
+
+//     localStorage.setItem("savedIndex", currentIndex);
+
+// }
+
 function showImage() {
 
-    galleryImage.style.opacity = "0";
+    const newImage = new Image();
 
-    setTimeout(() => {
+    newImage.src =
+    currentGallery.images[currentIndex];
 
-        galleryImage.src =
-        currentGallery.images[currentIndex];
+    newImage.onload = () => {
 
-        galleryImage.style.opacity = "1";
+        galleryImage.style.opacity = "0";
 
-        imageCounter.textContent =
-        `${currentIndex + 1} / ${currentGallery.images.length}`;
+        setTimeout(() => {
 
-    }, 100);
+            galleryImage.src =
+            newImage.src;
 
-    localStorage.setItem("savedIndex", currentIndex);
+            galleryImage.style.opacity = "1";
+
+            imageCounter.textContent =
+            `${currentIndex + 1} / ${currentGallery.images.length}`;
+
+        }, 150);
+
+    };
+
+    localStorage.setItem(
+        "savedIndex",
+        currentIndex
+    );
 
 }
 
