@@ -124,8 +124,8 @@ body::-webkit-scrollbar{
     background:rgba(255, 255, 255, 0.8);
 
     border-radius:12px;
-    border-bottom: 4px solid var(--secondary);
-
+    border-bottom: 4px solid var(--primary);
+    
     overflow:hidden;
 
     cursor:pointer;

@@ -455,54 +455,6 @@ body::-webkit-scrollbar{
 
 }
 
-
-
-/* .overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-    z-index: 9998;
-}
-
-.center-box {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    z-index: 9999;
-
-    width: 300px;
-    max-width: 90vw;
-    min-height: 150px;
-
-    background: white;
-    border-radius: 12px;
-    padding: 20px;
-} */
- /* .overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-    z-index: 9998;
-}
-
-.center-box {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    z-index: 9999;
-
-    width: 300px;
-    max-width: 90vw;
-    min-height: 150px;
-
-    background: white;
-    border-radius: 12px;
-    padding: 20px;
-} */
 /* Roll Cards Overlay/popup box */
 .roll-overlay {
     position: fixed;

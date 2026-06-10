@@ -142,7 +142,7 @@ function toggleLanguage(){
     }
 }
 
-
+// speacial higlights images auto sliding div
 const images = [
    "dussehra2501.jpeg",
    "dussehra2502.jpeg",
@@ -162,28 +162,23 @@ function showImage(index){
 
 function showImage(){
     const img = document.getElementById("galleryImage");
-    img.style.transform = "scale(1.03)";
-    img.style.opacity = "0";
+    // img.style.transform = "scale(1.03)";
+    // img.style.opacity = "0";
     setTimeout(() => {
         img.src = images[currentImage];
         img.style.opacity = "1";
         img.style.transform = "scale(1)";
         
-    },400)
+    },350)
 }
 function nextImage(){
-
     currentImage++;
-
     if(currentImage >= images.length){
         currentImage = 0;
     }
-
     showImage(currentImage);
 }
-
 function previousImage(){
-
     currentImage--;
 
     if(currentImage < 0){
@@ -196,14 +191,12 @@ showImage();
 setInterval(nextImage, 4000);
 
 
-// Flip on tap/click
+// Cast Cards for the main rolls
 document.querySelectorAll(".flip-card").forEach(card => {
   card.addEventListener("click", () => {
     card.classList.toggle("flipped");
   });
 });
-
-
 // Scroll reveal + hint animation
 const cards = document.querySelectorAll(".flip-card");
 
@@ -226,9 +219,8 @@ const observer = new IntersectionObserver((entries) => {
 }, {
   threshold: 0.3
 });
-
+//preventing card flip if tapped on insta icon
 cards.forEach(card => observer.observe(card));
-
 document.querySelectorAll(".insta-icon").forEach(icon => {
     icon.addEventListener("click", (e) => { 
         e.stopPropagation(); // prevent flip

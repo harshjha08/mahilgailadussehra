@@ -29,10 +29,7 @@ const galleries = {
             "dussehra2402.png",
             "dussehra2403.png",
             "dussehra2404.png",
-            "dussehra2405.png",
-            "dussehra2406.heic",   
-            "dussehra2407.heic",   
-            "dussehra2408.heic",  
+            "dussehra2405.png" 
         ]
 
     },
@@ -45,13 +42,13 @@ const galleries = {
             "dussehra2301.jpeg",
             "dussehra2302.jpeg",
             "dussehra2303.jpeg",
-            "dussehra2304.jpeg",
-            "dussehra2305.jpeg",
-            "dussehra2306.jpeg",
-            "dussehra2307.jpeg",
-            "dussehra2308.jpeg",
-            "dussehra2309.jpeg",
-            "dussehra2310.jpeg"
+            "dussehra2304.png",
+            "dussehra2305.png",
+            "dussehra2306.png",
+            "dussehra2307.png",
+            "dussehra2308.png",
+            "dussehra2309.png",
+            "dussehra2310.png"
         ]
 
     },
@@ -517,22 +514,16 @@ const galleries = {
 
 const modal =
 document.getElementById("galleryModal");
-
 const galleryImage =
 document.getElementById("galleryImage");
-
 const galleryTitle =
 document.getElementById("galleryTitle");
-
 const imageCounter =
 document.getElementById("imageCounter");
-
 const loopNotice =
 document.getElementById("loopNotice");
-
 const autoPlayBtn =
 document.getElementById("autoPlayBtn");
-
 const searchInput =
 document.getElementById("searchInput");
 
@@ -564,7 +555,7 @@ function showImage() {
         imageCounter.textContent =
         `${currentIndex + 1} / ${currentGallery.images.length}`;
 
-    }, 180);
+    }, 100);
 
     localStorage.setItem("savedIndex", currentIndex);
 
