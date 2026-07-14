@@ -285,7 +285,7 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background-image: url('../hero.jpg'), url('../Hero Images/raamji.jpeg');
+      background-image: url('../assets/Hero Images/raamji.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -781,28 +781,28 @@
       justify-content: center;
     }
     #script-card1{
-        background-image:  url("../Navratra Card Images/ND1.jpeg");
+        background-image:  url("../assets/Navratra Card Images/ND1.jpeg");
     }
     #script-card2{
-        background-image:  url("../Navratra Card Images/ND2.jpeg");
+        background-image:  url("../assets/Navratra Card Images/ND2.jpeg");
     }
     #script-card3{
-        background-image: url("../Navratra Card Images/ND3.jpeg");
+        background-image: url("../assets/Navratra Card Images/ND3.jpeg");
     }
     #script-card4{
-        background-image: url("../Navratra Card Images/ND4.jpeg");
+        background-image: url("../assets/Navratra Card Images/ND4.jpeg");
     }
     #script-card5{
-        background-image:  url("../Navratra Card Images/ND5.jpeg");
+        background-image:  url("../assets/Navratra Card Images/ND5.jpeg");
     }
     #script-card6{
-        background-image:  url("../Navratra Card Images/ND6.jpeg");
+        background-image:  url("../assets/Navratra Card Images/ND6.jpeg");
     }
     #script-card8{
-        background-image:  url("../Navratra Card Images/ND8.jpeg");
+        background-image:  url("../assets/Navratra Card Images/ND8.jpeg");
     }
     #script-card9{
-        background-image: url("../Navratra Card Images/ND9.jpeg");
+        background-image: url("../assets/Navratra Card Images/ND9.jpeg");
     }
     .script-card-day-badge {
       position: absolute;
