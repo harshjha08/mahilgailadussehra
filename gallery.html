@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="hi" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#B22222" />
+  <title>Mahil Gaila Dussehra Gallery | चित्रावली एवं दशहरा महोत्सव</title>
+  <meta name="description" content="माहिल गहिला दशहरा एवं श्री रामलीला महोत्सव की चित्रावली। दशहरा 2025, 2024, 2023 तथा पूर्व वर्षों की दुर्लभ एवं यादगार तस्वीरें देखें।" />
+  <meta name="keywords" content="Mahil Gaila Dussehra Gallery, माहिल गहिला चित्रावली, दशहरा फोटो, रामलीला फोटो, Dussehra Photos" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://mahilgailadussehra.vercel.app/gallery.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Mahil Gaila Dussehra Gallery | चित्रावली" />
+  <meta property="og:image" content="https://mahilgailadussehra.vercel.app/dussehra2501.jpeg" />
+  <meta property="og:url" content="https://mahilgailadussehra.vercel.app/gallery.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/png" href="raamji.jpeg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="CSS/gallery.css">
+
+</head>
+
+<body>
+
+<!-- ░░░░░ NAVBAR ░░░░░ -->
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-brand">
+      <img src="raamji.jpeg" alt="Mahil Gaila Dussehra" class="navbar-logo" />
+      <div>
+        <div class="navbar-brand-text">Mahil Gaila Dussehra</div>
+        <span class="navbar-brand-sub">श्री रामलीला महोत्सव</span>
+      </div>
+    </a>
+
+    <ul class="navbar-links">
+      <li><a href="index.html#about">हमारे बारे में</a></li>
+      <li><a href="index.html#events">कार्यक्रम</a></li>
+      <li><a href="index.html#scripts">स्क्रिप्ट</a></li>
+      <li><a href="gallery.html" class="active">चित्रावली</a></li>
+      <li><a href="index.html#videos">वीडियो</a></li>
+      <li><a href="index.html#cast">पात्र</a></li>
+    </ul>
+
+    <div class="navbar-actions">
+      <button class="btn-theme" id="themeToggle" aria-label="Toggle theme">
+        <i class="fa-solid fa-moon" id="themeIcon"></i>
+      </button>
+      <a href="index.html" class="btn-home-nav">
+        <i class="fa-solid fa-house" aria-hidden="true"></i>
+        मुख्य पृष्ठ
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">मुख्य पृष्ठ</a>
+    <a href="index.html#about">हमारे बारे में</a>
+    <a href="index.html#events">कार्यक्रम 2026</a>
+    <a href="index.html#scripts">नवरात्रि स्क्रिप्ट</a>
+    <a href="gallery.html">चित्रावली</a>
+    <a href="index.html#videos">वीडियो गैलरी</a>
+    <a href="index.html#cast">मुख्य पात्र</a>
+    <a href="index.html#contact">संपर्क करें</a>
+  </div>
+</nav>
+
+<!-- ░░░░░ PAGE HERO ░░░░░ -->
+<header class="page-hero">
+  <div class="page-hero-content">
+    <span class="hero-eyebrow">📸 चित्रावली</span>
+    <h1>Photo <span>Gallery</span></h1>
+    <p class="page-hero-sub">रामलीला एवं दशहरा महोत्सव की यादगार झलकियाँ</p>
+    <div class="hero-stats-row">
+      <div class="hero-stat">
+        <div class="hero-stat-num">9</div>
+        <div class="hero-stat-label">संग्रह</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">2011</div>
+        <div class="hero-stat-label">से प्रारंभ</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">2025</div>
+        <div class="hero-stat-label">नवीनतम</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ░░░░░ SEARCH & FILTER ░░░░░ -->
+<div class="controls-bar" id="controlsBar">
+  <div class="controls-inner">
+    <div class="search-wrap">
+      <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+      <input
+        type="text"
+        id="searchInput"
+        class="search-input"
+        placeholder="संग्रह खोजें... (e.g. 2025, सीता राम)"
+        aria-label="Search gallery"
+      />
+    </div>
+    <div class="filter-chips" role="group" aria-label="Filter by year">
+      <button class="chip active" data-filter="all">सभी</button>
+      <button class="chip" data-filter="2025">2025</button>
+      <button class="chip" data-filter="2024">2024</button>
+      <button class="chip" data-filter="2023">2023</button>
+      <button class="chip" data-filter="2022">2022</button>
+      <button class="chip" data-filter="older">पूर्व वर्ष</button>
+    </div>
+    <span class="results-count" id="resultsCount">9 संग्रह</span>
+  </div>
+</div>
+
+<!-- ░░░░░ GALLERY GRID ░░░░░ -->
+<main class="gallery-section" id="gallerySection">
+  <div class="gallery-grid" id="galleryGrid">
+
+    <!-- CARD: दशहरा 2025 -->
+    <article
+      class="gallery-card fade-up"
+      data-gallery="dussehra2025"
+      data-title="दशहरा 2025"
+      data-subtitle="उत्सव की विशेष झलकियाँ"
+      data-year="2025"
+      data-tags="दशहरा 2025"
+      tabindex="0"
+      role="button"
+      aria-label="दशहरा 2025 गैलरी खोलें"
+    >
+      <div class="card-thumb">
+        <img src="dussehra 2025/dussehra2501.jpeg" alt="दशहरा महोत्सव 2025" loading="lazy"
+          onerror="this.parentElement.style.background='linear-gradient(135deg,#6B0000,#C0392B)'" />
+        <span class="card-year-badge">2025</span>
+        <span class="card-count-badge"><i class="fa-solid fa-images" style="font-size:10px"></i> Photos</span>
+        <div class="card-hover-overlay">
+          <span class="card-cta"><i class="fa-solid fa-expand" aria-hidden="true"></i> View Gallery</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-title">दशहरा 2025</div>
+          <div class="card-subtitle">उत्सव की विशेष झलकियाँ</div>
+        </div>
+        <div class="card-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+      </div>
+    </article>
+
+
+    <!-- CARD: दशहरा 2024 -->
+    <article
+      class="gallery-card fade-up"
+      style="animation-delay:0.12s"
+      data-gallery="dussehra2024"
+      data-title="दशहरा 2024"
+      data-subtitle="उत्सव की विशेष झलकियाँ"
+      data-year="2024"
+      data-tags="दशहरा 2024"
+      tabindex="0" role="button" aria-label="दशहरा 2024 गैलरी खोलें"
+    >
+      <div class="card-thumb">
+        <img src="dussehra 2024/dussehra2401.png" alt="दशहरा 2024" loading="lazy"
+          onerror="this.parentElement.style.background='linear-gradient(135deg,#6B0000,#C0392B)'" />
+        <span class="card-year-badge">2024</span>
+        <span class="card-count-badge"><i class="fa-solid fa-images" style="font-size:10px"></i> Photos</span>
+        <div class="card-hover-overlay">
+          <span class="card-cta"><i class="fa-solid fa-expand" aria-hidden="true"></i> View Gallery</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-title">दशहरा 2024</div>
+          <div class="card-subtitle">उत्सव की विशेष झलकियाँ</div>
+        </div>
+        <div class="card-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+      </div>
+    </article>
+
+    <!-- CARD: दशहरा 2023 -->
+    <article
+      class="gallery-card fade-up"
+      style="animation-delay:0.18s"
+      data-gallery="dussehra2023"
+      data-title="दशहरा 2023"
+      data-subtitle="पावन क्षण"
+      data-year="2023"
+      data-tags="दशहरा 2023"
+      tabindex="0" role="button" aria-label="दशहरा 2023 गैलरी खोलें"
+    >
+      <div class="card-thumb">
+        <img src="dussehra 2023/dussehra2301.jpeg" alt="दशहरा 2023" loading="lazy"
+          onerror="this.parentElement.style.background='linear-gradient(135deg,#6B0000,#C0392B)'" />
+        <span class="card-year-badge">2023</span>
+        <span class="card-count-badge"><i class="fa-solid fa-images" style="font-size:10px"></i> Photos</span>
+        <div class="card-hover-overlay">
+          <span class="card-cta"><i class="fa-solid fa-expand" aria-hidden="true"></i> View Gallery</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-title">दशहरा 2023</div>
+          <div class="card-subtitle">पावन क्षण</div>
+        </div>
+        <div class="card-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+      </div>
+    </article>
+
+    <!-- CARD: दशहरा 2022 -->
+    <article
+      class="gallery-card fade-up"
+      style="animation-delay:0.24s"
+      data-gallery="dussehra2022"
+      data-title="दशहरा 2022"
+      data-subtitle="मंचन की झलकियाँ"
+      data-year="2022"
+      data-tags="दशहरा 2022"
+      tabindex="0" role="button" aria-label="दशहरा 2022 गैलरी खोलें"
+    >
+      <div class="card-thumb">
+        <img src="dussehra 2022/dussehra2201.jpeg" alt="दशहरा 2022" loading="lazy"
+          onerror="this.parentElement.style.background='linear-gradient(135deg,#6B0000,#C0392B)'" />
+        <span class="card-year-badge">2022</span>
+        <span class="card-count-badge"><i class="fa-solid fa-images" style="font-size:10px"></i> Photos</span>
+        <div class="card-hover-overlay">
+          <span class="card-cta"><i class="fa-solid fa-expand" aria-hidden="true"></i> View Gallery</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-title">दशहरा 2022</div>
+          <div class="card-subtitle">मंचन की झलकियाँ</div>
+        </div>
+        <div class="card-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+      </div>
+    </article>
+
+    <!-- CARD: दशहरा 2021 -->
+    <article
+      class="gallery-card fade-up"
+      style="animation-delay:0.30s"
+      data-gallery="dussehra2021"
+      data-title="दशहरा 2021"
+      data-subtitle="मुख्य आकर्षण"
+      data-year="2021"
+      data-tags="दशहरा 2021"
+      tabindex="0" role="button" aria-label="दशहरा 2021 गैलरी खोलें"
+    >
+      <div class="card-thumb">
+        <img src="dussehra 2021/dussehra2101.jpeg" alt="दशहरा 2021" loading="lazy"
+          onerror="this.parentElement.style.background='linear-gradient(135deg,#6B0000,#C0392B)'" />
+        <span class="card-year-badge">2021</span>
+        <span class="card-count-badge"><i class="fa-solid fa-images" style="font-size:10px"></i> Photos</span>
+        <div class="card-hover-overlay">
+          <span class="card-cta"><i class="fa-solid fa-expand" aria-hidden="true"></i> View Gallery</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-title">दशहरा 2021</div>
+          <div class="card-subtitle">मुख्य आकर्षण</div>
+        </div>
+        <div class="card-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+      </div>
+    </article>
+
+    <!-- CARD: दशहरा 2019 -->
+    <article
+      class="gallery-card fade-up"
+      style="animation-delay:0.36s"
+      data-gallery="dussehra2019"
+      data-title="दशहरा 2019"
+      data-subtitle="मुख्य आकर्षण"
+      data-year="older"
+      data-tags="दशहरा 2019"
+      tabindex="0" role="button" aria-label="दशहरा 2019 गैलरी खोलें"
+    >
+      <div class="card-thumb">
+        <img src="dussehra 2019/dussehra1901.jpeg" alt="दशहरा 2019" loading="lazy"
+          onerror="this.parentElement.style.background='linear-gradient(135deg,#6B0000,#C0392B)'" />
+        <span class="card-year-badge">2019</span>
+        <span class="card-count-badge"><i class="fa-solid fa-images" style="font-size:10px"></i> Photos</span>
+        <div class="card-hover-overlay">
+          <span class="card-cta"><i class="fa-solid fa-expand" aria-hidden="true"></i> View Gallery</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-title">दशहरा 2019</div>
+          <div class="card-subtitle">मुख्य आकर्षण</div>
+        </div>
+        <div class="card-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+      </div>
+    </article>
+
+    <!-- CARD: सीता राम विवाह 2019 -->
+    <article
+      class="gallery-card fade-up"
+      style="animation-delay:0.42s"
+      data-gallery="seetaRamVivah2019"
+      data-title="सीता राम विवाह 2019"
+      data-subtitle="भक्तिमय क्षण"
+      data-year="older"
+      data-tags="सीता राम विवाह 2019"
+      tabindex="0" role="button" aria-label="सीता राम विवाह 2019 गैलरी खोलें"
+    >
+      <div class="card-thumb">
+        <img src="sitaRamVivah 2019/SRVivaah1901.jpeg" alt="सीता राम विवाह 2019" loading="lazy"
+          onerror="this.parentElement.style.background='linear-gradient(135deg,#6B0000,#C0392B)'" />
+        <span class="card-year-badge">2019</span>
+        <span class="card-count-badge"><i class="fa-solid fa-images" style="font-size:10px"></i> Photos</span>
+        <div class="card-hover-overlay">
+          <span class="card-cta"><i class="fa-solid fa-expand" aria-hidden="true"></i> View Gallery</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-title">सीता राम विवाह 2019</div>
+          <div class="card-subtitle">भक्तिमय क्षण</div>
+        </div>
+        <div class="card-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+      </div>
+    </article>
+
+    <!-- CARD: दशहरा 2012 -->
+    <article
+      class="gallery-card fade-up"
+      style="animation-delay:0.48s"
+      data-gallery="dussehra2012"
+      data-title="दशहरा 2012"
+      data-subtitle="यादगार पल"
+      data-year="older"
+      data-tags="दशहरा 2012"
+      tabindex="0" role="button" aria-label="दशहरा 2012 गैलरी खोलें"
+    >
+      <div class="card-thumb">
+        <img src="dussehra 2012/dussehra1201.jpg" alt="दशहरा 2012" loading="lazy"
+          onerror="this.parentElement.style.background='linear-gradient(135deg,#6B0000,#C0392B)'" />
+        <span class="card-year-badge">2012</span>
+        <span class="card-count-badge"><i class="fa-solid fa-images" style="font-size:10px"></i> Photos</span>
+        <div class="card-hover-overlay">
+          <span class="card-cta"><i class="fa-solid fa-expand" aria-hidden="true"></i> View Gallery</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-title">दशहरा 2012</div>
+          <div class="card-subtitle">यादगार पल</div>
+        </div>
+        <div class="card-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+      </div>
+    </article>
+
+    <!-- CARD: दशहरा 2011 -->
+    <article
+      class="gallery-card fade-up"
+      style="animation-delay:0.54s"
+      data-gallery="dussehra2011"
+      data-title="दशहरा 2011"
+      data-subtitle="विशेष क्षण"
+      data-year="older"
+      data-tags="दशहरा 2011"
+      tabindex="0" role="button" aria-label="दशहरा 2011 गैलरी खोलें"
+    >
+      <div class="card-thumb">
+        <img src="dussehra 2011/dussehra1101.jpg" alt="दशहरा 2011" loading="lazy"
+          onerror="this.parentElement.style.background='linear-gradient(135deg,#6B0000,#C0392B)'" />
+        <span class="card-year-badge">2011</span>
+        <span class="card-count-badge"><i class="fa-solid fa-images" style="font-size:10px"></i> Photos</span>
+        <div class="card-hover-overlay">
+          <span class="card-cta"><i class="fa-solid fa-expand" aria-hidden="true"></i> View Gallery</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="card-title">दशहरा 2011</div>
+          <div class="card-subtitle">विशेष क्षण</div>
+        </div>
+        <div class="card-arrow"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+      </div>
+    </article>
+
+    <!-- Empty state (hidden by default) -->
+    <div class="empty-state" id="emptyState" style="display:none">
+      <div class="empty-state-icon">🔍</div>
+      <h3>कोई परिणाम नहीं मिला</h3>
+      <p>अपनी खोज बदलें या "सभी" फ़िल्टर चुनें।</p>
+    </div>
+
+  </div>
+</main>
+
+
+
+<!-- ░░░░░ FOOTER ░░░░░ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand-name">🚩 Mahil Gaila <span>Dussehra</span></div>
+      <div class="footer-brand-sub">श्री रामलीला एवं दशहरा महोत्सव, माहिल गहिला</div>
+      <p class="footer-desc">धर्म की विजय, अधर्म का नाश — इस संकल्प के साथ माहिल गहिला की रामलीला परंपरा पीढ़ियों से जीवंत है।</p>
+      <div class="footer-socials">
+        <a href="https://www.youtube.com" target="_blank" rel="noopener" class="footer-social" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+        <a href="https://www.instagram.com" target="_blank" rel="noopener" class="footer-social" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a href="https://forms.gle/V7MyPy6air9JkBq76" target="_blank" rel="noopener" class="footer-social" aria-label="Contact"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">त्वरित लिंक</div>
+      <ul class="footer-links-list">
+        <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> मुख्य पृष्ठ</a></li>
+        <li><a href="index.html#events"><i class="fa-solid fa-chevron-right"></i> कार्यक्रम 2026</a></li>
+        <li><a href="index.html#scripts"><i class="fa-solid fa-chevron-right"></i> नवरात्रि स्क्रिप्ट</a></li>
+        <li><a href="gallery.html"><i class="fa-solid fa-chevron-right"></i> चित्रावली</a></li>
+        <li><a href="index.html#videos"><i class="fa-solid fa-chevron-right"></i> वीडियो गैलरी</a></li>
+        <li><a href="index.html#contact"><i class="fa-solid fa-chevron-right"></i> संपर्क करें</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">संपर्क</div>
+      <div class="footer-contact-row"><i class="fa-solid fa-location-dot"></i><span>ग्राम माहिल गहिला,<br>जिला शहीद भगत सिंह नगर,<br>पंजाब 144506</span></div>
+      <div class="footer-contact-row"><i class="fa-solid fa-phone"></i><span>+91 90417 49857</span></div>
+      <div class="footer-contact-row"><i class="fa-solid fa-envelope"></i><span>hjha1289@gmail.com</span></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-left">
+      <span>© 2026 Mahil Gaila Dussehra</span>
+      <span style="color:rgba(255,255,255,0.15)">|</span>
+      <span>Developed by <span>Harsh Jha</span></span>
+    </div>
+    <a href="https://en.wikipedia.org/wiki/Mahil_Gaila" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.3);font-size:0.72rem;">Wikipedia →</a>
+  </div>
+</footer>
+
+<!-- ░░░░░ LIGHTBOX MODAL ░░░░░ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo Lightbox">
+  <div class="lb-topbar">
+    <button class="lb-back-btn" id="lbBack" aria-label="Back to gallery">
+      <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> वापस
+    </button>
+    <div class="lb-title-wrap">
+      <span class="lb-title" id="lbTitle">Gallery</span>
+      <span class="lb-counter" id="lbCounter">1 / 1</span>
+    </div>
+    <button class="lb-close-btn" id="lbClose" aria-label="Close lightbox">
+      <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <div class="lb-stage">
+    <button class="lb-arrow prev" id="lbPrev" aria-label="Previous image">
+      <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+    </button>
+    <div class="lb-image-wrap">
+      <img class="lb-img" id="lbImg" src="" alt="" />
+    </div>
+    <button class="lb-arrow next" id="lbNext" aria-label="Next image">
+      <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+    </button>
+    <div class="lb-loop-notice" id="lbLoopNotice">↻ गैलरी पुनः आरंभ</div>
+  </div>
+
+  <div class="lb-bottombar">
+    <button class="lb-autoplay-btn" id="lbAutoplay" aria-pressed="false">
+      <i class="fa-solid fa-play" aria-hidden="true"></i>
+      Auto Slide
+    </button>
+    <div class="lb-thumbnail-strip" id="lbThumbStrip" role="list"></div>
+  </div>
+</div>
+<script src="scripts/gallery.js"></script>
+</body>
+</html>
