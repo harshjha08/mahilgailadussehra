@@ -671,6 +671,60 @@
       border-left: 3px solid var(--gold);
       line-height: 1.6;
     }
+      
+    /* ══════════════════════════════════════════
+       LIVE TELECAST SECTION
+    ══════════════════════════════════════════ */
+    .live-telecast-today{
+      background: var(--gold-pale);
+    }
+    .live-telecast-card{
+      height: 480px;
+      width: 900px;
+      border-radius: 20px;
+    }
+     .live-telecast-card img{
+      height: 100%;
+      width: 100%;
+      border-radius: 20px;
+    }
+    .live-telecast-poster-box{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    #live-play-btn{
+      z-index: 9999;
+      position: absolute;
+      top: 45%;
+      left: 47%;
+      height: 70px;
+      width: 70px;
+      opacity: 1;
+      font-size: 1rem;
+    }
+    .live-detail-box{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 86%;
+      height: 100%;
+      position: absolute;
+      background: #1a0a00;
+      opacity: .1;
+      border-radius: 20px;
+    }
+    @media(max-width:768px){
+      .live-detail-box{
+        width: 100%;
+      }
+      #live-play-btn{
+        top: 45%;
+        left: 40%;
+      }
+    }
+
 
     /* ══════════════════════════════════════════
        GALLERY HIGHLIGHT
