@@ -1,54 +1,53 @@
    
-    /* ── DESIGN TOKENS ── */
-    :root {
-      --crimson:        #8B0000;
-      --crimson-deep:   #6B0000;
-      --crimson-light:  #C0392B;
-      --gold:           #E8922A;
-      --gold-light:     #F5B942;
-      --gold-pale:      #FDF3E3;
-      --ivory:          #FAF6F0;
-      --ivory-dark:     #F0E8DC;
-      --text-pri:       #1A0A00;
-      --text-sec:       #5C3317;
-      --text-muted:     #9A6B4B;
-      --surface:        #FFFFFF;
-      --surface-alt:    #FAF6F0;
-      --border-c:       rgba(139,0,0,0.15);
-      --border-gold:    rgba(232,146,42,0.4);
-      --nav-bg:         rgba(250,246,240,0.95);
-      --shadow:         0 4px 24px rgba(139,0,0,0.10);
-      --shadow-lg:      0 8px 40px rgba(139,0,0,0.14);
-      --radius-sm:      8px;
-      --radius-md:      14px;
-      --radius-lg:      22px;
-      --font-display:   'Playfair Display', Georgia, serif;
-      --font-body:      'Poppins', sans-serif;
-      --font-hindi:     'Tiro Devanagari Hindi', 'Poppins', sans-serif;
-      --transition:     0.28s cubic-bezier(.4,0,.2,1);
-    }
-
-    [data-theme="dark"] {
-      --crimson:        #C0392B;
-      --crimson-deep:   #E74C3C;
-      --crimson-light:  #FF6B5B;
-      --gold:           #F5B942;
-      --gold-light:     #FFD166;
-      --gold-pale:      #2A1A00;
-      --ivory:          #120800;
-      --ivory-dark:     #1E0E03;
-      --text-pri:       #FFF8F0;
-      --text-sec:       #F5C89A;
-      --text-muted:     #C4906A;
-      --surface:        #1C0C04;
-      --surface-alt:    #241004;
-      --border-c:       rgba(192,57,43,0.25);
-      --border-gold:    rgba(245,185,66,0.3);
-      --nav-bg:         rgba(18,8,0,0.96);
-      --shadow:         0 4px 24px rgba(0,0,0,0.5);
-      --shadow-lg:      0 8px 40px rgba(0,0,0,0.6);
-    }
-
+:root {
+  --crimson:        #663399;      /* Deep purple - main brand color */
+  --crimson-deep:   #4B2667;      /* Darker purple */
+  --crimson-light:  #9370DB;      /* Light purple */
+  --gold:           #D4AF87;      /* Rose gold - warm metallic */
+  --gold-light:     #E8C5A0;      /* Light rose gold */
+  --gold-pale:      #FEF5ED;      /* Almost white with rose tint */
+  --ivory:          #FEFBF7;      /* Clean light off-white */
+  --ivory-dark:     #F5F0EB;      /* Soft gray-beige */
+  --text-pri:       #2C1840;      /* Deep purple-black */
+  --text-sec:       #6B4C7A;      /* Medium purple */
+  --text-muted:     #9B8BA3;      /* Muted purple-gray */
+  --surface:        #FFFFFF;
+  --surface-alt:    #FEFBF7;
+  --border-c:       rgba(102,51,153,0.12);
+  --border-gold:    rgba(212,175,135,0.35);
+  --nav-bg:         rgba(254,251,247,0.96);
+  --shadow:         0 4px 24px rgba(102,51,153,0.08);
+  --shadow-lg:      0 8px 40px rgba(102,51,153,0.12);
+  --radius-sm:      8px;
+  --radius-md:      14px;
+  --radius-lg:      22px;
+  --font-display:   'Playfair Display', Georgia, serif;
+  --font-body:      'Poppins', sans-serif;
+  --font-hindi:     'Tiro Devanagari Hindi', 'Poppins', sans-serif;
+  --transition:     0.28s cubic-bezier(.4,0,.2,1);
+}
+ 
+[data-theme="dark"] {
+  --crimson:        #B19CD9;      /* Light purple for dark mode */
+  --crimson-deep:   #9370DB;      /* Medium purple */
+  --crimson-light:  #DA70D6;      /* Bright purple */
+  --gold:           #E8C5A0;      /* Rose gold - more visible */
+  --gold-light:     #F5D5B8;      /* Lighter rose gold */
+  --gold-pale:      #3D2F1F;      /* Dark brown-gold for dark mode */
+  --ivory:          #0F0808;      /* Deep dark */
+  --ivory-dark:     #1A0F0C;      /* Slightly lighter dark */
+  --text-pri:       #F5E6FF;      /* Light purple-white */
+  --text-sec:       #D9B8E8;      /* Light purple-gray */
+  --text-muted:     #B89CD4;      /* Muted light purple */
+  --surface:        #1A0F0C;
+  --surface-alt:    #251512;
+  --border-c:       rgba(177,156,217,0.22);
+  --border-gold:    rgba(232,197,160,0.28);
+  --nav-bg:         rgba(15,8,8,0.97);
+  --shadow:         0 4px 24px rgba(0,0,0,0.45);
+  --shadow-lg:      0 8px 40px rgba(0,0,0,0.55);
+}
+   
     /* ── RESET & BASE ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
