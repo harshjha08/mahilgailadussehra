@@ -30,6 +30,20 @@ window.addEventListener('scroll', () => {
 
 const galleryData = {
 
+    dussehra2026: {
+
+        title: "दशहरा 2026",
+
+        images: [
+            "../assets/dussehra 2026/dussehra2601.jpeg",
+            "../assets/dussehra 2026/dussehra2602.jpeg",
+            "../assets/dussehra 2026/dussehra2603.jpeg",
+            "../assets/dussehra 2026/dussehra2604.jpeg",
+            "../assets/dussehra 2026/dussehra2605.jpeg"     
+        ]
+
+    },
+
     dussehra2025: {
 
         title: "दशहरा 2025",

@@ -88,13 +88,11 @@ setInterval(updateCountdown, 1000);
 
 /* ── GALLERY SLIDESHOW ── */
 const galleryImages = [
-  'assets/dussehra 2025/dussehra2501.jpeg',
-  'assets/dussehra 2025/dussehra2502.jpeg',
-  'assets/dussehra 2025/dussehra2503.jpeg',
-  'assets/dussehra 2025/dussehra2504.jpeg',
-  'assets/dussehra 2025/dussehra2505.jpeg',
-  'assets/dussehra 2025/dussehra2506.jpeg',
-  'assets/dussehra 2025/dussehra2507.jpeg'
+  'assets/dussehra 2026/dussehra2601.jpeg',
+  'assets/dussehra 2026/dussehra2602.jpeg',
+  'assets/dussehra 2026/dussehra2603.jpeg',
+  'assets/dussehra 2026/dussehra2604.jpeg',
+  'assets/dussehra 2026/dussehra2605.jpeg'
 ];
 let galleryIdx = 0;
 const heroGalleryImg = document.getElementById('heroGalleryImg');
