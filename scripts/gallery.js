@@ -25,7 +25,7 @@ hamburger.addEventListener('click', () => {
 /* ── NAVBAR SHADOW ── */
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
-  navbar.style.boxShadow = window.scrollY > 20 ? '0 2px 20px rgba(139,0,0,0.12)' : 'none';
+  navbar.style.boxShadow = window.scrollY > 20 ? 'var(--shadow)' : 'none';
 }, { passive: true });
 
 const galleryData = {
