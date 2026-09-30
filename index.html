@@ -797,16 +797,43 @@
       </div>
 
       <div class="fade-up" style="animation-delay:0.15s">
-        <div class="contact-form-card">
+        <form class="contact-form-card" id="contactForm" action="https://formspree.io/f/mqpanwrr" method="POST">
           <h3 class="contact-form-title">संदेश भेजें</h3>
-          <p class="contact-form-sub">Google Form के माध्यम से अपना संदेश भेजें।</p>
-          <a href="https://forms.gle/V7MyPy6air9JkBq76" target="_blank" rel="noopener" class="contact-cta-btn">
+          <p class="contact-form-sub">नीचे जानकारी भरें; आपका संदेश सीधे हमें भेजा जाएगा।</p>
+          <input type="hidden" name="_subject" value="New contact form message - Mahil Gaila Dussehra">
+          <div class="contact-form-fields">
+            <label class="contact-field">
+              <span>आपका नाम <span class="contact-required" aria-hidden="true">*</span></span>
+              <input type="text" name="name" autocomplete="name" placeholder="पूरा नाम" required>
+            </label>
+            <label class="contact-field">
+              <span>ई-मेल <span class="contact-required" aria-hidden="true">*</span></span>
+              <input type="email" name="email" autocomplete="email" placeholder="name@example.com" required>
+            </label>
+            <label class="contact-field">
+              <span>विषय</span>
+              <select name="subject">
+                <option value="कार्यक्रम संबंधी जानकारी">कार्यक्रम संबंधी जानकारी</option>
+                <option value="रामलीला में भागीदारी">रामलीला में भागीदारी</option>
+                <option value="वेबसाइट सुझाव">वेबसाइट सुझाव</option>
+                <option value="अन्य">अन्य</option>
+              </select>
+            </label>
+            <label class="contact-field">
+              <span>मोबाइल नंबर <span class="contact-optional">वैकल्पिक</span></span>
+              <input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="मोबाइल नंबर">
+            </label>
+            <label class="contact-field contact-field-full">
+              <span>संदेश <span class="contact-required" aria-hidden="true">*</span></span>
+              <textarea name="message" rows="5" placeholder="अपना संदेश लिखें..." required></textarea>
+            </label>
+          </div>
+          <button type="submit" class="contact-cta-btn">
             <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
             संदेश भेजें
-          </a>
-          <div class="contact-divider">— या —</div>
-          <p class="contact-email-note">सीधे ईमेल करें: <a href="mailto:dummy@gmail.com">dummy@gmail.com</a></p>
-        </div>
+          </button>
+          <p class="contact-form-note">वैकल्पिक रूप से <a href="https://forms.gle/V7MyPy6air9JkBq76" target="_blank" rel="noopener">Google Form से संपर्क करें</a>।</p>
+        </form>
       </div>
     </div>
   </div>
