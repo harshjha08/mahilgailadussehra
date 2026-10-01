@@ -17,6 +17,16 @@ const mgdShortsConfig = {
    description · location · thumbnail (custom image URL, optional) */
 const mgdShortsData = [
   {
+    id: "ccI6p3lR75U",
+    title: "दशहरा की यादगार झलक",
+    year: "2026",
+    category: "दशहरा",
+    description: "माहिल गहिला दशहरा महोत्सव की एक यादगार झलक।",
+    location: "माहिल गहिला",
+    thumbnail: null
+  },
+
+  {
     id: "vdNm1FnHFoc",
     title: "रावण वध का अद्भुत दृश्य",
     character: "गौरव कौशल",
@@ -27,15 +37,17 @@ const mgdShortsData = [
     location: "माहिल गहिला",
     thumbnail: null
   },
+
   {
-    id: "ccI6p3lR75U",
-    title: "दशहरा की यादगार झलक",
+    id: "EnYiDpwOhFw",
+    title: "रामलीला की यादगार झलक",
     year: "2026",
-    category: "दशहरा",
-    description: "माहिल गहिला दशहरा महोत्सव की एक यादगार झलक।",
+    category: "रामलीला",
+    description: "माहिल गहिला की रामलीला प्रस्तुति का एक यादगार दृश्य।",
     location: "माहिल गहिला",
     thumbnail: null
   },
+
   {
     id: "mLpLYvdo2e8",
     title: "रामलीला की यादगार झलक",
@@ -45,6 +57,197 @@ const mgdShortsData = [
     location: "माहिल गहिला",
     thumbnail: null
   },
+
+  {
+    id: "oVyO8e9Ku_k",
+    title: "दशहरा महोत्सव की झलक",
+    year: "2026",
+    category: "दशहरा",
+    description: "माहिल गहिला दशहरा महोत्सव की एक यादगार झलक।",
+    location: "माहिल गहिला",
+    thumbnail: null
+  },
+
+  {
+    id: "uxhFadKTMWU",
+    title: "रामलीला की झलक",
+    year: "2026",
+    category: "रामलीला",
+    description: "माहिल गहिला रामलीला के मंचन से एक यादगार दृश्य।",
+    location: "माहिल गहिला",
+    thumbnail: null
+  },
+
+  {
+    id: "C3kQ3KH8zBI",
+    title: "दशहरा की झलक",
+    year: "2026",
+    category: "दशहरा",
+    description: "माहिल गहिला दशहरा महोत्सव के उत्सव की एक झलक।",
+    location: "माहिल गहिला",
+    thumbnail: null
+  },
+
+  {
+    id: "OCYk5B5qC5U",
+    title: "रामलीला का यादगार क्षण",
+    year: "2026",
+    category: "रामलीला",
+    description: "माहिल गहिला रामलीला के मंचन से जुड़ा एक यादगार क्षण।",
+    location: "माहिल गहिला",
+    thumbnail: null
+  },
+
+  {
+    id: "cTeiX5vVdC0",
+    title: "दशहरा महोत्सव की झलक",
+    year: "2026",
+    category: "दशहरा",
+    description: "माहिल गहिला दशहरा महोत्सव की एक झलक।",
+    location: "माहिल गहिला",
+    thumbnail: null
+  },
+
+  {
+    id: "xHvaQKymUBs",
+    title: "रामलीला की झलक",
+    year: "2026",
+    category: "रामलीला",
+    description: "माहिल गहिला की रामलीला प्रस्तुति का एक यादगार दृश्य।",
+    location: "माहिल गहिला",
+    thumbnail: null
+  },
+
+  {
+    id: "IebavL62Ji0",
+    title: "दशहरा की यादगार झलक",
+    year: "2026",
+    category: "दशहरा",
+    description: "माहिल गहिला दशहरा महोत्सव की एक यादगार झलक।",
+    location: "माहिल गहिला",
+    thumbnail: null
+  },
+
+  {
+    id: "2bgoNExkkZM",
+    title: "रामलीला का दृश्य",
+    year: "2026",
+    category: "रामलीला",
+    description: "माहिल गहिला रामलीला के मंचन से एक यादगार दृश्य।",
+    location: "माहिल गहिला",
+    thumbnail: null
+  },
+
+  {
+    id: "T9Aq_UDZYjE",
+    title: "दशहरा महोत्सव की झलक",
+    year: "2026",
+    category: "दशहरा",
+    description: "माहिल गहिला दशहरा महोत्सव के उत्सव की झलक।",
+    location: "माहिल गहिला",
+    thumbnail: null
+  },
+
+  {
+    id: "iqBbGQcUoLw",
+    title: "रामलीला की झलक",
+    year: "2026",
+    category: "रामलीला",
+    description: "माहिल गहिला रामलीला के मंचन से एक यादगार दृश्य।",
+    location: "माहिल गहिला",
+    thumbnail: null
+  },
+
+  {
+    id: "oRRO_-8SEXI",
+    title: "दशहरा की यादगार झलक",
+    year: "2026",
+    category: "दशहरा",
+    description: "माहिल गहिला दशहरा महोत्सव की एक यादगार झलक।",
+    location: "माहिल गहिला",
+    thumbnail: null
+  },
+
+  {
+    id: "TdyoJGMmRQs",
+    title: "रामलीला का यादगार क्षण",
+    year: "2026",
+    category: "रामलीला",
+    description: "माहिल गहिला रामलीला के मंचन से जुड़ा एक यादगार क्षण।",
+    location: "माहिल गहिला",
+    thumbnail: null
+  },
+
+  {
+    id: "JfJdcVZl9ow",
+    title: "दशहरा महोत्सव की झलक",
+    year: "2026",
+    category: "दशहरा",
+    description: "माहिल गहिला दशहरा महोत्सव की एक यादगार झलक।",
+    location: "माहिल गहिला",
+    thumbnail: null
+  },
+
+  {
+    id: "v7qQsCwDosY",
+    title: "रामलीला की झलक",
+    year: "2026",
+    category: "रामलीला",
+    description: "माहिल गहिला की रामलीला प्रस्तुति का एक यादगार दृश्य।",
+    location: "माहिल गहिला",
+    thumbnail: null
+  },
+
+  {
+    id: "-1nHOM5Su4g",
+    title: "दशहरा की झलक",
+    year: "2026",
+    category: "दशहरा",
+    description: "माहिल गहिला दशहरा महोत्सव की एक झलक।",
+    location: "माहिल गहिला",
+    thumbnail: null
+  },
+
+  {
+    id: "6huGZThakNM",
+    title: "रामलीला का दृश्य",
+    year: "2026",
+    category: "रामलीला",
+    description: "माहिल गहिला रामलीला के मंचन से एक यादगार दृश्य।",
+    location: "माहिल गहिला",
+    thumbnail: null
+  },
+
+  {
+    id: "2z4ThGRU0GU",
+    title: "दशहरा महोत्सव की झलक",
+    year: "2026",
+    category: "दशहरा",
+    description: "माहिल गहिला दशहरा महोत्सव की यादगार झलक।",
+    location: "माहिल गहिला",
+    thumbnail: null
+  },
+
+  {
+    id: "zlojf1KDHf8",
+    title: "रामलीला की झलक",
+    year: "2026",
+    category: "रामलीला",
+    description: "माहिल गहिला की रामलीला प्रस्तुति का एक यादगार दृश्य।",
+    location: "माहिल गहिला",
+    thumbnail: null
+  },
+
+  {
+    id: "0-438OmFWho",
+    title: "दशहरा की यादगार झलक",
+    year: "2026",
+    category: "दशहरा",
+    description: "माहिल गहिला दशहरा महोत्सव की एक यादगार झलक।",
+    location: "माहिल गहिला",
+    thumbnail: null
+  },
+
   {
     id: "Sk1liAC-Eyc",
     title: "दशहरा महोत्सव की झलक",
@@ -54,16 +257,58 @@ const mgdShortsData = [
     location: "माहिल गहिला",
     thumbnail: null
   },
+
   {
-    id: "dk_l1xPuFLo",
-    title: "रामलीला का एक यादगार क्षण",
+    id: "7NYmxwQY9WA",
+    title: "रामलीला का यादगार क्षण",
     year: "2026",
     category: "रामलीला",
     description: "माहिल गहिला रामलीला के मंचन से जुड़ा एक यादगार क्षण।",
     location: "माहिल गहिला",
     thumbnail: null
+  },
+
+  {
+    id: "UxNotfhkyhA",
+    title: "दशहरा की झलक",
+    year: "2026",
+    category: "दशहरा",
+    description: "माहिल गहिला दशहरा महोत्सव की एक यादगार झलक।",
+    location: "माहिल गहिला",
+    thumbnail: null
+  },
+
+  {
+    id: "zCSqQdyDLlA",
+    title: "रामलीला की झलक",
+    year: "2026",
+    category: "रामलीला",
+    description: "माहिल गहिला की रामलीला प्रस्तुति का एक यादगार दृश्य।",
+    location: "माहिल गहिला",
+    thumbnail: null
+  },
+
+  {
+    id: "qEYtMmsW128",
+    title: "दशहरा महोत्सव की झलक",
+    year: "2026",
+    category: "दशहरा",
+    description: "माहिल गहिला दशहरा महोत्सव की एक यादगार झलक।",
+    location: "माहिल गहिला",
+    thumbnail: null
+  },
+
+  {
+    id: "ikki5Qg_VEk",
+    title: "रामलीला का यादगार दृश्य",
+    year: "2026",
+    category: "रामलीला",
+    description: "माहिल गहिला रामलीला के मंचन से जुड़ा एक यादगार दृश्य।",
+    location: "माहिल गहिला",
+    thumbnail: null
   }
 ];
+    
 
 /* ---------- 3. COMPONENT ---------- */
 (function () {
