@@ -8,7 +8,7 @@
 const mgdShortsConfig = {
   heading: "दशहरा की झलकियाँ",
   subtitle: "रामलीला और दशहरा महोत्सव के कुछ यादगार क्षण",
-  // viewAllLabel: "सभी Shorts देखें →",
+  viewAllLabel: "सभी Shorts YouTube पर देखें",
   viewAllUrl: "https://www.youtube.com/embed/vdNm1FnHFoc" // e.g. "https://www.youtube.com/@yourchannel/shorts"; leave "" to hide the link
 };
 
@@ -397,9 +397,28 @@ const mgdShortsData = [
     close.addEventListener("click", function (e) {
       e.stopPropagation();
       state.userStopped = i;       // don't auto-restart a Short the user closed
+      if (document.fullscreenElement === stage || document.webkitFullscreenElement === stage) {
+        exitShortsFullscreen();
+      }
       resetCard(i, true);
     });
     stage.appendChild(close);
+
+    var fullscreen = el("button", "fullscreen", "⛶", {
+      type: "button",
+      "aria-label": "पूरी स्क्रीन में देखें",
+      title: "पूरी स्क्रीन में देखें"
+    });
+    fullscreen.addEventListener("click", function (e) {
+      e.stopPropagation();
+      if (document.fullscreenElement === stage || document.webkitFullscreenElement === stage) {
+        exitShortsFullscreen();
+      } else {
+        requestShortsFullscreen(stage);
+      }
+    });
+    if (!stage.requestFullscreen && !stage.webkitRequestFullscreen) fullscreen.hidden = true;
+    stage.appendChild(fullscreen);
 
     var fb = el("div", "fallback", null, { role: "group" });
     fb.appendChild(el("p", "fallback-text", "यह वीडियो यहाँ नहीं चल सका"));
@@ -435,6 +454,28 @@ const mgdShortsData = [
     card.classList.add("is-failed");
     var stage = card.firstChild; stage.classList.remove("is-loading");
     var play = stage.querySelector("." + NS + "play"); if (play) play.disabled = true;
+  }
+
+  function requestShortsFullscreen(stage) {
+    var request = stage.requestFullscreen || stage.webkitRequestFullscreen;
+    if (!request) return;
+    var result = request.call(stage);
+    if (result && typeof result.catch === "function") {
+      result.catch(function (error) {
+        console.warn("MGD Shorts fullscreen request failed:", error);
+      });
+    }
+  }
+
+  function exitShortsFullscreen() {
+    var exit = document.exitFullscreen || document.webkitExitFullscreen;
+    if (!exit) return;
+    var result = exit.call(document);
+    if (result && typeof result.catch === "function") {
+      result.catch(function (error) {
+        console.warn("MGD Shorts fullscreen exit failed:", error);
+      });
+    }
   }
 
   /* ---------- player lifecycle ---------- */
@@ -502,8 +543,8 @@ const mgdShortsData = [
     loadYouTubeAPI().then(function (YT) {
       if (seq !== state.seq) return; // card changed / section left while the API was loading
       var vars = {
-        playsinline: 1, controls: 0, disablekb: 1, fs: 0, rel: 0, modestbranding: 1,
-        iv_load_policy: 3, cc_load_policy: 0, autoplay: 0,
+        playsinline: 1, controls: 0, disablekb: 1, fs: 1, rel: 0, modestbranding: 1,
+        iv_load_policy: 3, cc_load_policy: 0, autoplay: 1, mute: manual ? 0 : 1,
         loop: 1, playlist: s.id          // official single-video loop; ENDED handler below is the backup
       };
       if (/^https?:$/.test(location.protocol)) vars.origin = location.origin;
@@ -515,19 +556,14 @@ const mgdShortsData = [
             if (seq !== state.seq) return;
             state.player = p; state.ready = true; clearTimeout(state.timer);
             lockIframe(p, "YouTube Short: " + label(s));
+            if (manual) p.unMute();
+            else p.mute();
             p.playVideo();
             clearTimeout(state.block);
-            state.block = setTimeout(function () {   // autoplay with sound blocked? retry muted
+            state.block = setTimeout(function () {
               if (seq !== state.seq || !state.player) return;
               var st = p.getPlayerState();
-              if (st !== 1 && st !== 3) {
-                p.mute(); p.playVideo();
-                state.block = setTimeout(function () { // even muted autoplay refused: show the play button
-                  if (seq !== state.seq) return;
-                  var s2 = p.getPlayerState();
-                  if (s2 !== 1 && s2 !== 3) { card.classList.add("is-live"); updatePlayButton(card, false); } // let the user start it
-                }, BLOCK_CHECK_MS);
-              }
+              if (st !== 1 && st !== 3) { card.classList.add("is-live"); updatePlayButton(card, false); }
             }, BLOCK_CHECK_MS);
           },
           onAutoplayBlocked: function () {
@@ -564,7 +600,7 @@ const mgdShortsData = [
       f.title = title;
       f.style.pointerEvents = "none";
       f.setAttribute("tabindex", "-1");
-      f.removeAttribute("allowfullscreen");
+      f.setAttribute("allowfullscreen", "");
     } catch (e) {}
   }
 
@@ -736,6 +772,18 @@ const mgdShortsData = [
 
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(handleShortsVisibility, { threshold: [0, SHOW_RATIO] }).observe(root);
+      var connectionObserver = new IntersectionObserver(function (entries, observer) {
+        if (!entries.some(function (entry) { return entry.isIntersecting; })) return;
+        ["https://www.youtube.com", "https://www.youtube-nocookie.com"].forEach(function (url) {
+          if (document.querySelector('link[rel="preconnect"][href="' + url + '"]')) return;
+          var link = document.createElement("link");
+          link.rel = "preconnect";
+          link.href = url;
+          document.head.appendChild(link);
+        });
+        observer.disconnect();
+      }, { rootMargin: "700px 0px" });
+      connectionObserver.observe(root);
     } // without IntersectionObserver the manual play button still works
 
     requestAnimationFrame(function () { goTo(0); track.scrollLeft = 0; });

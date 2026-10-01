@@ -11,6 +11,7 @@ Visit the deployed site at [mahilgailadussehra.vercel.app](https://mahilgailadus
 ## Features
 
 - Home page with festival information, event schedule and countdown, performer profiles, video links, and contact form access.
+- YouTube Shorts carousel with one active video player at a time, muted autoplay, and fullscreen viewing.
 - Navratri Ramleela scripts and other public resources, including linked PDF documents.
 - Photo gallery with search and year filters, covering Dussehra collections from 2011, 2012, and 2019–2026, plus the 2019 Sita-Ram Vivah collection.
 - Light/dark theme selection saved in the browser and responsive navigation for smaller screens.
@@ -33,8 +34,10 @@ This is a static website: there is no package manager, build step, or applicatio
 | `index.html` | Home page and festival information |
 | `pages/gallery.html` | Searchable, filterable photo gallery |
 | `CSS/index.css` | Home-page styles |
+| `CSS/mgd-shorts.css` | Home-page YouTube Shorts styles |
 | `CSS/gallery.css` | Gallery-page styles |
 | `scripts/script.js` | Home-page interactions |
+| `scripts/mgd-shorts.js` | Shorts carousel, YouTube player, and fullscreen controls |
 | `scripts/gallery.js` | Gallery data and interactions |
 | `assets/` | Festival photos, posters, cast images, thumbnails, and public resources |
 | `robots.txt` | Crawler access and sitemap location |
