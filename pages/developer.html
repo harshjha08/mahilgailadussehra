@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Developer Profile</title>
+<meta name="description" content="Developer identity and technical profile.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../CSS/developer.css">
+</head>
+<body class="dv">
+<a class="dv-skip" href="#dvMain">Skip to content</a>
+<header class="dv-nav">
+  <a class="dv-logo" href="#top" id="dvLogo" aria-label="Back to top">H/J</a>
+  <nav id="dvLinks" class="dv-links" aria-label="Sections">
+    <a href="#identity">/identity</a><a href="#projects">/projects</a><a href="#stack">/stack</a><a href="#journey">/journey</a><a href="#connect">/connect</a>
+  </nav>
+  <span class="dv-status" id="dvNavStatus"></span>
+  <button class="dv-kbtn" id="dvPaletteBtn" aria-label="Open command palette">Search <kbd>Ctrl K</kbd></button>
+  <button class="dv-burger" id="dvBurger" aria-expanded="false" aria-controls="dvLinks" aria-label="Menu">Menu</button>
+</header>
+<p class="dv-from" id="dvFrom" hidden></p>
+
+<main id="dvMain">
+  <section class="dv-sys" id="top" aria-labelledby="dvName"></section>
+
+  <section id="identity" class="dv-sec" aria-labelledby="h-identity">
+    <h2 id="h-identity" class="dv-h"><span>01</span> Identity</h2>
+    <div class="dv-idgrid"><dl id="dvSpec" class="dv-spec"></dl><div id="dvManifest" class="dv-manifest"></div></div>
+  </section>
+
+  <section id="build" class="dv-sec" aria-labelledby="h-build">
+    <h2 id="h-build" class="dv-h"><span>02</span> What gets built</h2>
+    <div id="dvBuild" class="dv-build"></div>
+  </section>
+
+  <section id="stack" class="dv-sec" aria-labelledby="h-stack">
+    <h2 id="h-stack" class="dv-h"><span>03</span> Stack</h2>
+    <div class="dv-stack"><div id="dvStackList"></div><aside id="dvTech" class="dv-tech" aria-live="polite"></aside></div>
+  </section>
+
+  <section id="projects" class="dv-sec" aria-labelledby="h-projects">
+    <h2 id="h-projects" class="dv-h"><span>04</span> Project archive</h2>
+    <div id="dvFilters" class="dv-filters" role="group" aria-label="Filter projects"></div>
+    <p id="dvProjCount" class="dv-meta" aria-live="polite"></p>
+    <ol id="dvProjects" class="dv-projects"></ol>
+  </section>
+
+  <section id="signature" class="dv-sec dv-sig" aria-labelledby="h-sig">
+    <h2 id="h-sig" class="dv-meta">Developer signature</h2>
+    <p class="dv-sig-big">Developed by <a id="dvSigName" href="#top"></a></p>
+    <p class="dv-meta">The link at the bottom of every project I ship ends on this page.</p>
+  </section>
+
+  <section id="journey" class="dv-sec" aria-labelledby="h-journey">
+    <h2 id="h-journey" class="dv-h"><span>05</span> Journey</h2>
+    <ol id="dvJourney" class="dv-log"></ol>
+  </section>
+
+  <section id="principles" class="dv-sec" aria-labelledby="h-principles">
+    <h2 id="h-principles" class="dv-h"><span>06</span> Build principles</h2>
+    <ol id="dvPrinciples" class="dv-principles"></ol>
+    <p class="dv-meta">Also drawn to: <span id="dvInterests"></span></p>
+  </section>
+
+  <section id="connect" class="dv-sec" aria-labelledby="h-connect">
+    <h2 id="h-connect" class="dv-h"><span>07</span> Establish connection</h2>
+    <div class="dv-conn"><div id="dvConnect"></div><ul id="dvFootprint" class="dv-foot"></ul></div>
+  </section>
+
+  <section class="dv-sec" aria-labelledby="h-term">
+    <h2 id="h-term" class="dv-h"><span>08</span> Terminal</h2>
+    <div class="dv-term" id="dvTerm">
+      <div id="dvTermOut" class="dv-term-out" role="log" aria-live="polite"></div>
+      <form id="dvTermForm" class="dv-term-row" autocomplete="off"><label for="dvTermIn">$</label><input id="dvTermIn" spellcheck="false" placeholder="type help"></form>
+    </div>
+  </section>
+</main>
+
+<footer class="dv-footer" id="dvFooter"></footer>
+
+<div class="dv-pal" id="dvPal" hidden>
+  <div class="dv-pal-bd" data-close></div>
+  <div class="dv-pal-box" role="dialog" aria-modal="true" aria-label="Command palette">
+    <input id="dvPalIn" type="text" placeholder="Search projects, technologies, sections, commands" aria-label="Search" role="combobox" aria-expanded="true" aria-controls="dvPalList" autocomplete="off">
+    <ul id="dvPalList" role="listbox"></ul>
+    <p class="dv-meta">Up / Down to move, Enter to run, Esc to close</p>
+  </div>
+</div>
+<script src="../scripts/developer.js"></script>
+</body>
+</html>
