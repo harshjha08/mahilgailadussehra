@@ -759,7 +759,7 @@
       gap: 20px;
     }
     .script-card {
-      background: var(--surface);
+      background: linear-gradient(135deg, #140000, #4a0000, #9b0000);
       border: 1px solid var(--border-c);
       border-radius: var(--radius-md);
       overflow: hidden;
@@ -770,7 +770,6 @@
     .script-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
     .script-card-img {
       height: 160px;
-      
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
@@ -831,8 +830,9 @@
     .script-card-title {
       font-family: var(--font-hindi);
       font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text-pri);
+      font-weight: 700;
+      color: #ffffff;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.4);
       line-height: 1.4;
     }
     .btn-download {
@@ -841,15 +841,16 @@
       gap: 7px;
       padding: 8px 18px;
       border-radius: 20px;
-      border: 1.5px solid var(--crimson);
-      background: transparent;
-      color: var(--crimson);
+      border: 1.5px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255,255,255, 0.08);
+      color: #ffffff;
       font-size: 0.8rem;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s;
       align-self: flex-start;
       text-decoration: none;
+      backdrop-filter: blur(10px);
     }
     .btn-download:hover { background: var(--crimson); color: var(--color-white); }
 
@@ -904,7 +905,22 @@
       transition: background 0.2s;
     }
     .overlay-close:hover { background: var(--border-c); color: var(--crimson); }
-
+    @media (max-width: 600px){
+      .scripts-grid {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 20px;
+        overflow-x: auto;
+        overflow-y: hidden;
+      }
+      .script-card{
+        flex: 0 0 auto;
+        width: 270px;
+      }
+      .scripts-grid::-webkit-scrollbar{
+        display: none;
+      }
+    }
     /* ══════════════════════════════════════════
        SPIRITUAL LITERATURE
     ══════════════════════════════════════════ */
@@ -1018,11 +1034,23 @@
       flex-direction: column;
     }
     @media (max-width: 600px){
+      .videos-scroll-wrap {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 20px;
+        overflow-x: auto;
+        overflow-y: hidden;
+      }
       .yt-card{
         height: 300px;
+        width: 270px;
+        flex: 0 0 auto;
       }
       .yt-thumb{
         height: 190px;
+      }
+      .videos-scroll-wrap::-webkit-scrollbar{
+        display: none;
       }
     }
     .yt-thumb img {

@@ -8,7 +8,7 @@
 const mgdShortsConfig = {
   heading: "दशहरा की झलकियाँ",
   subtitle: "रामलीला और दशहरा महोत्सव के कुछ यादगार क्षण",
-  viewAllLabel: "सभी Shorts देखें →",
+  // viewAllLabel: "सभी Shorts देखें →",
   viewAllUrl: "https://www.youtube.com/embed/vdNm1FnHFoc" // e.g. "https://www.youtube.com/@yourchannel/shorts"; leave "" to hide the link
 };
 
