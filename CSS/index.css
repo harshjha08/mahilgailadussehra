@@ -963,6 +963,17 @@
       margin-bottom: 16px;
       line-height: 1.6;
     }
+    .spiritual-card .btn-download,
+    .overlay-modal .btn-download {
+      background: var(--crimson-deep);
+      border-color: var(--crimson-deep);
+      color: var(--color-white);
+    }
+    .spiritual-card .btn-download:hover,
+    .overlay-modal .btn-download:hover {
+      background: var(--crimson);
+      border-color: var(--crimson);
+    }
 
     /* ══════════════════════════════════════════
        CHAUPAI BANNER
