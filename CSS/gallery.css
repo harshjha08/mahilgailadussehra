@@ -258,6 +258,50 @@
       transform: translateY(-2px);
       background: var(--crimson-deep);
     }
+    .upload-guide {
+      margin: 16px 0 0 auto;
+      max-width: 560px;
+      border: 1px solid var(--border-c);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      overflow: hidden;
+    }
+    .upload-guide summary {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 14px 18px;
+      color: var(--text-pri);
+      font-size: 0.86rem;
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+    }
+    .upload-guide summary::-webkit-details-marker { display: none; }
+    .upload-guide summary::after {
+      content: '+';
+      margin-left: auto;
+      color: var(--gold);
+      font-size: 1.2rem;
+    }
+    .upload-guide[open] summary::after { content: '−'; }
+    .upload-guide summary i { color: var(--crimson); }
+    .upload-guide-content {
+      padding: 0 18px 18px;
+    }
+    .upload-guide-content p {
+      margin-bottom: 12px;
+      color: var(--text-sec);
+      font-size: 0.8rem;
+      line-height: 1.6;
+    }
+    .upload-guide video {
+      display: block;
+      width: 100%;
+      max-height: 420px;
+      border-radius: var(--radius-sm);
+      background: rgb(var(--rgb-black));
+    }
 
     /* ── GALLERY CARD ── */
     .gallery-card {
