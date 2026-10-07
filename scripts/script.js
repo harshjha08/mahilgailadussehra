@@ -37,19 +37,23 @@ function closeMobileNav() {
 const noticeOverlay = document.getElementById('noticeOverlay');
 const noticeBody = document.getElementById('noticeBody');
 const langToggle = document.getElementById('langToggle');
+const posterOverlay = document.getElementById('posterOverlay');
 
 const textHi = 'यह वेबसाइट रामलीला कलाकारों एवं इच्छुक व्यक्तियों की सुविधा हेतु बनाई गई है। यह रामलीला वेलफेयर कमेटी माहिल गहिला द्वारा आधिकारिक रूप से संचालित नहीं है। सामग्री केवल सुविधा प्रदान करने के उद्देश्य से प्रकाशित की गई है।';
 const textEn = 'This website has been created for the convenience of Ramleela performers and interested participants. It is not officially managed, sponsored, or endorsed by the Ramleela Welfare Committee Mahil Gaila. The content is provided solely for reference and convenience.';
 
 let noticeInHindi = true;
+const noticeSeen = Boolean(localStorage.getItem('mgd-notice-seen'));
 
-if (localStorage.getItem('mgd-notice-seen')) {
+if (noticeSeen) {
   noticeOverlay.classList.remove('show');
+  showPoster();
 }
 
 function closeNotice() {
   localStorage.setItem('mgd-notice-seen', '1');
   noticeOverlay.classList.remove('show');
+  showPoster();
 }
 
 function toggleNoticeLanguage() {
@@ -57,6 +61,28 @@ function toggleNoticeLanguage() {
   noticeBody.textContent = noticeInHindi ? textHi : textEn;
   langToggle.textContent = noticeInHindi ? 'English' : 'हिन्दी';
 }
+
+function showPoster() {
+  posterOverlay.classList.add('show');
+  posterOverlay.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePoster() {
+  posterOverlay.classList.remove('show');
+  posterOverlay.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+posterOverlay.addEventListener('click', (event) => {
+  if (event.target === posterOverlay) closePoster();
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && posterOverlay.classList.contains('show')) {
+    closePoster();
+  }
+});
 
 /* ── COUNTDOWN ── */
 function updateCountdown() {

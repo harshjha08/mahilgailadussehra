@@ -1455,6 +1455,54 @@
     .notice-close-btn:hover { background: var(--crimson-deep); }
 
     /* ══════════════════════════════════════════
+       DUSSEHRA POSTER OVERLAY
+    ══════════════════════════════════════════ */
+    .poster-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgb(var(--rgb-black) / 0.58);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .poster-overlay.show { display: flex; }
+    .poster-display {
+      position: relative;
+      line-height: 0;
+    }
+    .poster-image {
+      width: auto;
+      height: auto;
+      max-width: min(90vw, 720px);
+      max-height: 90vh;
+      object-fit: contain;
+      box-shadow: 0 16px 48px rgb(var(--rgb-black) / 0.45);
+    }
+    .poster-close-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      z-index: 1;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgb(var(--rgb-white) / 0.7);
+      border-radius: 50%;
+      background: rgb(var(--rgb-black) / 0.62);
+      color: var(--color-white);
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .poster-close-btn:hover { background: rgb(var(--rgb-black) / 0.85); }
+
+    /* ══════════════════════════════════════════
        ANIMATIONS
     ══════════════════════════════════════════ */
     @keyframes fadeUp {

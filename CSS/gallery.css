@@ -183,6 +183,82 @@
       gap: 24px;
     }
 
+    /* ── SHARE OLD MEMORIES ── */
+    .memory-share {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 22px;
+      margin-top: 48px;
+      padding: 28px;
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      background:
+        radial-gradient(circle at 0% 100%, rgb(var(--rgb-gold) / 0.1), transparent 42%),
+        var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .memory-share-icon {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background: var(--gold-pale);
+      color: var(--crimson);
+      font-size: 1.45rem;
+    }
+    .memory-share-eyebrow {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--gold);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+    .memory-share-copy h2 {
+      margin-bottom: 7px;
+      color: var(--text-pri);
+      font-family: var(--font-hindi);
+      font-size: 1.15rem;
+      line-height: 1.45;
+    }
+    .memory-share-copy > p {
+      color: var(--text-sec);
+      font-size: 0.84rem;
+      line-height: 1.7;
+    }
+    .memory-share-copy .memory-share-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      margin-top: 8px;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+    .memory-share-note i {
+      margin-top: 4px;
+      color: var(--gold);
+    }
+    .memory-share-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 12px 18px;
+      border-radius: 24px;
+      background: var(--crimson);
+      color: var(--color-white);
+      font-size: 0.84rem;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: background var(--transition), transform 0.2s;
+    }
+    .memory-share-btn:hover {
+      transform: translateY(-2px);
+      background: var(--crimson-deep);
+    }
+
     /* ── GALLERY CARD ── */
     .gallery-card {
       border-radius: var(--radius-lg);
@@ -499,6 +575,8 @@
       .navbar-links { display: none; }
       .hamburger { display: flex; }
       .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+      .memory-share { grid-template-columns: auto minmax(0, 1fr); }
+      .memory-share-btn { grid-column: 2; justify-self: start; }
       .footer-inner { grid-template-columns: 1fr; gap: 32px; }
       .lb-stage { padding: 12px 52px; }
       .hero-stat-divider { display: none; }
@@ -511,6 +589,9 @@
       .lb-thumbnail-strip { display: none; }
       .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
       .page-hero { padding: 100px 20px 48px; }
+      .memory-share { grid-template-columns: 1fr; gap: 14px; padding: 22px; }
+      .memory-share-icon { width: 48px; height: 48px; border-radius: 15px; }
+      .memory-share-btn { grid-column: auto; justify-self: start; }
     }
     @media (max-width: 380px) {
       .gallery-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
