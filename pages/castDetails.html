@@ -1,104 +1,215 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cast &amp; Characters | Mahil Gaila Dussehra &amp; Ramlila</title>
-<meta name="description" content="A digital archive of the artists and characters of Mahil Gaila Ramlila.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../CSS/castdetails.css">
-</head>
-<body>
-  <main class="error-page">
-    <center style="font-weight: bolder; font-size: 300px; color: red;">
-      404
-    </center>
-    <center>
-      <p style="font-size: 20px;">
-        Error! Page Not found or Currently Unavailable
-      </p>
-      <a href="../index.html">
-        <button style="margin-top: 20px; font-size: 20px; border: none; border-radius: 12px; 
-      outline: none; color: rgb(255, 0, 0); border: 2px solid red; background: transparent; padding: 18px; width: 200px;">Home</button>
-      </a>
-      
-    </center>
-    
-  </main>
-<!--REAL UI
-<div class="cast-page">
-
-  <header class="cp-nav" id="cpNav">
-    <a class="cp-brand" href="index.html"><span class="cp-brand-dev" lang="hi">महिल गैला</span> Mahil Gaila</a>
-    <button class="cp-burger" id="cpBurger" aria-label="Open menu" aria-expanded="false" aria-controls="cpLinks"><span></span><span></span><span></span></button>
-    <nav aria-label="Main" id="cpLinks" class="cp-links">
-      <a href="index.html">Home</a>
-      <a href="dussehra.html">Dussehra</a>
-      <a href="ramlila.html">Ramlila</a>
-      <a href="castdetails.html" aria-current="page">Cast</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="history.html">History</a>
-      <a href="contact.html">Contact</a>
+<!doctype html>
+<html lang="hi" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#BC4C37" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <title>कलाकार एवं पात्र | Mahil Gaila Dussehra</title>
+    <meta
+      name="description"
+      content="Mahil Gaila Ramlila ke kalakaron aur unke patro ka archive dekhein. Naam, patra ya varsh se khojen."
+    />
+    <link
+      rel="canonical"
+      href="https://mahilgailadussehra.vercel.app/pages/castDetails.html"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Mahil Gaila Dussehra" />
+    <meta property="og:title" content="कलाकार एवं पात्र | Mahil Gaila Dussehra" />
+    <meta
+      property="og:description"
+      content="Mahil Gaila Ramlila ke kalakaron aur unke patro ka archive dekhein."
+    />
+    <meta
+      property="og:url"
+      content="https://mahilgailadussehra.vercel.app/pages/castDetails.html"
+    />
+    <link rel="icon" type="image/png" href="../assets/Hero%20Images/faviconPNG.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../CSS/theme.css" />
+    <link rel="stylesheet" href="../CSS/castdetails.css" />
+    <script src="../scripts/castdetails.js" defer></script>
+  </head>
+  <body>
+    <nav class="navbar" id="navbar" aria-label="Main navigation">
+      <div class="navbar-inner">
+        <a href="../index.html" class="navbar-brand">
+          <img
+            src="../assets/Hero%20Images/faviconPNG.png"
+            alt=""
+            class="navbar-logo"
+          />
+          <span>
+            <span class="navbar-brand-text">Mahil Gaila Dussehra</span>
+            <span class="navbar-brand-sub">श्री रामलीला महोत्सव</span>
+          </span>
+        </a>
+        <ul class="navbar-links">
+          <li><a href="../index.html#about">हमारे बारे में</a></li>
+          <li><a href="../index.html#events">कार्यक्रम</a></li>
+          <li><a href="../index.html#scripts">स्क्रिप्ट</a></li>
+          <li><a href="../pages/gallery.html">चित्रावली</a></li>
+          <li><a href="../index.html#videos">वीडियो</a></li>
+          <li><a class="active" href="castDetails.html" aria-current="page">पात्र</a></li>
+        </ul>
+        <div class="navbar-actions">
+          <button class="btn-theme" id="themeToggle" type="button" aria-label="Switch to dark theme">
+            <i class="fa-solid fa-moon" id="themeIcon" aria-hidden="true"></i>
+          </button>
+          <a href="../index.html" class="btn-home-nav">
+            <i class="fa-solid fa-house" aria-hidden="true"></i>
+            मुख्य पृष्ठ
+          </a>
+          <button
+            class="hamburger"
+            id="hamburger"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="mobileNav"
+          >
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+      <div class="mobile-nav" id="mobileNav">
+        <a href="../index.html">मुख्य पृष्ठ</a>
+        <a href="../index.html#about">हमारे बारे में</a>
+        <a href="../index.html#events">कार्यक्रम 2026</a>
+        <a href="../index.html#scripts">नवरात्रि स्क्रिप्ट</a>
+        <a href="../pages/gallery.html">चित्रावली</a>
+        <a href="../index.html#videos">वीडियो गैलरी</a>
+        <a href="castDetails.html" aria-current="page">मुख्य पात्र</a>
+        <a href="../index.html#contact">संपर्क करें</a>
+      </div>
     </nav>
-  </header>
 
-  <main>
-    <section class="cp-hero" aria-labelledby="cpTitle">
-      <div class="cp-hero-bg" id="cpHeroBg"></div>
-      <div class="cp-curtain cp-curtain-l" aria-hidden="true"></div>
-      <div class="cp-curtain cp-curtain-r" aria-hidden="true"></div>
-      <span class="cp-hero-dev" lang="hi" aria-hidden="true">रामलीला</span>
-      <div class="cp-hero-inner">
-        <nav class="cp-crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a> / <a href="ramlila.html">Ramlila</a> / <span>Cast</span></nav>
-        <h1 id="cpTitle">Cast &amp; Characters</h1>
-        <p>The artists who bring the timeless characters of Ramlila to life.</p>
+    <header class="cast-hero">
+      <div class="cast-hero-inner">
+        <span class="cast-eyebrow"><i class="fa-solid fa-masks-theater" aria-hidden="true"></i> Mahil Gaila Ramlila</span>
+        <h1>कलाकार <span>एवं पात्र</span></h1>
+        <p>रामलीला के कलाकारों और उनके यादगार पात्रों का परिचय।</p>
+        <div class="cast-hero-stats" aria-label="Archive summary">
+          <span><strong id="castTotal">0</strong> कलाकार</span>
+          <span class="stats-divider" aria-hidden="true"></span>
+          <span>नाम, पात्र और वर्ष से खोजें</span>
+        </div>
+        <div class="cast-register-cta">
+          <button class="cast-register-button" type="button" disabled>
+            <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+            रामलीला में भाग लिया है? अपना विवरण भेजें
+          </button>
+          <p>कलाकार रजिस्ट्रेशन के लिए Google Form लिंक जल्द जोड़ा जाएगा।</p>
+        </div>
       </div>
-    </section>
+    </header>
 
-    <section class="cp-search" aria-label="Search the cast archive">
-      <form class="cp-searchbox" role="search" id="cpForm">
-        <label for="cpQuery" class="cp-sr">Search an artist, character or role</label>
-        <input id="cpQuery" type="search" placeholder="Search an artist, character or role..." autocomplete="off">
-        <button type="button" id="cpClear" class="cp-clear" aria-label="Clear search" hidden>&times;</button>
-      </form>
-      <div class="cp-filters" id="cpFilters" role="group" aria-label="Filter the archive">
-        <button data-mode="all" aria-pressed="true">All</button>
-        <button data-mode="artists" aria-pressed="false">Artists</button>
-        <button data-mode="characters" aria-pressed="false">Characters</button>
-        <button data-mode="current" aria-pressed="false">Current artists</button>
-        <button data-mode="historical" aria-pressed="false">Historical artists</button>
+    <main class="cast-main">
+      <section class="cast-controls" aria-label="Cast search and filters">
+        <form class="search-form" id="castSearchForm" role="search">
+          <label class="sr-only" for="castSearch">कलाकार, पात्र या वर्ष खोजें</label>
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <input
+            id="castSearch"
+            name="q"
+            type="search"
+            autocomplete="off"
+            placeholder="नाम, पात्र या वर्ष खोजें..."
+            aria-describedby="searchHint"
+          />
+          <button class="search-clear" id="clearSearch" type="button" aria-label="Clear search" hidden>
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+        </form>
+      </section>
+
+      <section class="cast-results" id="castResultsSection" aria-label="Cast members">
+        <div class="results-heading">
+          <h2>रामलीला के कलाकार</h2>
+          <p id="resultsCount" aria-live="polite"></p>
+        </div>
+        <ul class="cast-grid" id="castResults" aria-live="polite"></ul>
+        <div class="load-more-wrap">
+          <p class="load-more-status" id="loadMoreStatus" aria-live="polite"></p>
+          <button class="load-more-button" id="loadMore" type="button" hidden>
+            और कलाकार देखें <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+          </button>
+          <div class="load-sentinel" id="loadSentinel" aria-hidden="true"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="cast-site-footer">
+      <div class="cast-footer-inner">
+        <div>
+          <div class="cast-footer-brand-name">🚩 Mahil Gaila <span>Dussehra</span></div>
+          <div class="cast-footer-brand-sub">श्री रामलीला एवं दशहरा महोत्सव, माहिल गहिला</div>
+          <p class="cast-footer-desc">
+            धर्म की विजय, अधर्म का नाश — इस संकल्प के साथ माहिल गहिला की रामलीला
+            परंपरा पीढ़ियों से जीवंत है।
+          </p>
+          <div class="cast-footer-socials">
+            <a href="https://www.youtube.com" target="_blank" rel="noopener" class="cast-footer-social" aria-label="YouTube">
+              <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+            </a>
+            <a href="https://www.instagram.com" target="_blank" rel="noopener" class="cast-footer-social" aria-label="Instagram">
+              <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+            </a>
+            <a href="https://forms.gle/V7MyPy6air9JkBq76" target="_blank" rel="noopener" class="cast-footer-social" aria-label="Contact Form">
+              <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <div class="cast-footer-col-title">त्वरित लिंक</div>
+          <ul class="cast-footer-links-list">
+            <li><a href="../index.html#about"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> हमारे बारे में</a></li>
+            <li><a href="../index.html#events"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> कार्यक्रम 2026</a></li>
+            <li><a href="../index.html#scripts"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> नवरात्रि स्क्रिप्ट</a></li>
+            <li><a href="gallery.html"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> चित्रावली</a></li>
+            <li><a href="../index.html#videos"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> वीडियो गैलरी</a></li>
+            <li><a href="castDetails.html" aria-current="page"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> मुख्य पात्र</a></li>
+            <li><a href="../index.html#spiritual"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> धार्मिक साहित्य</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="cast-footer-col-title">संपर्क</div>
+          <div class="cast-footer-contact-row">
+            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+            <span>ग्राम माहिल गहिला,<br />जिला शहीद भगत सिंह नगर,<br />पंजाब 144506</span>
+          </div>
+          <div class="cast-footer-contact-row">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            <span>+91 9XXXX 78XXX</span>
+          </div>
+          <div class="cast-footer-contact-row">
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            <span>dummy@gmail.com</span>
+          </div>
+        </div>
       </div>
-      <div class="cp-charstrip" id="cpCharStrip" aria-label="Browse by character"></div>
-    </section>
-
-    <section class="cp-results" id="cpResultsWrap" aria-live="polite">
-      <p class="cp-count" id="cpCount"></p>
-      <ul class="cp-grid" id="cpResults"></ul>
-    </section>
-  </main>
-
-
-  <div class="cp-modal" id="cpModal" hidden>
-    <div class="cp-backdrop" data-close></div>
-    <div class="cp-sheet" role="dialog" aria-modal="true" aria-labelledby="cpProfileName" tabindex="-1">
-      <button class="cp-close" data-close aria-label="Close profile">&times;</button>
-      <div id="cpProfile"></div>
-    </div>
-  </div>
-
-  
-  <div class="cp-lightbox" id="cpLightbox" hidden role="dialog" aria-modal="true" aria-label="Photograph viewer">
-    <button class="cp-lb-btn cp-lb-close" data-lb="close" aria-label="Close photograph">&times;</button>
-    <button class="cp-lb-btn cp-lb-prev" data-lb="prev" aria-label="Previous photograph">&#8249;</button>
-    <figure><img id="cpLbImg" alt=""><figcaption id="cpLbCap"></figcaption></figure>
-    <button class="cp-lb-btn cp-lb-next" data-lb="next" aria-label="Next photograph">&#8250;</button>
-  </div>
-
-  <footer class="cp-foot">Demo data shown. Replace <code>castData</code> in castdetails.js with the verified archive.</footer>
-</div>
--->
-<script src="../scripts/castdetails.js"></script>
-</body>
+      <div class="cast-footer-bottom">
+        <div class="cast-footer-bottom-left">
+          <span>© 2026 Mahil Gaila Dussehra</span>
+          <span class="cast-footer-separator" aria-hidden="true">|</span>
+          <a href="developer.html">Developed by <span>Harsh Jha</span></a>
+        </div>
+        <a class="cast-footer-wikipedia" href="https://en.wikipedia.org/wiki/Mahil_Gaila" target="_blank" rel="noopener">
+          Wikipedia →
+        </a>
+      </div>
+    </footer>
+  </body>
 </html>
