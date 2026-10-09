@@ -84,6 +84,9 @@
       if (hostname === 'instagram.com' || hostname.endsWith('.instagram.com')) {
         return { url: url.href, label: 'Instagram', icon: 'fa-instagram' };
       }
+      if (hostname === 'snapchat.com' || hostname.endsWith('.snapchat.com')) {
+        return { url: url.href, label: 'Snapchat', icon: 'fa-snapchat' };
+      }
     } catch (error) {
       return null;
     }
@@ -158,19 +161,8 @@
         </figure>
 
         <div class="cast-card-content">
-          <span class="cast-card-index">${artist.featured ? 'मुख्य कलाकार' : 'Mahil Gaila Ramlila'}</span>
+          <span class="cast-card-index">${artist.featured ? 'वर्तमान मुख्य भूमिका' : 'अन्य भूमिकाएँ'}</span>
           <h3>${escapeHtml(artist.name)}</h3>
-
-          ${description ? `
-            <p class="cast-card-description">
-              ${escapeHtml(canExpand ? preview + '…' : description)}
-            </p>` : ''}
-
-          ${canExpand ? `
-            <button class="description-toggle"
-              type="button"
-              data-full-description="${escapeHtml(description)}"
-              aria-expanded="false">Read more</button>` : ''}
 
           ${artist.role ? `
             <span class="cast-card-role">
@@ -183,6 +175,21 @@
               <i class="fa-regular fa-calendar" aria-hidden="true"></i>
               ${escapeHtml(artist.since)}
             </p>` : ''}
+
+          ${description ? `
+            <div class="cast-story-heading">
+              <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+              <span>मंच से जुड़ा सफ़र</span>
+            </div>
+            <p class="cast-card-description">
+              ${escapeHtml(canExpand ? preview + '…' : description)}
+            </p>` : ''}
+
+          ${canExpand ? `
+            <button class="description-toggle"
+              type="button"
+              data-full-description="${escapeHtml(description)}"
+              aria-expanded="false">Read More</button>` : ''}
 
           ${social}
         </div>
@@ -291,6 +298,7 @@
             ? new URL(image.getAttribute('src'), indexUrl).href
             : '',
           since: card.querySelector('.cast-card-since')?.textContent,
+          description: card.querySelector('.cast-card-description')?.textContent,
           socialProfile: social?.getAttribute('href')
             ? new URL(social.getAttribute('href'), indexUrl).href
             : ''
@@ -358,7 +366,7 @@
   async function loadArtists() {
     results.innerHTML = `
       <li class="cast-empty">
-        <h3>कलाकारों का विवरण लोड हो रहा है…</h3>
+        <h3>Loading Content…</h3>
       </li>`;
 
     const [featuredResult, apiResult] = await Promise.allSettled([
@@ -389,9 +397,9 @@
     if (featuredResult.status === 'rejected' && apiResult.status === 'rejected') {
       results.innerHTML = `
         <li class="cast-empty">
-          <h3>डेटा लोड नहीं हो पाया</h3>
-          <p>कृपया इंटरनेट कनेक्शन जाँचें और फिर से कोशिश करें।</p>
-          <button type="button" id="retryCastLoad">फिर से कोशिश करें</button>
+          <h3>Could not fetch artist data</h3>
+          <p>Please check your internet connection and try again.</p>
+          <button type="button" id="retryCastLoad">Try Again</button>
         </li>`;
       if (totalCount) totalCount.textContent = '0';
       if (resultCount) resultCount.textContent = '';
@@ -399,7 +407,7 @@
       document.getElementById('retryCastLoad')
         ?.addEventListener('click', loadArtists);
     } else if (apiResult.status === 'rejected' && loadStatus) {
-      loadStatus.textContent = 'API से बाकी कलाकारों का डेटा अभी लोड नहीं हो पाया।';
+      loadStatus.textContent = 'Could not load remaining artist data from API.';
     }
   }
 
@@ -437,7 +445,7 @@
 
     button.closest('.cast-card')?.classList.toggle('is-expanded', expanded);
     button.setAttribute('aria-expanded', String(expanded));
-    button.textContent = expanded ? 'Read less' : 'Read more';
+    button.textContent = expanded ? 'Less' : 'Read More';
   });
 
   loadMore?.addEventListener('click', appendNextBatch);
