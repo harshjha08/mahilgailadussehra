@@ -294,8 +294,15 @@ a {
   font-size: 0.88rem;
   font-weight: 600;
   box-shadow: 0 8px 22px rgb(var(--rgb-brand) / 0.2);
-  opacity: 0.82;
-  cursor: not-allowed;
+  opacity: 1;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+}
+
+.cast-register-button:hover {
+  transform: translateY(-2px);
+  border-color: var(--crimson-deep);
+  background: var(--crimson-deep);
 }
 
 .cast-register-cta > p {
@@ -431,6 +438,10 @@ a {
 }
 
 .cast-card {
+  display: grid;
+  grid-template-columns: minmax(0, 40%) minmax(0, 1fr);
+  align-items: stretch;
+  height: 300px;
   min-width: 0;
   overflow: hidden;
   border: 1px solid var(--border);
@@ -441,6 +452,11 @@ a {
   transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 
+.cast-card.is-expanded {
+  height: auto;
+  min-height: 360px;
+}
+
 .cast-card:hover {
   transform: translateY(-5px);
   border-color: var(--border-accent);
@@ -449,26 +465,27 @@ a {
 
 .cast-card-photo {
   position: relative;
-  height: 260px;
+  min-height: 0;
+  height: 100%;
+  margin: 0;
   overflow: hidden;
+  border-right: 1px solid var(--border);
   background:
     radial-gradient(circle at 50% 34%, rgb(var(--rgb-gold) / 0.25), transparent 42%),
     var(--gradient-page);
 }
 
 .cast-card-photo::after {
-  position: absolute;
-  inset: 45% 0 0;
-  background: linear-gradient(transparent, rgb(var(--rgb-black) / 0.12));
-  content: "";
-  pointer-events: none;
+  content: none;
 }
 
 .cast-card-photo img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 28%;
+  object-position: center;
   transition: transform 500ms cubic-bezier(.2,.7,.2,1);
 }
 
@@ -574,6 +591,7 @@ a {
   color: var(--text-sec);
   font-size: 0.81rem;
   line-height: 1.7;
+  white-space: pre-line;
 }
 
 .description-toggle {
@@ -591,6 +609,25 @@ a {
   color: var(--crimson-deep);
   text-decoration: underline;
   text-underline-offset: 3px;
+}
+
+.cast-social-link {
+  display: inline-grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  margin-top: 12px;
+  border: 1px solid var(--border-accent);
+  border-radius: 50%;
+  color: var(--crimson);
+  font-size: 1rem;
+  transition: color var(--transition), background var(--transition), transform var(--transition);
+}
+
+.cast-social-link:hover {
+  transform: translateY(-2px);
+  background: var(--crimson);
+  color: var(--color-white);
 }
 
 .cast-empty {
@@ -947,7 +984,8 @@ a {
   }
 
   .cast-card-photo {
-    height: 220px;
+    height: 100%;
+    min-height: 0;
   }
 
   .cast-card-content {
@@ -1008,35 +1046,38 @@ a {
 
   .cast-card {
     display: grid;
-    grid-template-columns: 74px minmax(0, 1fr);
-    align-items: start;
-    gap: 12px;
-    min-height: 0;
-    padding: 13px;
+    grid-template-columns: minmax(0, 40%) minmax(0, 1fr);
+    align-items: stretch;
+    height: 150px;
+    gap: 0;
+    padding: 0;
     border-radius: 8px;
   }
+
+  .cast-card.is-expanded {
+    height: auto;
+    min-height: 0;
+  }
+
   .cast-card:hover {
     transform: translateY(-2px);
   }
 
   .cast-card-photo {
-    width: 70px;
-    height: 70px;
+    width: auto;
+    height: 100%;
     min-height: 0;
-    align-self: start;
-    border: 2px solid var(--border-accent);
-    border-radius: 50%;
+    align-self: stretch;
+    border: 0;
+    border-right: 1px solid var(--border);
+    border-radius: 0;
   }
 
   .cast-card-photo img {
     position: absolute;
     inset: 0;
-    border-radius: 50%;
-    object-position: center 25%;
-  }
-
-  .cast-card-photo::after {
-    display: none;
+    border-radius: 0;
+    object-position: center;
   }
 
   .cast-avatar-fallback {
@@ -1049,41 +1090,52 @@ a {
 
   .cast-card-content {
     min-width: 0;
-    align-self: center;
-    padding: 0;
+    align-self: stretch;
+    overflow: hidden;
+    padding: 9px 11px;
   }
 
   .cast-card-index {
-    margin-bottom: 4px;
-    font-size: 0.58rem;
+    margin-bottom: 2px;
+    font-size: 0.52rem;
   }
 
   .cast-card h3 {
-    font-size: 1.12rem;
+    font-size: 0.98rem;
   }
 
   .cast-card-role {
-    margin-top: 6px;
-    padding: 4px 9px;
-    font-size: 0.73rem;
+    margin-top: 4px;
+    padding: 3px 7px;
+    font-size: 0.66rem;
   }
 
   .cast-card-years {
     gap: 6px;
-    margin-top: 8px;
-    font-size: 0.69rem;
+    margin-top: 4px;
+    font-size: 0.62rem;
   }
 
   .cast-card-description {
-    margin-top: 7px;
-    font-size: 0.72rem;
-    line-height: 1.55;
+    margin-top: 4px;
+    font-size: 0.66rem;
+    line-height: 1.4;
+  }
+
+  .cast-social-link {
+    position: absolute;
+    right: 7px;
+    bottom: 7px;
+    width: 24px;
+    height: 24px;
+    margin: 0;
+    font-size: 0.78rem;
   }
 
   .description-toggle {
-    min-height: 32px;
-    margin-top: 2px;
-    font-size: 0.73rem;
+    min-height: 0;
+    margin-top: 1px;
+    font-size: 0.66rem;
   }
 
   .cast-footer-inner {
@@ -1118,14 +1170,16 @@ a {
   }
 
   .cast-card {
-    grid-template-columns: 62px minmax(0, 1fr);
-    gap: 10px;
-    padding: 11px;
+    grid-template-columns: minmax(0, 40%) minmax(0, 1fr);
+    gap: 0;
   }
 
   .cast-card-photo {
-    width: 60px;
-    height: 60px;
+    min-height: 0;
+  }
+
+  .cast-card-content {
+    padding: 8px;
   }
 }
 

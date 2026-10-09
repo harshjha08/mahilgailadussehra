@@ -6,6 +6,7 @@
     'https://script.google.com/macros/s/AKfycbwezkvR7PfGvTCV28g8PITMDkmWcR8MqlHapFRBKrTom0HYxQgGEibhg9oaohZz2OTClg/exec';
 
   const PAGE_SIZE = 6;
+  const DESCRIPTION_PREVIEW_LENGTH = 40;
   const root = document.documentElement;
 
   const searchInput = document.getElementById('castSearch');
@@ -33,48 +34,82 @@
   const normalize = value =>
     String(value ?? '').normalize('NFC').toLocaleLowerCase().trim();
 
-  
-function getPhotoUrl(url) {
-  if (!url) return '';
-
-  const value = String(url).trim();
-
-  try {
-    const parsed = new URL(value);
-
-    if (parsed.hostname === 'drive.google.com') {
-      let id = parsed.searchParams.get('id');
-
-      if (!id) {
-        const match = parsed.pathname.match(/\/file\/d\/([^/]+)/);
-        if (match) id = match[1];
-      }
-
-      if (id) {
-        return `https://drive.google.com/thumbnail?id=${id}&sz=w1000`;
-      }
-    }
-  } catch (error) {
-    console.warn('Invalid artist photo URL:', value);
+  function getText(value) {
+    if (typeof value !== 'string' && typeof value !== 'number') return '';
+    return String(value).trim();
   }
 
-  return value;
-}
+  function firstText(...values) {
+    return values.map(getText).find(Boolean) || '';
+  }
 
+  function getPhotoUrl(url) {
+    const value = getText(url);
+    if (!value) return '';
+
+    try {
+      const parsed = new URL(value, document.baseURI);
+
+      if (parsed.hostname === 'drive.google.com') {
+        let id = parsed.searchParams.get('id');
+
+        if (!id) {
+          const match = parsed.pathname.match(/\/file\/d\/([^/]+)/);
+          if (match) id = match[1];
+        }
+
+        if (id) {
+          return `https://drive.google.com/thumbnail?id=${id}&sz=w1000`;
+        }
+      }
+    } catch (error) {
+      console.warn('Invalid artist photo URL:', value);
+    }
+
+    return value;
+  }
+
+  function getSocialProfile(value) {
+    const profile = getText(value);
+    if (!profile) return null;
+
+    try {
+      const url = new URL(profile);
+      if (!['http:', 'https:'].includes(url.protocol)) return null;
+
+      const hostname = url.hostname.toLowerCase().replace(/^www\./, '');
+      if (hostname === 'facebook.com' || hostname.endsWith('.facebook.com')) {
+        return { url: url.href, label: 'Facebook', icon: 'fa-facebook' };
+      }
+      if (hostname === 'instagram.com' || hostname.endsWith('.instagram.com')) {
+        return { url: url.href, label: 'Instagram', icon: 'fa-instagram' };
+      }
+    } catch (error) {
+      return null;
+    }
+
+    return null;
+  }
 
   function normalizeArtist(record) {
-    const roles = String(record.roles || '').trim();
-    const activeYears = String(record.activeYears || '').trim();
-    const duration = String(record.duration || '').trim();
+    const source = record && typeof record === 'object' ? record : {};
+    const roles = firstText(source.roles, source.role, source.character);
+    const activeYears = firstText(source.activeYears, source.since);
+    const duration = getText(source.duration);
+    const nickname = getText(source.nickname);
+    const memories = firstText(source.description, source.memories);
+    const description = [
+      nickname ? `Also known as: ${nickname}` : '',
+      memories
+    ].filter(Boolean).join('\n\n');
 
     return {
-      name: String(record.name || '').trim(),
-      nickname: String(record.nickname || '').trim(),
+      name: getText(source.name),
       role: roles,
-      image: getPhotoUrl(record.photo),
+      image: getPhotoUrl(firstText(source.photo, source.image)),
       since: [activeYears, duration].filter(Boolean).join(' · '),
-      description: String(record.memories || '').trim(),
-      socialProfile: String(record.socialProfile || '').trim()
+      description,
+      socialProfile: getSocialProfile(source.socialProfile)
     };
   }
 
@@ -84,8 +119,11 @@ function getPhotoUrl(url) {
 
   function cardMarkup(artist, index) {
     const description = artist.description;
-    const canExpand = Array.from(description).length > 120;
-    const preview = Array.from(description).slice(0, 120).join('');
+    const descriptionCharacters = Array.from(description);
+    const canExpand = descriptionCharacters.length > DESCRIPTION_PREVIEW_LENGTH;
+    const preview = descriptionCharacters
+      .slice(0, DESCRIPTION_PREVIEW_LENGTH)
+      .join('');
 
     const initials = artist.name
       .split(/\s+/)
@@ -101,14 +139,10 @@ function getPhotoUrl(url) {
 
     const social = artist.socialProfile
       ? `<a class="cast-social-link"
-          href="${escapeHtml(
-            /^https?:\/\//i.test(artist.socialProfile)
-              ? artist.socialProfile
-              : 'https://www.instagram.com/' +
-                artist.socialProfile.replace(/^@/, '')
-          )}"
-          target="_blank" rel="noopener noreferrer">
-          Social profile ↗
+          href="${escapeHtml(artist.socialProfile.url)}"
+          target="_blank" rel="noopener noreferrer"
+          aria-label="${artist.socialProfile.label} profile for ${escapeHtml(artist.name)}">
+          <i class="fa-brands ${artist.socialProfile.icon}" aria-hidden="true"></i>
         </a>`
       : '';
 
@@ -124,13 +158,19 @@ function getPhotoUrl(url) {
         </figure>
 
         <div class="cast-card-content">
-          <span class="cast-card-index">Mahil Gaila Ramlila</span>
+          <span class="cast-card-index">${artist.featured ? 'मुख्य कलाकार' : 'Mahil Gaila Ramlila'}</span>
           <h3>${escapeHtml(artist.name)}</h3>
 
-          ${artist.nickname ? `
-            <p class="cast-card-years">
-              Known as: ${escapeHtml(artist.nickname)}
+          ${description ? `
+            <p class="cast-card-description">
+              ${escapeHtml(canExpand ? preview + '…' : description)}
             </p>` : ''}
+
+          ${canExpand ? `
+            <button class="description-toggle"
+              type="button"
+              data-full-description="${escapeHtml(description)}"
+              aria-expanded="false">Read more</button>` : ''}
 
           ${artist.role ? `
             <span class="cast-card-role">
@@ -143,17 +183,6 @@ function getPhotoUrl(url) {
               <i class="fa-regular fa-calendar" aria-hidden="true"></i>
               ${escapeHtml(artist.since)}
             </p>` : ''}
-
-          ${description ? `
-            <p class="cast-card-description">
-              ${escapeHtml(canExpand ? preview + '…' : description)}
-            </p>` : ''}
-
-          ${canExpand ? `
-            <button class="description-toggle"
-              type="button"
-              data-full-description="${escapeHtml(description)}"
-              aria-expanded="false">Read more</button>` : ''}
 
           ${social}
         </div>
@@ -198,7 +227,6 @@ function getPhotoUrl(url) {
     return normalizedCast.filter(artist => {
       const searchable = normalize([
         artist.name,
-        artist.nickname,
         artist.role,
         artist.since,
         artist.description
@@ -233,52 +261,145 @@ function getPhotoUrl(url) {
     updateLoadMore();
   }
 
+  function getArtistKey(name) {
+    return normalize(name)
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/\s+/g, ' ');
+  }
+
+  async function loadFeaturedArtists() {
+    const indexUrl = new URL('../index.html', document.baseURI);
+    const response = await fetch(indexUrl, { cache: 'no-store' });
+
+    if (!response.ok) {
+      throw new Error(`Featured cast request failed: ${response.status}`);
+    }
+
+    const html = await response.text();
+    const indexDocument = new DOMParser().parseFromString(html, 'text/html');
+
+    return Array.from(indexDocument.querySelectorAll('#cast .cast-card'))
+      .map(card => {
+        const image = card.querySelector('.cast-card-img');
+        const social = card.querySelector('.cast-insta');
+
+        return {
+          name: card.querySelector('.cast-card-name')?.textContent,
+          role: card.querySelector('.cast-card-role')?.textContent,
+          photo: image?.getAttribute('src')
+            ? new URL(image.getAttribute('src'), indexUrl).href
+            : '',
+          since: card.querySelector('.cast-card-since')?.textContent,
+          socialProfile: social?.getAttribute('href')
+            ? new URL(social.getAttribute('href'), indexUrl).href
+            : ''
+        };
+      })
+      .filter(record => getText(record.name))
+      .map(record => ({
+        ...normalizeArtist(record),
+        featured: true
+      }));
+  }
+
+  async function loadApiArtists() {
+    const response = await fetch(API_URL, { cache: 'no-store' });
+
+    if (!response.ok) {
+      throw new Error(`API request failed: ${response.status}`);
+    }
+
+    const data = await response.json();
+    if (!Array.isArray(data)) {
+      throw new Error(data.error || 'Unexpected API response');
+    }
+
+    return data.filter(record => record && getText(record.name));
+  }
+
+  function mergeArtists(featuredArtists, apiRecords) {
+    const artistsByName = new Map(
+      featuredArtists.map(artist => [getArtistKey(artist.name), artist])
+    );
+
+    apiRecords
+      .filter(record => record && getText(record.name))
+      .map(normalizeArtist)
+      .forEach(apiArtist => {
+        const key = getArtistKey(apiArtist.name);
+        const featuredArtist = artistsByName.get(key);
+
+        if (!featuredArtist) {
+          artistsByName.set(key, apiArtist);
+          return;
+        }
+
+        artistsByName.set(key, {
+          ...apiArtist,
+          featured: true,
+          name: featuredArtist.name,
+          role: featuredArtist.role || apiArtist.role,
+          image: featuredArtist.image || apiArtist.image,
+          since: featuredArtist.since || apiArtist.since,
+          description: [
+            featuredArtist.description,
+            apiArtist.description
+          ].filter((description, index, descriptions) =>
+            description && descriptions.indexOf(description) === index
+          ).join('\n\n'),
+          socialProfile: featuredArtist.socialProfile || apiArtist.socialProfile
+        });
+      });
+
+    return Array.from(artistsByName.values());
+  }
+
   async function loadArtists() {
     results.innerHTML = `
       <li class="cast-empty">
         <h3>कलाकारों का विवरण लोड हो रहा है…</h3>
       </li>`;
 
-    try {
-      const response = await fetch(API_URL, { cache: 'no-store' });
+    const [featuredResult, apiResult] = await Promise.allSettled([
+      loadFeaturedArtists(),
+      loadApiArtists()
+    ]);
 
-      if (!response.ok) {
-        throw new Error(`API request failed: ${response.status}`);
-      }
+    const featuredArtists = featuredResult.status === 'fulfilled'
+      ? featuredResult.value
+      : [];
+    const apiRecords = apiResult.status === 'fulfilled'
+      ? apiResult.value
+      : [];
 
-      const data = await response.json();
+    if (featuredResult.status === 'rejected') {
+      console.error('Unable to load featured artists from index.html:', featuredResult.reason);
+    }
+    if (apiResult.status === 'rejected') {
+      console.error('Unable to load artist directory from API:', apiResult.reason);
+    }
 
-      if (!Array.isArray(data)) {
-        throw new Error(data.error || 'Unexpected API response');
-      }
+    normalizedCast = mergeArtists(featuredArtists, apiRecords);
+    matchingArtists = getMatches(searchInput.value);
 
-      normalizedCast = data
-        .filter(record => record && String(record.name || '').trim())
-        .map(normalizeArtist);
+    if (totalCount) totalCount.textContent = normalizedCast.length;
+    renderInitialBatch();
 
-      matchingArtists = normalizedCast;
-
-      if (totalCount) {
-        totalCount.textContent = normalizedCast.length;
-      }
-
-      renderInitialBatch();
-    } catch (error) {
-      console.error('Unable to load artist directory:', error);
-
+    if (featuredResult.status === 'rejected' && apiResult.status === 'rejected') {
       results.innerHTML = `
         <li class="cast-empty">
           <h3>डेटा लोड नहीं हो पाया</h3>
-          <p>कृपया इंटरनेट कनेक्शन जाँचें और पेज दोबारा खोलें।</p>
+          <p>कृपया इंटरनेट कनेक्शन जाँचें और फिर से कोशिश करें।</p>
           <button type="button" id="retryCastLoad">फिर से कोशिश करें</button>
         </li>`;
-
       if (totalCount) totalCount.textContent = '0';
       if (resultCount) resultCount.textContent = '';
       if (loadMore) loadMore.hidden = true;
-
       document.getElementById('retryCastLoad')
         ?.addEventListener('click', loadArtists);
+    } else if (apiResult.status === 'rejected' && loadStatus) {
+      loadStatus.textContent = 'API से बाकी कलाकारों का डेटा अभी लोड नहीं हो पाया।';
     }
   }
 
@@ -308,11 +429,13 @@ function getPhotoUrl(url) {
 
     const description = button.previousElementSibling;
     const expanded = button.getAttribute('aria-expanded') !== 'true';
+    const fullDescription = button.dataset.fullDescription;
 
     description.textContent = expanded
-      ? button.dataset.fullDescription
-      : Array.from(button.dataset.fullDescription).slice(0, 120).join('') + '…';
+      ? fullDescription
+      : Array.from(fullDescription).slice(0, DESCRIPTION_PREVIEW_LENGTH).join('') + '…';
 
+    button.closest('.cast-card')?.classList.toggle('is-expanded', expanded);
     button.setAttribute('aria-expanded', String(expanded));
     button.textContent = expanded ? 'Read less' : 'Read more';
   });
