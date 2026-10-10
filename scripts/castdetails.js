@@ -21,6 +21,13 @@
   const mobileNav = document.getElementById('mobileNav');
   const themeToggle = document.getElementById('themeToggle');
   const themeIcon = document.getElementById('themeIcon');
+  const imageViewer = document.getElementById('castImageViewer');
+  const imageViewerImage = document.getElementById('castImageViewerImage');
+  const imageViewerTitle = document.getElementById('castImageViewerTitle');
+  const imageViewerRole = document.getElementById('castImageViewerRole');
+  const imageViewerClose = document.getElementById('castImageViewerClose');
+  let imageViewerTrigger = null;
+  let imageViewerCloseTimer = null;
 
   const escapeHtml = value =>
     String(value ?? '').replace(/[&<>"']/g, char => ({
@@ -135,9 +142,12 @@
       .join('');
 
     const image = artist.image
-      ? `<img src="${escapeHtml(artist.image)}"
+      ? `<button class="cast-photo-trigger" type="button"
+          aria-label="View full photo of ${escapeHtml(artist.name)}">
+          <img src="${escapeHtml(artist.image)}"
           alt="${escapeHtml(artist.name)}"
-          loading="lazy" decoding="async">`
+          loading="lazy" decoding="async">
+        </button>`
       : '';
 
     const social = artist.socialProfile
@@ -420,6 +430,81 @@
     image.alt = '';
   }, true);
 
+  function closeImageViewer() {
+    if (!imageViewer?.open || imageViewer.classList.contains('is-closing')) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      imageViewer.close();
+      return;
+    }
+
+    imageViewer.classList.remove('is-visible');
+    imageViewer.classList.add('is-closing');
+    imageViewerCloseTimer = window.setTimeout(() => {
+      imageViewer.close();
+    }, 220);
+  }
+
+  results.addEventListener('click', event => {
+    const trigger = event.target.closest('.cast-photo-trigger');
+    if (!trigger || !results.contains(trigger) || !imageViewer?.showModal) return;
+
+    const image = trigger.querySelector('img');
+    if (!image || !image.src) return;
+
+    const sourceRect = image.getBoundingClientRect();
+    imageViewerTrigger = trigger;
+    imageViewerImage.src = image.currentSrc || image.src;
+    imageViewerImage.alt = image.alt;
+    imageViewerTitle.textContent = trigger.closest('.cast-card')?.querySelector('h3')?.textContent || image.alt;
+    imageViewerRole.textContent = trigger.closest('.cast-card')?.querySelector('.cast-card-role')?.textContent.trim() || '';
+
+    imageViewer.showModal();
+    imageViewer.classList.remove('is-closing');
+    window.requestAnimationFrame(() => {
+      imageViewer.classList.add('is-visible');
+
+      if (!imageViewerImage.animate) return;
+
+      const targetRect = imageViewerImage.getBoundingClientRect();
+      if (!targetRect.width || !targetRect.height || !sourceRect.width || !sourceRect.height) return;
+
+      const scaleX = sourceRect.width / targetRect.width;
+      const scaleY = sourceRect.height / targetRect.height;
+
+      imageViewerImage.animate([
+        {
+          opacity: 0.65,
+          filter: 'blur(7px)',
+          transform: `translate(${sourceRect.left - targetRect.left}px, ${sourceRect.top - targetRect.top}px) scale(${scaleX}, ${scaleY})`
+        },
+        { opacity: 1, filter: 'blur(0)', transform: 'none' }
+      ], {
+        duration: 720,
+        easing: 'cubic-bezier(.16, 1, .3, 1)'
+      });
+    });
+  });
+
+  imageViewerClose?.addEventListener('click', closeImageViewer);
+
+  imageViewer?.addEventListener('click', event => {
+    if (event.target === imageViewer) closeImageViewer();
+  });
+
+  imageViewer?.addEventListener('cancel', event => {
+    event.preventDefault();
+    closeImageViewer();
+  });
+
+  imageViewer?.addEventListener('close', () => {
+    window.clearTimeout(imageViewerCloseTimer);
+    imageViewer.classList.remove('is-visible', 'is-closing');
+    imageViewerImage.removeAttribute('src');
+    imageViewerTrigger?.focus();
+    imageViewerTrigger = null;
+  });
+
   searchInput?.addEventListener('input', runSearch);
 
   document.getElementById('castSearchForm')
@@ -431,21 +516,82 @@
     searchInput.focus();
   });
 
+  const cardHeightTransitions = new WeakMap();
+
+  function updateDescription(button, expanded) {
+    const description = button.previousElementSibling;
+    const fullDescription = button.dataset.fullDescription;
+    const card = button.closest('.cast-card');
+
+    const update = () => {
+      description.textContent = expanded
+        ? fullDescription
+        : Array.from(fullDescription).slice(0, DESCRIPTION_PREVIEW_LENGTH).join('') + '…';
+      card?.classList.toggle('is-expanded', expanded);
+      button.setAttribute('aria-expanded', String(expanded));
+      button.textContent = expanded ? 'Less' : 'Read More';
+    };
+
+    if (!card || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      update();
+      return;
+    }
+
+    const startHeight = card.getBoundingClientRect().height;
+    cardHeightTransitions.get(card)?.cleanup();
+    card.style.transition = 'none';
+    card.style.height = `${startHeight}px`;
+    update();
+
+    card.style.height = '';
+    const targetHeight = card.getBoundingClientRect().height;
+    card.style.height = `${startHeight}px`;
+    card.offsetHeight;
+
+    card.style.transition = '';
+    card.offsetHeight;
+
+    if (Math.abs(startHeight - targetHeight) < 1) {
+      card.style.height = '';
+      return;
+    }
+
+    const finishTransition = event => {
+      if (event && (event.target !== card || event.propertyName !== 'height')) return;
+      const transition = cardHeightTransitions.get(card);
+      if (!transition) return;
+      window.clearTimeout(transition.timeout);
+      card.removeEventListener('transitionend', transition.onTransitionEnd);
+      card.style.height = '';
+      cardHeightTransitions.delete(card);
+    };
+    const onTransitionEnd = event => finishTransition(event);
+    const timeout = window.setTimeout(() => finishTransition(), 400);
+
+    cardHeightTransitions.set(card, {
+      timeout,
+      onTransitionEnd,
+      cleanup: () => finishTransition()
+    });
+    card.addEventListener('transitionend', onTransitionEnd);
+    card.style.height = `${targetHeight}px`;
+  }
+
   results.addEventListener('click', event => {
     const button = event.target.closest('.description-toggle');
     if (!button) return;
 
-    const description = button.previousElementSibling;
     const expanded = button.getAttribute('aria-expanded') !== 'true';
-    const fullDescription = button.dataset.fullDescription;
 
-    description.textContent = expanded
-      ? fullDescription
-      : Array.from(fullDescription).slice(0, DESCRIPTION_PREVIEW_LENGTH).join('') + '…';
+    if (expanded) {
+      results.querySelectorAll('.description-toggle[aria-expanded="true"]')
+        .forEach(openButton => {
+          if (openButton === button) return;
+          updateDescription(openButton, false);
+        });
+    }
 
-    button.closest('.cast-card')?.classList.toggle('is-expanded', expanded);
-    button.setAttribute('aria-expanded', String(expanded));
-    button.textContent = expanded ? 'Less' : 'Read More';
+    updateDescription(button, expanded);
   });
 
   loadMore?.addEventListener('click', appendNextBatch);

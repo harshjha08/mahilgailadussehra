@@ -258,6 +258,29 @@
       </section>
     </main>
 
+    <dialog class="cast-image-viewer" id="castImageViewer" aria-labelledby="castImageViewerTitle">
+      <div class="cast-image-viewer-panel">
+        <div class="cast-image-viewer-topline">
+          <span><i class="fa-solid fa-sparkles" aria-hidden="true"></i> कलाकार चित्र</span>
+          <button class="cast-image-viewer-close" id="castImageViewerClose" type="button" aria-label="Close image">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+        </div>
+        <figure class="cast-image-viewer-figure">
+          <div class="cast-image-viewer-mat">
+            <img id="castImageViewerImage" alt="" />
+          </div>
+          <figcaption class="cast-image-viewer-caption">
+            <span class="cast-image-viewer-caption-label">माहिल गहिला रामलीला</span>
+            <h2 id="castImageViewerTitle"></h2>
+            <p id="castImageViewerRole"></p>
+          </figcaption>
+        </figure>
+        <span class="cast-image-viewer-corner cast-image-viewer-corner-top" aria-hidden="true"></span>
+        <span class="cast-image-viewer-corner cast-image-viewer-corner-bottom" aria-hidden="true"></span>
+      </div>
+    </dialog>
+
     <footer class="cast-site-footer">
       <div class="cast-footer-inner">
         <div>
