@@ -59,10 +59,11 @@ The site also works when `index.html` is opened directly, but a local server is 
 
 - Update page copy, event details, and metadata in `index.html` or `pages/gallery.html`.
 - Add or replace media under the relevant `assets/` subdirectory. Keep filenames and paths in the HTML and JavaScript in sync; some asset directory names contain spaces.
+- Add 2026 Dussehra photos with any filenames to `assets/dussehra 2026/`. Supported formats are JPG, JPEG, PNG, GIF, WebP, and AVIF. The Vercel build discovers these files automatically and updates that gallery; commit and deploy the added images as usual.
 - Update the home-page interactions in `scripts/script.js` and gallery entries/behavior in `scripts/gallery.js`.
 - Review event dates, contact details, and outbound social links before publishing. Some contact and social values in the current page markup are placeholders.
 - If the public site URL changes, update canonical and social metadata, `robots.txt`, and `sitemap.xml`.
 
 ## Deployment
 
-Deploy the project directory as a static site using Vercel, Netlify, GitHub Pages, or another static host. Set the project root as the published directory and ensure the host serves `index.html` at `/`. No build command is needed. After deployment, verify both pages and check that media paths containing spaces load correctly.
+Deploy the project with Vercel using the included `vercel.json`; its build command prepares the static files and generates the 2026 photo manifest. After deployment, verify both pages and check that media paths containing spaces load correctly.

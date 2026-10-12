@@ -691,12 +691,12 @@
       <div class="container">
         <div class="text-center" style="margin-bottom: 32px">
           <span class="section-eyebrow">📸 विशेष झलकियाँ</span>
-          <h2 class="section-title">दशहरा महोत्सव 2026 धर्म ध्वजारोहण</h2>
+          <h2 class="section-title">दशहरा महोत्सव 2026 नवरात्रि के पहले दिन</h2>
         </div>
         <div class="gallery-showcase fade-up">
           <img
-            src="assets/dussehra 2026/dussehra2601.jpeg"
-            alt="दशहरा महोत्सव 2026 धर्म ध्वजारोहण"
+            src="assets/dussehra 2026/dussehra2606.jpeg"
+            alt="दशहरा महोत्सव 2026 नवरात्रि के पहले दिन"
             id="heroGalleryImg"
             onerror="
               this.style.background = 'var(--gradient-media-fallback)';
@@ -1790,5 +1790,44 @@
     <script src="scripts/gallery.js"></script>
     <!-- Before body, after your existing scripts -->
     <script src="scripts/mgd-shorts.js" defer></script>
+    <script>
+      (() => {
+        const structuredDataElement = document.querySelector(
+          'script[type="application/ld+json"]',
+        );
+        const structuredData = JSON.parse(structuredDataElement.textContent);
+        const eventData = structuredData['@graph'].find(
+          (item) => item['@type'] === 'Event',
+        );
+        const eventPerformers = Array.from(
+          document.querySelectorAll('#cast .cast-card'),
+          (card) => {
+            const name = card
+              .querySelector('.cast-card-name')
+              ?.textContent.trim();
+            const role = card
+              .querySelector('.cast-card-role')
+              ?.textContent.trim();
+
+            if (!name) return null;
+
+            return {
+              '@type': 'Person',
+              name,
+              ...(role ? { description: `रामलीला में भूमिका: ${role}` } : {}),
+            };
+          },
+        ).filter(Boolean);
+
+        if (!eventData || !eventPerformers.length) {
+          throw new Error(
+            'Event structured data or cast information is missing.',
+          );
+        }
+
+        eventData.performer = eventPerformers;
+        structuredDataElement.textContent = JSON.stringify(structuredData);
+      })();
+    </script>
   </body>
 </html>

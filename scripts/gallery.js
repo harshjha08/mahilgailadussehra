@@ -39,7 +39,14 @@ const galleryData = {
             "../assets/dussehra 2026/dussehra2602.jpeg",
             "../assets/dussehra 2026/dussehra2603.jpeg",
             "../assets/dussehra 2026/dussehra2604.jpeg",
-            "../assets/dussehra 2026/dussehra2605.jpeg"     
+            "../assets/dussehra 2026/dussehra2605.jpeg",  
+            "../assets/dussehra 2026/dussehra2606.jpeg",
+            "../assets/dussehra 2026/dussehra2607.jpeg",
+            "../assets/dussehra 2026/dussehra2608.jpeg",
+            "../assets/dussehra 2026/dussehra2609.jpg",
+            "../assets/dussehra 2026/dussehra2610.jpg",
+            "../assets/dussehra 2026/dussehra2611.jpg",
+            "../assets/dussehra 2026/dussehra2612.jpg"
         ]
 
     },
@@ -548,6 +555,38 @@ const galleryData = {
 
 };
 
+async function loadDussehra2026Images() {
+  try {
+    const response = await fetch(
+      '../assets/dussehra%202026/gallery-images.json',
+    );
+    if (!response.ok) {
+      throw new Error(`Image manifest request failed: ${response.status}`);
+    }
+
+    const images = await response.json();
+    if (!Array.isArray(images) || images.some(image => typeof image !== 'string')) {
+      throw new Error('Image manifest must contain an array of image paths.');
+    }
+
+    const gallery = galleryData.dussehra2026;
+    gallery.images = images;
+
+    const card = document.querySelector('[data-gallery="dussehra2026"]');
+    const thumbnail = card?.querySelector('.card-thumb img');
+    if (thumbnail && images.length) thumbnail.src = images[0];
+
+    const countBadge = card?.querySelector('.card-count-badge');
+    const countIcon = countBadge?.querySelector('i');
+    if (countBadge && countIcon) {
+      countBadge.replaceChildren(countIcon, ` ${images.length} Photos`);
+    }
+  } catch (error) {
+    console.error('Unable to load Dussehra 2026 gallery images:', error);
+  }
+}
+
+loadDussehra2026Images();
 
 /* ── LIGHTBOX STATE ── */
 const lightbox   = document.getElementById('lightbox');
