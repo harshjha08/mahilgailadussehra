@@ -114,13 +114,12 @@ setInterval(updateCountdown, 1000);
 
 /* ── GALLERY SLIDESHOW ── */
 const galleryImages = [
-  "../assets/dussehra 2026/dussehra2606.jpeg",
-  "../assets/dussehra 2026/dussehra2607.jpeg",
-  "../assets/dussehra 2026/dussehra2608.jpeg",
-  "../assets/dussehra 2026/dussehra2609.jpg",
-  "../assets/dussehra 2026/dussehra2610.jpg",
-  "../assets/dussehra 2026/dussehra2611.jpg",
-  "../assets/dussehra 2026/dussehra2612.jpg"
+    "../assets/dussehra 2026/dussehra2614.jpg",
+    "../assets/dussehra 2026/dussehra2615.jpg",
+    "../assets/dussehra 2026/dussehra2616.jpg",
+    "../assets/dussehra 2026/dussehra2617.jpg",
+    "../assets/dussehra 2026/dussehra2619.jpg",
+    "../assets/dussehra 2026/dussehra2622.jpg",
 ];
 let galleryIdx = 0;
 const heroGalleryImg = document.getElementById('heroGalleryImg');

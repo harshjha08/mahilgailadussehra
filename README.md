@@ -25,7 +25,7 @@ Visit the deployed site at [mahilgailadussehra.vercel.app](https://mahilgailadus
 - Vanilla JavaScript
 - Font Awesome and Google Fonts loaded from external CDNs
 
-This is a static website: there is no package manager, build step, or application server required. A local HTTP server is recommended so that pages and assets resolve consistently.
+The site is static. Its build uses Sharp to generate optimized WebP sizes for photo galleries, so install the Node.js dependencies before building or deploying.
 
 ## Project Structure
 
@@ -45,25 +45,30 @@ This is a static website: there is no package manager, build step, or applicatio
 
 ## Run Locally
 
-From the project root, start Python's built-in static server:
+Build the optimized site from the project root:
 
 ```powershell
-py -m http.server 8000
+npm install
+npm run build
 ```
 
-If the `py` launcher is unavailable, use `python -m http.server 8000`. Open [http://localhost:8000](http://localhost:8000) in a browser. Stop the server with `Ctrl+C`.
+Then serve the generated `dist` directory with Python's built-in server:
 
-The site also works when `index.html` is opened directly, but a local server is preferable for testing links and assets.
+```powershell
+py -m http.server 8000 --directory dist
+```
+
+Open [http://localhost:8000](http://localhost:8000) in a browser. Stop the server with `Ctrl+C`.
 
 ## Updating Content
 
 - Update page copy, event details, and metadata in `index.html` or `pages/gallery.html`.
-- Add or replace media under the relevant `assets/` subdirectory. Keep filenames and paths in the HTML and JavaScript in sync; some asset directory names contain spaces.
-- Add 2026 Dussehra photos with any filenames to `assets/dussehra 2026/`. Supported formats are JPG, JPEG, PNG, GIF, WebP, and AVIF. The Vercel build discovers these files automatically and updates that gallery; commit and deploy the added images as usual.
+- Add or replace media under the relevant `assets/` subdirectory. Keep filenames and paths in the HTML and JavaScript in sync; some asset directory names contain spaces. Run `npm run build` to generate 480px preview WebPs and 960px mobile / 1920px desktop lightbox WebPs without changing the originals.
+- Add 2026 Dussehra photos with any filenames to `assets/dussehra 2026/`. Supported formats are JPG, JPEG, PNG, GIF, WebP, and AVIF. The build discovers these files automatically and updates that gallery.
 - Update the home-page interactions in `scripts/script.js` and gallery entries/behavior in `scripts/gallery.js`.
 - Review event dates, contact details, and outbound social links before publishing. Some contact and social values in the current page markup are placeholders.
 - If the public site URL changes, update canonical and social metadata, `robots.txt`, and `sitemap.xml`.
 
 ## Deployment
 
-Deploy the project with Vercel using the included `vercel.json`; its build command prepares the static files and generates the 2026 photo manifest. After deployment, verify both pages and check that media paths containing spaces load correctly.
+Deploy the project with Vercel using the included `vercel.json`; its build command prepares the static files, generates optimized gallery images, and updates the 2026 photo manifest. After deployment, verify both pages and check that media paths containing spaces load correctly.
