@@ -163,7 +163,7 @@
   <body>
     <!-- ░░░░░ NOTICE OVERLAY ░░░░░ -->
     <div
-      class="notice-overlay show"
+      class="notice-overlay"
       id="noticeOverlay"
       role="dialog"
       aria-modal="true"
@@ -173,17 +173,12 @@
         <div class="notice-icon">
           <i class="fa-solid fa-bell" aria-hidden="true"></i>
         </div>
-        <h2 class="notice-title" id="noticeTitle">सूचना / Notice</h2>
-        <p class="notice-body" id="noticeBody">
-          यह वेबसाइट रामलीला कलाकारों एवं इच्छुक व्यक्तियों की सुविधा हेतु बनाई
-          गई है। यह रामलीला वेलफेयर कमेटी माहिल गहिला द्वारा आधिकारिक रूप से
-          संचालित नहीं है। सामग्री केवल सुविधा प्रदान करने के उद्देश्य से
-          प्रकाशित की गई है।
-        </p>
+        <h2 class="notice-title" id="noticeTitle"></h2>
+        <p class="notice-body" id="noticeBody"></p>
         <div class="notice-actions">
           <button
             class="notice-lang-btn"
-            onclick="toggleNoticeLanguage()"
+            type="button"
             id="langToggle"
           >
             English
@@ -192,10 +187,12 @@
             <a
               href="https://forms.gle/V7MyPy6air9JkBq76"
               target="_blank"
+              rel="noopener noreferrer"
               class="notice-complaint"
+              id="noticeComplaint"
               >शिकायत दर्ज करें</a
             >
-            <button class="notice-close-btn" onclick="closeNotice()">
+            <button class="notice-close-btn" type="button" id="noticeClose">
               समझ गया
             </button>
           </div>
@@ -453,20 +450,44 @@
           </button>
         </div>
       </div>
-      <div class="mobile-nav" id="mobileNav">
-        <a href="#about" onclick="closeMobileNav()">हमारे बारे में</a>
-        <a href="#events" onclick="closeMobileNav()">कार्यक्रम 2026</a>
-        <a href="#scripts" onclick="closeMobileNav()">नवरात्रि स्क्रिप्ट</a>
-        <a href="#gallery" onclick="closeMobileNav()">विशेष झलकियाँ</a>
-        <a href="#spiritual" onclick="closeMobileNav()">धार्मिक साहित्य</a>
-        <a href="#videos" onclick="closeMobileNav()">वीडियो गैलरी</a>
-        <a href="pages/castDetails.html" onclick="closeMobileNav()"
-          >मुख्य पात्र</a
-        >
-        <a href="pages/gallery.html" onclick="closeMobileNav()"
-          >Photo Gallery</a
-        >
-        <a href="#contact" onclick="closeMobileNav()">संपर्क करें</a>
+      <div class="notice-ticker" aria-label="सूचनाएँ">
+        <span class="notice-ticker-label">
+          <i class="fa-solid fa-bullhorn" aria-hidden="true"></i>
+          सूचना
+        </span>
+        <div class="notice-ticker-window" id="noticeTicker" role="group" aria-label="सूचनाएँ पढ़ने के लिए क्लिक करें">
+          <div class="notice-ticker-track" id="noticeTickerTrack"></div>
+        </div>
+      </div>
+    </nav>
+    <nav class="mobile-nav" id="mobileNav" aria-label="मुख्य मोबाइल नेविगेशन" inert>
+      <button class="mobile-nav-backdrop" id="mobileNavBackdrop" type="button" tabindex="-1" aria-label="मेन्यू बंद करें"></button>
+      <div class="mobile-nav-panel">
+        <div class="mobile-nav-heading">
+          <div>
+            <span class="mobile-nav-eyebrow">रामलीला महोत्सव</span>
+            <h2>आपका स्वागत है</h2>
+            <p>माहिल गहिला, पंजाब</p>
+          </div>
+          <button class="mobile-nav-close" id="mobileNavClose" type="button" aria-label="मेन्यू बंद करें">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="mobile-nav-links">
+          <a href="#about" onclick="closeMobileNav()"><i class="fa-solid fa-om" aria-hidden="true"></i><span>हमारे बारे में</span><i class="fa-solid fa-arrow-up-right-from-square nav-link-arrow" aria-hidden="true"></i></a>
+          <a href="#events" onclick="closeMobileNav()"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i><span>कार्यक्रम 2026</span><i class="fa-solid fa-arrow-up-right-from-square nav-link-arrow" aria-hidden="true"></i></a>
+          <a href="#scripts" onclick="closeMobileNav()"><i class="fa-solid fa-scroll" aria-hidden="true"></i><span>नवरात्रि स्क्रिप्ट</span><i class="fa-solid fa-arrow-up-right-from-square nav-link-arrow" aria-hidden="true"></i></a>
+          <a href="#gallery" onclick="closeMobileNav()"><i class="fa-solid fa-camera-retro" aria-hidden="true"></i><span>विशेष झलकियाँ</span><i class="fa-solid fa-arrow-up-right-from-square nav-link-arrow" aria-hidden="true"></i></a>
+          <a href="#spiritual" onclick="closeMobileNav()"><i class="fa-solid fa-book-open" aria-hidden="true"></i><span>धार्मिक साहित्य</span><i class="fa-solid fa-arrow-up-right-from-square nav-link-arrow" aria-hidden="true"></i></a>
+          <a href="#videos" onclick="closeMobileNav()"><i class="fa-solid fa-circle-play" aria-hidden="true"></i><span>वीडियो गैलरी</span><i class="fa-solid fa-arrow-up-right-from-square nav-link-arrow" aria-hidden="true"></i></a>
+          <a href="pages/castDetails.html" onclick="closeMobileNav()"><i class="fa-solid fa-masks-theater" aria-hidden="true"></i><span>मुख्य पात्र</span><i class="fa-solid fa-arrow-up-right-from-square nav-link-arrow" aria-hidden="true"></i></a>
+          <a href="pages/gallery.html" onclick="closeMobileNav()"><i class="fa-solid fa-images" aria-hidden="true"></i><span>Photo Gallery</span><i class="fa-solid fa-arrow-up-right-from-square nav-link-arrow" aria-hidden="true"></i></a>
+        </div>
+        <a href="#contact" class="mobile-nav-contact" onclick="closeMobileNav()">
+          <span><i class="fa-solid fa-envelope" aria-hidden="true"></i> संपर्क करें</span>
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+        <div class="mobile-nav-footer"><span>🚩</span> जय श्री राम</div>
       </div>
     </nav>
 
@@ -690,42 +711,31 @@
     <section class="gallery-section" id="gallery">
       <div class="container">
         <div class="text-center" style="margin-bottom: 32px">
-          <span class="section-eyebrow">📸 विशेष झलकियाँ</span>
-          <h2 class="section-title">दशहरा महोत्सव 2026 नवरात्रि के दूसरे दिन</h2>
+          <span class="section-eyebrow" id="gallerySectionEyebrow"></span>
+          <h2 class="section-title" id="gallerySectionTitle"></h2>
         </div>
         <div class="gallery-showcase fade-up">
-          <img
-            src="assets/dussehra 2026/dussehra2614.jpg"
-            alt="दशहरा महोत्सव 2026 नवरात्रि के दूसरे दिन"
-            id="heroGalleryImg"
-            onerror="
-              this.style.background = 'var(--gradient-media-fallback)';
-              this.alt = '';
-              this.style.height = '100%';
-            "
-          />
+          <img id="heroGalleryImg" src="" alt="" />
           <div class="gallery-overlay-bottom">
             <div class="gallery-caption">
-              <small
-                >दशहरा महोत्सव 2026 नवरात्रि के दूसरे दिन माहिल गहिला, पंजाब</small
-              >
+              <small id="galleryImageCaption"></small>
             </div>
-            <div style="display: flex; gap: 10px; align-items: center">
-              <a href="pages/gallery.html" class="btn-gallery">
+            <div class="gallery-controls">
+              <a href="pages/gallery.html" class="btn-gallery" id="galleryAllPhotos">
                 <i class="fa-solid fa-images" aria-hidden="true"></i>
-                सभी फ़ोटो देखें
+                <span></span>
               </a>
               <div class="gallery-nav-btns">
                 <button
                   class="gallery-nav-btn"
-                  onclick="galleryPrev()"
+                  id="galleryPrev"
                   aria-label="Previous image"
                 >
                   <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
                 </button>
                 <button
                   class="gallery-nav-btn"
-                  onclick="galleryNext()"
+                  id="galleryNext"
                   aria-label="Next image"
                 >
                   <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
@@ -734,7 +744,7 @@
             </div>
           </div>
         </div>
-        <div class="gallery-dots" id="galleryDots" aria-hidden="true"></div>
+        <div class="gallery-dots" id="galleryDots" role="group" aria-label="Gallery images"></div>
       </div>
     </section>
 
