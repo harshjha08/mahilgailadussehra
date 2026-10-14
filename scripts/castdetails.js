@@ -4,7 +4,7 @@
   const API_URL =
     'https://script.google.com/macros/s/AKfycbwezkvR7PfGvTCV28g8PITMDkmWcR8MqlHapFRBKrTom0HYxQgGEibhg9oaohZz2OTClg/exec';
 
-  const PAGE_SIZE = 6;
+  const PAGE_SIZE = 1000; // sab cards ek sath (images lazy-load hoti hain)
   const DESCRIPTION_PREVIEW_LENGTH = 40;
   const API_TIMEOUT_MS = 12000;
   const CACHE_FEATURED_KEY = 'mgd-cast-featured-v1';
@@ -407,22 +407,26 @@
   }
 
   /* ---------- Random order + progressive loading ---------- */
-  // Har artist ko is page-load me ek random rank milta hai.
-  // Refresh par naya random order, par same page-load me order stable rehta hai
-  // (search karne ya API data late aane par cards idhar-udhar nahi hote).
+  // Home page wale (featured) cards top par, usi sequence me.
+  // Baaki cards har refresh par random; same page-load me order stable rehta hai.
   const randomRank = new Map();
 
   function sortRandomly(list) {
-    list.forEach(artist => {
+    const featured = list.filter(artist => artist.featured);
+    const others = list.filter(artist => !artist.featured);
+
+    others.forEach(artist => {
       const key = getArtistKey(artist.name);
       if (!randomRank.has(key)) randomRank.set(key, Math.random());
     });
 
-    return list.sort(
+    others.sort(
       (a, b) =>
         randomRank.get(getArtistKey(a.name)) -
         randomRank.get(getArtistKey(b.name))
     );
+
+    return [...featured, ...others];
   }
 
   let featuredArtists = [];
@@ -441,11 +445,66 @@
     renderInitialBatch(visibleCount);
   }
 
+  function injectLoaderStyles() {
+    if (document.getElementById('castLoaderStyles')) return;
+    const style = document.createElement('style');
+    style.id = 'castLoaderStyles';
+    style.textContent = `
+      .cast-loader{grid-column:1/-1;list-style:none;display:flex;flex-direction:column;
+        align-items:center;gap:20px;padding:72px 16px;text-align:center;width:100%}
+      .diya{position:relative;width:96px;height:96px}
+      .diya-glow{position:absolute;left:50%;top:6px;width:90px;height:90px;margin-left:-45px;
+        border-radius:50%;background:radial-gradient(circle,rgba(255,170,0,.40),rgba(255,170,0,0) 70%);
+        animation:diyaGlow 1.6s ease-in-out infinite}
+      .diya-flame{position:absolute;left:50%;top:8px;width:28px;height:48px;margin-left:-14px;
+        border-radius:50% 50% 50% 50% / 62% 62% 38% 38%;
+        background:radial-gradient(circle at 50% 75%,#fff6c2 0%,#ffc933 40%,#ee6c1a 100%);
+        transform-origin:50% 100%;animation:diyaFlicker 1.1s ease-in-out infinite;
+        box-shadow:0 0 22px 6px rgba(255,160,0,.5);z-index:1}
+      .diya-bowl{position:absolute;left:50%;bottom:10px;width:78px;height:34px;margin-left:-39px;
+        background:linear-gradient(180deg,#e08a35 0%,#9b421c 100%);
+        border-radius:0 0 78px 78px / 0 0 34px 34px;z-index:2;
+        box-shadow:0 6px 14px rgba(0,0,0,.18)}
+      .diya-bowl::before{content:"";position:absolute;left:6px;right:6px;top:0;height:7px;
+        border-radius:50%;background:#5c2410;opacity:.55}
+      .cast-loader-text{font-family:'Tiro Devanagari Hindi','Poppins',serif;font-size:1.1rem;
+        color:var(--text,#BC4C37);letter-spacing:.3px}
+      .cast-loader-text span{display:inline-block;animation:loaderDot 1.2s infinite both}
+      .cast-loader-text span:nth-child(2){animation-delay:.2s}
+      .cast-loader-text span:nth-child(3){animation-delay:.4s}
+      .cast-loader-bar{width:150px;height:4px;border-radius:4px;overflow:hidden;
+        background:rgba(188,76,55,.18)}
+      .cast-loader-bar::after{content:"";display:block;width:45%;height:100%;border-radius:4px;
+        background:linear-gradient(90deg,transparent,#BC4C37,transparent);
+        animation:loaderSlide 1.3s ease-in-out infinite}
+      @keyframes diyaFlicker{
+        0%,100%{transform:scale(1,1) rotate(-2deg)}
+        25%{transform:scale(.92,1.08) rotate(2deg)}
+        50%{transform:scale(1.05,.94) rotate(-1deg)}
+        75%{transform:scale(.95,1.06) rotate(2deg)}}
+      @keyframes diyaGlow{0%,100%{opacity:.55;transform:scale(.9)}50%{opacity:1;transform:scale(1.12)}}
+      @keyframes loaderDot{0%,80%,100%{opacity:.2}40%{opacity:1}}
+      @keyframes loaderSlide{0%{transform:translateX(-120%)}100%{transform:translateX(320%)}}
+      @media (prefers-reduced-motion: reduce){
+        .diya-glow,.diya-flame,.cast-loader-text span,.cast-loader-bar::after{animation:none}}
+    `;
+    document.head.appendChild(style);
+  }
+
   function showLoading() {
+    injectLoaderStyles();
     results.innerHTML = `
-      <li class="cast-empty">
-        <h3>लोड हो रहा है…</h3>
+      <li class="cast-loader" role="status" aria-live="polite">
+        <div class="diya" aria-hidden="true">
+          <span class="diya-glow"></span>
+          <span class="diya-flame"></span>
+          <span class="diya-bowl"></span>
+        </div>
+        <div class="cast-loader-text">कलाकार मंच पर आ रहे हैं<span>.</span><span>.</span><span>.</span></div>
+        <div class="cast-loader-bar" aria-hidden="true"></div>
       </li>`;
+    if (resultCount) resultCount.textContent = '';
+    if (loadMore) loadMore.hidden = true;
   }
 
   async function loadArtists() {
@@ -454,49 +513,44 @@
     lastSignature = '';
     visibleCount = 0;
 
-    // 1) Cache se turant dikhao (repeat visit = instant)
+    // Cache me dono (featured + API) saved hain to turant sab cards dikhao
     const cachedFeatured = readCache(CACHE_FEATURED_KEY);
     const cachedApi = readCache(CACHE_API_KEY);
 
-    if (cachedFeatured || cachedApi) {
-      featuredArtists = cachedFeatured || [];
-      apiRecords = cachedApi || [];
+    if (cachedFeatured && cachedApi) {
+      featuredArtists = cachedFeatured;
+      apiRecords = cachedApi;
       applyData();
     } else {
       showLoading();
     }
 
-    // 2) Dono requests parallel; jo pehle aaye wahi turant dikhao
-    let apiFailed = false;
+    // Dono requests parallel; jab dono khatam ho tab ek hi baar me sab cards render
+    const [featuredResult, apiResult] = await Promise.allSettled([
+      loadFeaturedArtists(),
+      loadApiArtists()
+    ]);
 
-    const featuredTask = loadFeaturedArtists()
-      .then(list => {
-        featuredArtists = list;
-        writeCache(CACHE_FEATURED_KEY, list);
-        applyData();
-        return true;
-      })
-      .catch(error => {
-        console.error('Unable to load featured artists from index.html:', error);
-        return false;
-      });
+    if (featuredResult.status === 'fulfilled') {
+      featuredArtists = featuredResult.value;
+      writeCache(CACHE_FEATURED_KEY, featuredArtists);
+    } else {
+      console.error('Unable to load featured artists from index.html:', featuredResult.reason);
+      if (!featuredArtists.length && cachedFeatured) featuredArtists = cachedFeatured;
+    }
 
-    const apiTask = loadApiArtists()
-      .then(list => {
-        apiRecords = list;
-        writeCache(CACHE_API_KEY, list);
-        applyData();
-        return true;
-      })
-      .catch(error => {
-        apiFailed = true;
-        console.error('Unable to load artist directory from API:', error);
-        return false;
-      });
+    if (apiResult.status === 'fulfilled') {
+      apiRecords = apiResult.value;
+      writeCache(CACHE_API_KEY, apiRecords);
+    } else {
+      console.error('Unable to load artist directory from API:', apiResult.reason);
+      if (!apiRecords.length && cachedApi) apiRecords = cachedApi;
+    }
 
-    const [featuredOk, apiOk] = await Promise.all([featuredTask, apiTask]);
+    applyData();
 
-    if (!featuredOk && !apiOk && !normalizedCast.length) {
+    if (!normalizedCast.length &&
+        featuredResult.status === 'rejected' && apiResult.status === 'rejected') {
       results.innerHTML = `
         <li class="cast-empty">
           <h3>Could not fetch artist data</h3>
@@ -508,11 +562,7 @@
       if (loadMore) loadMore.hidden = true;
       document.getElementById('retryCastLoad')
         ?.addEventListener('click', loadArtists);
-    } else if (!normalizedCast.length) {
-      // Dono ne response diya par koi artist nahi mila
-      applyData();
-      renderInitialBatch();
-    } else if (apiFailed && loadStatus && !loadMore?.hidden === false) {
+    } else if (apiResult.status === 'rejected' && loadStatus) {
       loadStatus.textContent = 'Could not load remaining artist data from API.';
     }
   }
