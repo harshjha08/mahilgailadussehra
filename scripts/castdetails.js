@@ -1,4 +1,3 @@
-
 (() => {
   'use strict';
 
@@ -7,6 +6,9 @@
 
   const PAGE_SIZE = 6;
   const DESCRIPTION_PREVIEW_LENGTH = 40;
+  const API_TIMEOUT_MS = 12000;
+  const CACHE_FEATURED_KEY = 'mgd-cast-featured-v1';
+  const CACHE_API_KEY = 'mgd-cast-api-v1';
   const root = document.documentElement;
 
   const searchInput = document.getElementById('castSearch');
@@ -48,6 +50,26 @@
 
   function firstText(...values) {
     return values.map(getText).find(Boolean) || '';
+  }
+
+  /* ---------- Cache helpers (localStorage, safe) ---------- */
+  function readCache(key) {
+    try {
+      const raw = localStorage.getItem(key);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : null;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function writeCache(key, value) {
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+    } catch (error) {
+      /* storage full / blocked - ignore */
+    }
   }
 
   function getPhotoUrl(url) {
@@ -218,8 +240,11 @@
     }
   }
 
-  function renderInitialBatch() {
-    visibleCount = Math.min(PAGE_SIZE, matchingArtists.length);
+  function renderInitialBatch(minCount = PAGE_SIZE) {
+    visibleCount = Math.min(
+      Math.max(PAGE_SIZE, minCount),
+      matchingArtists.length
+    );
 
     results.innerHTML = matchingArtists.length
       ? matchingArtists.slice(0, visibleCount).map(cardMarkup).join('')
@@ -287,7 +312,8 @@
 
   async function loadFeaturedArtists() {
     const indexUrl = new URL('../index.html', document.baseURI);
-    const response = await fetch(indexUrl, { cache: 'no-store' });
+    // Browser cache allowed -> repeat visits are much faster
+    const response = await fetch(indexUrl);
 
     if (!response.ok) {
       throw new Error(`Featured cast request failed: ${response.status}`);
@@ -322,18 +348,25 @@
   }
 
   async function loadApiArtists() {
-    const response = await fetch(API_URL, { cache: 'no-store' });
+    const controller = new AbortController();
+    const timer = window.setTimeout(() => controller.abort(), API_TIMEOUT_MS);
 
-    if (!response.ok) {
-      throw new Error(`API request failed: ${response.status}`);
+    try {
+      const response = await fetch(API_URL, { signal: controller.signal });
+
+      if (!response.ok) {
+        throw new Error(`API request failed: ${response.status}`);
+      }
+
+      const data = await response.json();
+      if (!Array.isArray(data)) {
+        throw new Error(data.error || 'Unexpected API response');
+      }
+
+      return data.filter(record => record && getText(record.name));
+    } finally {
+      window.clearTimeout(timer);
     }
-
-    const data = await response.json();
-    if (!Array.isArray(data)) {
-      throw new Error(data.error || 'Unexpected API response');
-    }
-
-    return data.filter(record => record && getText(record.name));
   }
 
   function mergeArtists(featuredArtists, apiRecords) {
@@ -373,38 +406,97 @@
     return Array.from(artistsByName.values());
   }
 
-  async function loadArtists() {
-    results.innerHTML = `
-      <li class="cast-empty">
-        <h3>Loading Content…</h3>
-      </li>`;
+  /* ---------- Random order + progressive loading ---------- */
+  // Har artist ko is page-load me ek random rank milta hai.
+  // Refresh par naya random order, par same page-load me order stable rehta hai
+  // (search karne ya API data late aane par cards idhar-udhar nahi hote).
+  const randomRank = new Map();
 
-    const [featuredResult, apiResult] = await Promise.allSettled([
-      loadFeaturedArtists(),
-      loadApiArtists()
-    ]);
+  function sortRandomly(list) {
+    list.forEach(artist => {
+      const key = getArtistKey(artist.name);
+      if (!randomRank.has(key)) randomRank.set(key, Math.random());
+    });
 
-    const featuredArtists = featuredResult.status === 'fulfilled'
-      ? featuredResult.value
-      : [];
-    const apiRecords = apiResult.status === 'fulfilled'
-      ? apiResult.value
-      : [];
+    return list.sort(
+      (a, b) =>
+        randomRank.get(getArtistKey(a.name)) -
+        randomRank.get(getArtistKey(b.name))
+    );
+  }
 
-    if (featuredResult.status === 'rejected') {
-      console.error('Unable to load featured artists from index.html:', featuredResult.reason);
-    }
-    if (apiResult.status === 'rejected') {
-      console.error('Unable to load artist directory from API:', apiResult.reason);
-    }
+  let featuredArtists = [];
+  let apiRecords = [];
+  let lastSignature = '';
 
-    normalizedCast = mergeArtists(featuredArtists, apiRecords);
+  function applyData() {
+    const signature = JSON.stringify([featuredArtists, apiRecords]);
+    if (signature === lastSignature) return; // kuch badla nahi -> re-render nahi
+    lastSignature = signature;
+
+    normalizedCast = sortRandomly(mergeArtists(featuredArtists, apiRecords));
     matchingArtists = getMatches(searchInput.value);
 
     if (totalCount) totalCount.textContent = normalizedCast.length;
-    renderInitialBatch();
+    renderInitialBatch(visibleCount);
+  }
 
-    if (featuredResult.status === 'rejected' && apiResult.status === 'rejected') {
+  function showLoading() {
+    results.innerHTML = `
+      <li class="cast-empty">
+        <h3>लोड हो रहा है…</h3>
+      </li>`;
+  }
+
+  async function loadArtists() {
+    featuredArtists = [];
+    apiRecords = [];
+    lastSignature = '';
+    visibleCount = 0;
+
+    // 1) Cache se turant dikhao (repeat visit = instant)
+    const cachedFeatured = readCache(CACHE_FEATURED_KEY);
+    const cachedApi = readCache(CACHE_API_KEY);
+
+    if (cachedFeatured || cachedApi) {
+      featuredArtists = cachedFeatured || [];
+      apiRecords = cachedApi || [];
+      applyData();
+    } else {
+      showLoading();
+    }
+
+    // 2) Dono requests parallel; jo pehle aaye wahi turant dikhao
+    let apiFailed = false;
+
+    const featuredTask = loadFeaturedArtists()
+      .then(list => {
+        featuredArtists = list;
+        writeCache(CACHE_FEATURED_KEY, list);
+        applyData();
+        return true;
+      })
+      .catch(error => {
+        console.error('Unable to load featured artists from index.html:', error);
+        return false;
+      });
+
+    const apiTask = loadApiArtists()
+      .then(list => {
+        apiRecords = list;
+        writeCache(CACHE_API_KEY, list);
+        applyData();
+        return true;
+      })
+      .catch(error => {
+        apiFailed = true;
+        console.error('Unable to load artist directory from API:', error);
+        return false;
+      });
+
+    const [featuredOk, apiOk] = await Promise.all([featuredTask, apiTask]);
+
+    if (!featuredOk && !apiOk && !normalizedCast.length) {
       results.innerHTML = `
         <li class="cast-empty">
           <h3>Could not fetch artist data</h3>
@@ -416,7 +508,11 @@
       if (loadMore) loadMore.hidden = true;
       document.getElementById('retryCastLoad')
         ?.addEventListener('click', loadArtists);
-    } else if (apiResult.status === 'rejected' && loadStatus) {
+    } else if (!normalizedCast.length) {
+      // Dono ne response diya par koi artist nahi mila
+      applyData();
+      renderInitialBatch();
+    } else if (apiFailed && loadStatus && !loadMore?.hidden === false) {
       loadStatus.textContent = 'Could not load remaining artist data from API.';
     }
   }
