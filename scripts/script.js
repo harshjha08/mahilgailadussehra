@@ -234,19 +234,30 @@ setInterval(updateCountdown, 1000);
 /* ── GALLERY SLIDESHOW ── */
 const galleryHighlights = {
   eyebrow: '📸 आज की विशेष झलकियाँ',
-  title: 'दशहरा महोत्सव 2026 नवरात्रि के तीसरे दिन',
+  title: 'दशहरा महोत्सव 2026 नवरात्रि के चौथे दिन',
   allPhotosLabel: 'सभी फ़ोटो देखें',
   slides: [
     {
-      src: 'assets/dussehra 2026/dussehra2625.jpeg',
-      alt: 'दशहरा महोत्सव 2026 नवरात्रि के तीसरे दिन',
-      caption: 'दशहरा महोत्सव 2026 नवरात्रि के तीसरे दिन माहिल गहिला, पंजाब',
+      src: 'assets/dussehra 2026/dussehra2627.jpeg',
+      alt: 'दशहरा महोत्सव 2026 नवरात्रि के चौथे दिन',
+      caption: 'दशहरा महोत्सव 2026 नवरात्रि के चौथे दिन माहिल गहिला, पंजाब',
     },
     {
-      src: 'assets/dussehra 2026/dussehra2626.jpeg',
-      alt: 'दशहरा महोत्सव 2026 नवरात्रि के तीसरे दिन',
-      caption: 'दशहरा महोत्सव 2026 नवरात्रि के तीसरे दिन माहिल गहिला, पंजाब',
+      src: 'assets/dussehra 2026/dussehra2629.jpeg',
+      alt: 'दशहरा महोत्सव 2026 नवरात्रि के चौथे दिन',
+      caption: 'दशहरा महोत्सव 2026 नवरात्रि के चौथे दिन माहिल गहिला, पंजाब',
     },
+    {
+      src: 'assets/dussehra 2026/dussehra2630.jpeg',
+      alt: 'दशहरा महोत्सव 2026 नवरात्रि के चौथे दिन',
+      caption: 'दशहरा महोत्सव 2026 नवरात्रि के चौथे दिन माहिल गहिला, पंजाब',
+    },
+    {
+      src: 'assets/dussehra 2026/dussehra2631.jpeg',
+      alt: 'दशहरा महोत्सव 2026 नवरात्रि के चौथे दिन',
+      caption: 'दशहरा महोत्सव 2026 नवरात्रि के चौथे दिन माहिल गहिला, पंजाब',
+    },
+    
   ],
 };
 const galleryImages = galleryHighlights.slides;
