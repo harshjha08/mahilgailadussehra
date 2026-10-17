@@ -88,6 +88,11 @@ const galleryData = {
             "../assets/dussehra 2026/dussehra2630.jpeg",
             "../assets/dussehra 2026/dussehra2631.jpeg",
             "../assets/dussehra 2026/dussehra2632.jpeg",
+            "../assets/dussehra 2026/dussehra2633.jpeg",
+            "../assets/dussehra 2026/dussehra2634.jpeg",
+            "../assets/dussehra 2026/dussehra2635.jpeg",
+            "../assets/dussehra 2026/dussehra2636.jpeg",
+            "../assets/dussehra 2026/dussehra2637.jpeg",
         ]
 
     },
