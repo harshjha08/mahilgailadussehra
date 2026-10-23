@@ -205,7 +205,7 @@ document.addEventListener('keydown', (event) => {
 
 /* ── COUNTDOWN ── */
 function updateCountdown() {
-  const target = new Date('2026-10-20T00:00:00').getTime();
+  const target = new Date('2027-10-09T00:00:00').getTime();
   const now = Date.now();
   const diff = target - now;
 
@@ -234,7 +234,7 @@ setInterval(updateCountdown, 1000);
 /* ── GALLERY SLIDESHOW ── */
 const galleryHighlights = {
   eyebrow: '📸 आज की विशेष झलकियाँ',
-  title: 'दशहरा महोत्सव 2026 नवरात्रि के चौथे दिन',
+  title: 'दशहरा महोत्सव 2026 नवरात्रि के पांचवे दिन',
   allPhotosLabel: 'सभी फ़ोटो देखें',
   slides: [
     {
