@@ -21,6 +21,7 @@
   const TYPES = {
     dussehra: "दशहरा महोत्सव",
     vivaah: "सीता राम विवाह",
+    Ramnavmi: "रामनवमी महोत्सव",
   };
 
   const VIDEOS = [
@@ -29,6 +30,7 @@
     { type: "dussehra", year: 2025, thumb: "thumbnail2025.jpeg",        url: "https://www.youtube.com/live/UQ5N3MPz6T4" },
     { type: "vivaah",   year: 2025, thumb: "thumbnail2025_vivaah.jpeg", url: "https://www.youtube.com/live/y7PD6HslcrM" },
     { type: "dussehra", year: 2024, thumb: "thumbnail2024.jpeg",        url: "https://www.youtube.com/live/oKe7uc8NFZs" },
+    { type: "Ramnavmi", year: 2024, thumb: "thumbnail2024_ramnavmi.png",url: "https://www.youtube.com/live/BVF3gAEwKGo?si=H_EnBhJEo3KjeJ2g" },
     { type: "dussehra", year: 2023, thumb: "thumbnail2023.jpeg",        url: "https://www.youtube.com/live/xp3lNdH2QYc" },
     { type: "dussehra", year: 2022, thumb: "thumbnail2022.jpeg",        url: "https://www.youtube.com/live/_dOO-KbIeqo" },
     { type: "dussehra", year: 2021, thumb: "thumbnail2021.jpeg",        url: "https://www.youtube.com/live/dSiqyFEQZIs" },
