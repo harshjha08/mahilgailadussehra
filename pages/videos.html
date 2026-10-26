@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>सभी पूर्व प्रसारण | YouTube लाइव</title>
+  <style>
+    :root {
+      --surface: #fff; --surface-alt: #faf5ee; --border-c: #e6dccd;
+      --shadow-lg: 0 10px 28px rgb(0 0 0 / .14);
+      --viewer-bg: #2a0d0d; --brand-deep: #7a1212; --rgb-brand: 158 26 26;
+      --color-white: #fff; --text-pri: #2b1d1d; --youtube: #e62117; --youtube-hover: #c21a11;
+      --crimson: #9e1a1a; --gold: #d9a441; --font-hindi: "Noto Sans Devanagari", sans-serif;
+    }
+    body { margin: 0; font-family: var(--font-hindi); color: var(--text-pri); }
+  </style>
+
+ 
+  <link rel="stylesheet" href="../CSS/index.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    /* ═════ ALL VIDEOS PAGE ═════ */
+    .vp-main { background: var(--surface-alt); min-height: 100vh; padding: 28px 0 64px; }
+    .vp-container { width: min(1180px, 100% - 32px); margin-inline: auto; }
+
+    .vp-back {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--crimson); font-size: .9rem; font-weight: 600; text-decoration: none;
+      padding: 6px 0;
+    }
+    .vp-back:hover { text-decoration: underline; }
+    .vp-title { font-size: clamp(1.5rem, 4vw, 2.1rem); margin: 14px 0 4px; color: var(--text-pri); }
+    .vp-sub { margin: 0 0 22px; color: var(--text-pri); opacity: .7; font-size: .95rem; }
+
+    /* toolbar: search + filters */
+    .vp-toolbar {
+      position: sticky; top: 0; z-index: 5;
+      display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
+      background: var(--surface-alt); padding: 12px 0; margin-bottom: 14px;
+      border-bottom: 1px solid var(--border-c);
+    }
+    .vp-search { position: relative; flex: 1 1 260px; }
+    .vp-search > i {
+      position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+      color: var(--crimson); pointer-events: none;
+    }
+    .vp-search input {
+      width: 100%; box-sizing: border-box; height: 46px;
+      padding: 0 42px 0 44px; font: inherit; font-size: .95rem;
+      border: 1px solid var(--border-c); border-radius: 999px;
+      background: var(--surface); color: var(--text-pri);
+    }
+    .vp-search input:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+    .vp-clear {
+      position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+      width: 30px; height: 30px; border: 0; border-radius: 50%;
+      background: transparent; color: var(--text-pri); cursor: pointer; display: none;
+    }
+    .vp-clear.show { display: block; }
+    .vp-clear:hover { background: var(--border-c); }
+
+    .vp-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+    .vp-chip {
+      height: 40px; padding: 0 16px; font: inherit; font-size: .85rem; font-weight: 600;
+      border: 1px solid var(--crimson); border-radius: 999px; cursor: pointer;
+      background: var(--surface); color: var(--crimson);
+      transition: background .2s, color .2s;
+    }
+    .vp-chip:hover { background: rgb(var(--rgb-brand) / .08); }
+    .vp-chip[aria-pressed="true"] { background: var(--crimson); color: var(--color-white); }
+    .vp-chip:focus-visible, .vp-year:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+    .vp-year {
+      height: 40px; padding: 0 12px; font: inherit; font-size: .85rem;
+      border: 1px solid var(--border-c); border-radius: 999px;
+      background: var(--surface); color: var(--text-pri);
+    }
+
+    .vp-count { margin: 0 0 16px; font-size: .85rem; color: var(--text-pri); opacity: .7; }
+
+    /* grid (home wale scroll-wrap se alag, taaki mobile par horizontal scroll na ho) */
+    .yt-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+    .yt-grid .yt-card { width: auto; height: auto; animation: vpIn .35s ease both; }
+    @keyframes vpIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    @media (max-width: 600px) {
+      .yt-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .yt-grid .yt-thumb { height: 120px; }
+      .yt-grid .yt-card-title { font-size: .78rem; text-align: center; }
+      .yt-grid .yt-watch-btn { width: 90%; }
+    }
+    @media (max-width: 380px) { .yt-grid { grid-template-columns: 1fr; } }
+    @media (prefers-reduced-motion: reduce) { .yt-grid .yt-card { animation: none; } }
+
+    /* empty state */
+    .vp-empty { display: none; text-align: center; padding: 56px 16px; }
+    .vp-empty.show { display: block; }
+    .vp-empty i { font-size: 2.2rem; color: var(--crimson); opacity: .6; }
+    .vp-empty h2 { margin: 14px 0 6px; font-size: 1.15rem; }
+    .vp-empty p { margin: 0 0 16px; opacity: .7; font-size: .9rem; }
+    .vp-reset {
+      height: 42px; padding: 0 22px; font: inherit; font-weight: 600; cursor: pointer;
+      border: 0; border-radius: 999px; background: var(--crimson); color: var(--color-white);
+    }
+  </style>
+</head>
+<body>
+  <main class="vp-main">
+    <div class="vp-container">
+      <a class="vp-back" href="../index.html#videos"><i class="fa-solid fa-arrow-left"></i> होम पर वापस जाएँ</a>
+      <h1 class="vp-title">सभी पूर्व प्रसारण</h1>
+      <p class="vp-sub">दशहरा महोत्सव और सीता राम विवाह के सभी लाइव प्रसारण, एक जगह।</p>
+
+      <div class="vp-toolbar" role="search">
+        <div class="vp-search">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <input id="vpSearch" type="search" autocomplete="off"
+                 placeholder="साल या नाम से खोजें, जैसे 2024 या विवाह"
+                 aria-label="प्रसारण खोजें" />
+          <button id="vpClear" class="vp-clear" type="button" aria-label="खोज साफ़ करें">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="vp-chips" id="vpChips" role="group" aria-label="प्रकार चुनें"></div>
+        <select id="vpYear" class="vp-year" aria-label="साल चुनें"></select>
+      </div>
+
+      <p class="vp-count" id="vpCount" aria-live="polite"></p>
+      <div class="yt-grid" id="vpGrid"></div>
+
+      <div class="vp-empty" id="vpEmpty">
+        <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
+        <h2>कोई प्रसारण नहीं मिला</h2>
+        <p>किसी दूसरे साल या नाम से खोजकर देखें।</p>
+        <button class="vp-reset" id="vpReset" type="button">फ़िल्टर हटाएँ</button>
+      </div>
+    </div>
+  </main>
+
+
+
+  <script src="../scripts/videos-data.js"></script>
+  <script>
+    (function () {
+      const $ = (id) => document.getElementById(id);
+      const grid = $("vpGrid"), count = $("vpCount"), empty = $("vpEmpty");
+      const search = $("vpSearch"), clearBtn = $("vpClear"), yearSel = $("vpYear"), chips = $("vpChips");
+      const state = { q: "", type: "all", year: "all" };
+
+      // filter controls ko data se banao (naya type/saal data me jodte hi yahan aa jayega)
+      const typeButtons = [["all", "सभी"], ...Object.entries(VideoStore.types)].map(([key, label]) => {
+        const b = document.createElement("button");
+        b.type = "button"; b.className = "vp-chip"; b.textContent = label; b.dataset.type = key;
+        b.setAttribute("aria-pressed", key === "all");
+        chips.append(b);
+        return b;
+      });
+      yearSel.innerHTML = '<option value="all">सभी साल</option>' +
+        VideoStore.years().map((y) => `<option value="${y}">${y}</option>`).join("");
+
+      function render() {
+        const list = VideoStore.search(state.q, state);
+        VideoUI.renderInto(grid, list);
+        count.textContent = `${list.length} प्रसारण मिले`;
+        empty.classList.toggle("show", list.length === 0);
+        clearBtn.classList.toggle("show", state.q !== "");
+      }
+
+      search.addEventListener("input", () => { state.q = search.value; render(); });
+      clearBtn.addEventListener("click", () => { search.value = ""; state.q = ""; render(); search.focus(); });
+      yearSel.addEventListener("change", () => { state.year = yearSel.value; render(); });
+      chips.addEventListener("click", (e) => {
+        const b = e.target.closest(".vp-chip"); if (!b) return;
+        state.type = b.dataset.type;
+        typeButtons.forEach((x) => x.setAttribute("aria-pressed", x === b));
+        render();
+      });
+      $("vpReset").addEventListener("click", () => {
+        state.q = ""; state.type = "all"; state.year = "all";
+        search.value = ""; yearSel.value = "all";
+        typeButtons.forEach((x) => x.setAttribute("aria-pressed", x.dataset.type === "all"));
+        render();
+      });
+
+      render();
+    })();
+  </script>
+</body>
+</html>

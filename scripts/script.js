@@ -1,13 +1,10 @@
-
 /* ── THEME TOGGLE ── */
 const html = document.documentElement;
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.getElementById('themeIcon');
-
 const savedTheme = localStorage.getItem('mgd-theme') || 'light';
 html.setAttribute('data-theme', savedTheme);
 themeIcon.className = savedTheme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-
 themeToggle.addEventListener('click', () => {
   const current = html.getAttribute('data-theme');
   const next = current === 'dark' ? 'light' : 'dark';
@@ -15,21 +12,18 @@ themeToggle.addEventListener('click', () => {
   localStorage.setItem('mgd-theme', next);
   themeIcon.className = next === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
 });
-
 /* ── MOBILE NAV ── */
 const hamburger = document.getElementById('hamburger');
 const mobileNav = document.getElementById('mobileNav');
 const mobileNavClose = document.getElementById('mobileNavClose');
 const mobileNavBackdrop = document.getElementById('mobileNavBackdrop');
 let previousBodyOverflow = '';
-
 hamburger.addEventListener('click', () => {
   const isOpen = mobileNav.classList.contains('show');
   if (isOpen) {
     closeMobileNav(true);
     return;
   }
-
   previousBodyOverflow = document.body.style.overflow;
   document.body.style.overflow = 'hidden';
   mobileNav.inert = false;
@@ -40,7 +34,6 @@ hamburger.addEventListener('click', () => {
   hamburger.setAttribute('aria-label', 'Close menu');
   mobileNavClose.focus();
 });
-
 function closeMobileNav(restoreFocus = false) {
   mobileNav.classList.remove('show');
   mobileNav.inert = true;
@@ -51,7 +44,6 @@ function closeMobileNav(restoreFocus = false) {
   document.body.style.overflow = previousBodyOverflow;
   if (restoreFocus) hamburger.focus();
 }
-
 mobileNavClose.addEventListener('click', () => closeMobileNav(true));
 mobileNavBackdrop.addEventListener('click', () => closeMobileNav(true));
 document.addEventListener('keydown', (event) => {
@@ -59,7 +51,6 @@ document.addEventListener('keydown', (event) => {
     closeMobileNav(true);
   }
 });
-
 /* ── NOTICE ── */
 const noticeOverlay = document.getElementById('noticeOverlay');
 const noticeBody = document.getElementById('noticeBody');
@@ -70,7 +61,6 @@ const noticeComplaint = document.getElementById('noticeComplaint');
 const noticeTicker = document.getElementById('noticeTicker');
 const noticeTickerTrack = document.getElementById('noticeTickerTrack');
 const posterOverlay = document.getElementById('posterOverlay');
-
 const notices = [
   {
     titleHi: 'सूचना / Notice',
@@ -82,17 +72,14 @@ const notices = [
     complaintLabel: 'शिकायत दर्ज करें',
   },
 ];
-
 let noticeInHindi = true;
 let activeNoticeIndex = 0;
 let noticeOpenSource = 'initial';
 let noticeReturnFocus = null;
-
 function renderNoticeTickerGroup(isDuplicate = false) {
   const group = document.createElement('div');
   group.className = 'notice-ticker-group';
   if (isDuplicate) group.setAttribute('aria-hidden', 'true');
-
   notices.forEach((notice, index) => {
     const button = document.createElement('button');
     button.type = 'button';
@@ -100,14 +87,12 @@ function renderNoticeTickerGroup(isDuplicate = false) {
     button.dataset.noticeIndex = String(index);
     button.setAttribute('aria-label', `सूचना ${index + 1} पढ़ें`);
     if (isDuplicate) button.tabIndex = -1;
-
     const text = document.createElement('span');
     text.className = 'notice-ticker-text';
     text.textContent = notice.tickerText;
     button.appendChild(text);
     group.appendChild(button);
   });
-
   return group;
 }
 

@@ -1445,6 +1445,19 @@
       outline: 3px solid var(--gold);
       outline-offset: 3px;
     }
+    .yt-more { margin-top: 30px; display: flex; justify-content: center; }
+.yt-more-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 46px; padding: 0 22px;
+  border: 1px solid var(--crimson); border-radius: 999px;
+  background: var(--surface); color: var(--crimson);
+  font-size: 0.88rem; font-weight: 600; text-decoration: none;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+.yt-more-btn i { font-size: 0.82rem; transition: transform 0.2s; }
+.yt-more-btn:hover { background: var(--crimson); color: var(--color-white); transform: translateY(-2px); }
+.yt-more-btn:hover i { transform: translateX(3px); }
+.yt-more-btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
 
     /* ══════════════════════════════════════════
        CONTACT SECTION
