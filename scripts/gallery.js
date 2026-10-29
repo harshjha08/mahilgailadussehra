@@ -598,6 +598,47 @@ const galleryData = {
             "../assets/dussehra 2011/dussehra11150.jpg"
         ]
 
+    },
+    dussehra2008: {
+
+        title: "दशहरा 2008",
+
+        images: [
+          "../assets/dussehra 2008/dussehra2008_01.jpg",
+          "../assets/dussehra 2008/dussehra2008_02.jpg",
+          "../assets/dussehra 2008/dussehra2008_03.jpg",
+          "../assets/dussehra 2008/dussehra2008_04.jpg",
+          "../assets/dussehra 2008/dussehra2008_05.jpg",
+          "../assets/dussehra 2008/dussehra2008_06.jpg",
+          "../assets/dussehra 2008/dussehra2008_07.jpg",
+          "../assets/dussehra 2008/dussehra2008_08.jpg",
+          "../assets/dussehra 2008/dussehra2008_09.jpg",
+          "../assets/dussehra 2008/dussehra2008_10.jpg",
+          "../assets/dussehra 2008/dussehra2008_11.jpg",
+          "../assets/dussehra 2008/dussehra2008_12.jpg",
+          "../assets/dussehra 2008/dussehra2008_13.jpg",
+          "../assets/dussehra 2008/dussehra2008_14.jpg",
+          "../assets/dussehra 2008/dussehra2008_15.jpg",
+          "../assets/dussehra 2008/dussehra2008_16.jpg",
+          "../assets/dussehra 2008/dussehra2008_17.jpg",
+          "../assets/dussehra 2008/dussehra2008_18.jpg",
+          "../assets/dussehra 2008/dussehra2008_19.jpg",
+          "../assets/dussehra 2008/dussehra2008_20.jpg",
+          "../assets/dussehra 2008/dussehra2008_21.jpg",
+          "../assets/dussehra 2008/dussehra2008_22.jpg",
+          "../assets/dussehra 2008/dussehra2008_23.jpg",
+          "../assets/dussehra 2008/dussehra2008_24.jpg",
+          "../assets/dussehra 2008/dussehra2008_25.jpg",
+          "../assets/dussehra 2008/dussehra2008_26.jpg",
+          "../assets/dussehra 2008/dussehra2008_27.jpg",
+          "../assets/dussehra 2008/dussehra2008_28.jpg",
+          "../assets/dussehra 2008/dussehra2008_29.jpg",
+          "../assets/dussehra 2008/dussehra2008_30.jpg",
+          "../assets/dussehra 2008/dussehra2008_31.jpg",
+          "../assets/dussehra 2008/dussehra2008_32.jpg",
+          "../assets/dussehra 2008/dussehra2008_33.jpg",
+        ]
+
     }
 
 };
