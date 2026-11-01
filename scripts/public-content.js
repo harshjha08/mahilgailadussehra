@@ -23,12 +23,19 @@
     grid.replaceChildren();
     document.querySelectorAll('.overlay-backdrop[id^="modal-day"]').forEach(modal => modal.remove());
 
-    days.slice(0, 9).forEach((day, index) => {
+    const fixedDays = [1, 2, 3, 4, 5, 6, 8, 9];
+    const daysByNumber = new Map(days.map((day, index) => [
+      Number.isInteger(Number(day.day)) ? Number(day.day) : index + 1,
+      day,
+    ]));
+    fixedDays.forEach((dayNumber, index) => {
+      const day = daysByNumber.get(dayNumber);
+      if (!day) return;
       const parts = Array.isArray(day.parts) ? day.parts : [];
       const card = createElement("article", "script-card");
       const image = createElement("div", "script-card-img");
-      image.id = `script-card${index + 1}`;
-      const badge = createElement("span", "script-card-day-badge", day.dayLabel || `नवरात्रि ${index + 1}`);
+      image.id = `script-card${dayNumber}`;
+      const badge = createElement("span", "script-card-day-badge", day.dayLabel || `नवरात्रि ${dayNumber}`);
       const icon = createElement("span", "script-card-icon");
       icon.setAttribute("aria-hidden", "true");
       image.append(badge, icon);
@@ -44,7 +51,7 @@
         link.innerHTML = '<i class="fa-solid fa-download" aria-hidden="true"></i> View';
         body.appendChild(link);
       } else if (parts.length > 1) {
-        const modalId = `admin-modal-day${index + 1}`;
+        const modalId = `admin-modal-day${dayNumber}`;
         const button = createElement("button", "btn-download");
         button.type = "button";
         button.innerHTML = '<i class="fa-solid fa-layer-group" aria-hidden="true"></i> View more';
@@ -88,8 +95,11 @@
   function renderResources(resources) {
     const grid = document.querySelector(".spiritual-grid");
     if (!grid || !Array.isArray(resources)) return;
+    const section = document.getElementById("spiritual");
+    const cards = resources.filter(resource => resource && (resource.title || resource.url || resource.description));
+    if (section) section.hidden = cards.length === 0;
     grid.replaceChildren();
-    resources.forEach((resource, index) => {
+    cards.forEach((resource, index) => {
       const card = createElement("article", "spiritual-card fade-up");
       card.style.animationDelay = `${Math.min(index, 8) * 0.06}s`;
       card.appendChild(createElement("div", "spiritual-card-strip"));
@@ -111,8 +121,11 @@
   function renderCast(cast) {
     const grid = document.querySelector(".cast-grid");
     if (!grid || !Array.isArray(cast.people)) return;
+    const section = document.getElementById("cast");
+    const featuredPeople = cast.people.filter(person => person && person.featured !== false && (person.name || person.imageUrl));
+    if (section) section.hidden = featuredPeople.length === 0;
     grid.replaceChildren();
-    cast.people.filter(person => person && person.featured !== false).forEach((person, index) => {
+    featuredPeople.forEach((person, index) => {
       const card = createElement("article", "cast-card fade-up");
       card.style.animationDelay = `${Math.min(index, 8) * 0.06}s`;
       const image = createElement("img", "cast-card-img");

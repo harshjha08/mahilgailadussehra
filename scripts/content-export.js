@@ -45,6 +45,8 @@
     };
   }
 
+  const fixedScriptDays = [1, 2, 3, 4, 5, 6, 8, 9];
+
   window.MGD_EXPORT_CURRENT_CONTENT = function () {
     const eventSection = document.getElementById("events");
     const castPeople = Array.from(document.querySelectorAll("#cast .cast-card"), card => {
@@ -104,7 +106,7 @@
         countdownDate,
         note: text(eventSection, ".event-note"),
       },
-      scripts: Array.from({ length: 9 }, (_, index) => relativeDayLink(index + 1)),
+      scripts: fixedScriptDays.map(relativeDayLink),
       resources: Array.from(document.querySelectorAll(".spiritual-card"), card => ({
         title: text(card, ".spiritual-card-title"),
         author: text(card, ".spiritual-card-author"),

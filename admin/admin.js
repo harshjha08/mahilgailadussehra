@@ -97,6 +97,7 @@
     contacts: "Contact details aur footer social links ek jagah update karein.",
     cast: "Maujooda cast mein se homepage par dikhne wale log chunen; homepage statistics bhi yahan update honge.",
   };
+  const fixedScriptDays = [1, 2, 3, 4, 5, 6, 8, 9];
   const navItems = [
     ["overview", "Overview", "fa-chart-pie"],
     ...Object.entries(labels).map(([key, label]) => [key, label, icons[key]]),
@@ -128,6 +129,22 @@
 
   function clone(value) {
     return JSON.parse(JSON.stringify(value));
+  }
+
+  function normalizeScriptDays(days) {
+    if (!Array.isArray(days)) return [];
+    const byDay = new Map(days.map((item, index) => [
+      Number.isInteger(Number(item?.day)) ? Number(item.day) : index + 1,
+      item,
+    ]));
+    return fixedScriptDays.map(day => byDay.get(day)).filter(Boolean);
+  }
+
+  function normalizeContent(value) {
+    if (value && Array.isArray(value.scripts)) {
+      value.scripts = normalizeScriptDays(value.scripts);
+    }
+    return value;
   }
 
   function pathValue(root, path) {
@@ -499,6 +516,7 @@
     seedFrame.src = `../index.html?mgd-admin-export=1&v=${Date.now()}`;
     try {
       content = await exportReady;
+      normalizeContent(content);
       hasSavedContent = false;
       contentNotice.textContent = "Existing website content load ho gaya. Publish changes dabane par ye Supabase mein save hoga.";
     } catch (error) {
@@ -517,7 +535,7 @@
       .maybeSingle();
     if (error) throw error;
     if (data && data.payload && typeof data.payload === "object") {
-      content = data.payload;
+      content = normalizeContent(data.payload);
       publishedContent = clone(data.payload);
       hasSavedContent = true;
       contentNotice.hidden = true;
