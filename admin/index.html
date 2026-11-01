@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="hi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#761d17" />
+    <title>Admin Portal | Mahil Gaila Dussehra</title>
+    <link rel="stylesheet" href="../CSS/theme.css" />
+    <link rel="stylesheet" href="admin.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <main class="admin-shell">
+      <section class="login-panel" id="loginPanel" aria-labelledby="loginTitle">
+        <a class="brand" href="../index.html"><span>🚩</span> Mahil Gaila <b>Dussehra</b></a>
+        <div class="login-card">
+          <div class="login-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <p class="eyebrow">SECURE ADMIN ACCESS</p>
+          <h1 id="loginTitle">Admin portal</h1>
+          <p class="muted">Website content manage karne ke liye sign in karein.</p>
+          <form id="loginForm">
+            <label>Email address<input name="email" type="email" autocomplete="username" required /></label>
+            <label>Password<input name="password" type="password" autocomplete="current-password" required /></label>
+            <button class="primary-button wide" type="submit"><i class="fa-solid fa-right-to-bracket"></i> Sign in</button>
+          </form>
+          <p class="message" id="loginMessage" role="status"></p>
+          <p class="setup-note" id="setupNote" hidden></p>
+        </div>
+        <p class="login-foot">Admin accounts are created securely in Supabase. Public sign-up is disabled.</p>
+      </section>
+
+      <section class="dashboard" id="dashboard" hidden>
+        <aside class="sidebar">
+          <a class="brand" href="../index.html"><span>🚩</span> Mahil Gaila <b>Dussehra</b></a>
+          <div class="sidebar-label">CONTENT MANAGEMENT</div>
+          <nav id="sectionNav" aria-label="Content sections"></nav>
+          <div class="sidebar-bottom">
+            <a href="../index.html" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> View website</a>
+            <button class="logout-button" id="logoutButton" type="button"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sign out</button>
+          </div>
+        </aside>
+        <div class="workspace">
+          <header class="topbar">
+            <div>
+              <p class="eyebrow">WEBSITE CONTROL ROOM</p>
+              <h1 id="pageTitle">Overview</h1>
+            </div>
+            <div class="topbar-actions">
+              <span class="save-state" id="saveState" aria-live="polite"></span>
+              <button class="secondary-button" id="reloadButton" type="button" aria-label="Reload published content"><i class="fa-solid fa-rotate" aria-hidden="true"></i><span>Reload</span></button>
+              <button class="primary-button" id="saveButton" type="button" aria-label="Publish changes"><i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i><span>Publish changes</span></button>
+            </div>
+          </header>
+          <div class="alert" id="configAlert" hidden></div>
+          <div class="content-notice" id="contentNotice" hidden></div>
+          <section class="overview-grid" id="overview" hidden></section>
+          <section class="editor" id="editor" aria-live="polite"></section>
+        </div>
+      </section>
+    </main>
+    <iframe id="siteSeedFrame" title="Website content import" hidden></iframe>
+    <script src="../scripts/backend-config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>

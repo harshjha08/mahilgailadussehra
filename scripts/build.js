@@ -4,7 +4,7 @@ const sharp = require('sharp');
 
 const projectRoot = path.resolve(__dirname, '..');
 const outputDirectory = path.join(projectRoot, 'dist');
-const staticDirectories = ['assets', 'CSS', 'pages', 'scripts'];
+const staticDirectories = ['admin', 'assets', 'CSS', 'pages', 'scripts'];
 const staticFiles = [
   'google694898bc6c42d26e.html',
   'index.html',

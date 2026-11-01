@@ -166,6 +166,26 @@
         clearBtn.classList.toggle("show", state.q !== "");
       }
 
+      function refreshFilters() {
+        chips.replaceChildren();
+        typeButtons.splice(0, typeButtons.length, ...[["all", "सभी"], ...Object.entries(VideoStore.types)].map(([key, label]) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "vp-chip";
+          button.textContent = label;
+          button.dataset.type = key;
+          button.setAttribute("aria-pressed", key === state.type);
+          chips.appendChild(button);
+          return button;
+        }));
+        yearSel.replaceChildren(new Option("सभी साल", "all"));
+        VideoStore.years().forEach(year => yearSel.add(new Option(String(year), String(year))));
+        if (!VideoStore.types[state.type]) state.type = "all";
+        if (!VideoStore.years().some(year => String(year) === state.year)) state.year = "all";
+        yearSel.value = state.year;
+        render();
+      }
+
       search.addEventListener("input", () => { state.q = search.value; render(); });
       clearBtn.addEventListener("click", () => { search.value = ""; state.q = ""; render(); search.focus(); });
       yearSel.addEventListener("change", () => { state.year = yearSel.value; render(); });
@@ -182,8 +202,12 @@
         render();
       });
 
+      window.addEventListener("mgd:videos-updated", refreshFilters);
       render();
     })();
   </script>
+  <script src="../scripts/backend-config.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="../scripts/public-content.js" defer></script>
 </body>
 </html>

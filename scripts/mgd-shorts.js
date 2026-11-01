@@ -5,7 +5,7 @@
    ========================================================================== */
 
 /* ---------- 1. CONFIG ---------- */
-const mgdShortsConfig = {
+let mgdShortsConfig = {
   heading: "दशहरा की झलकियाँ",
   subtitle: "रामलीला और दशहरा महोत्सव के कुछ यादगार क्षण",
   viewAllUrl: "https://www.youtube.com/embed/vdNm1FnHFoc" // e.g. "https://www.youtube.com/@yourchannel/shorts"; leave "" to hide the link
@@ -14,7 +14,7 @@ const mgdShortsConfig = {
 /* ---------- 2. DATA (edit here only) ----------
    id (required) · title · character · role · year · category ·
    description · location · thumbnail (custom image URL, optional) */
-const mgdShortsData = [
+let mgdShortsData = [
   {
     id: "ccI6p3lR75U",
     title: "दो योद्धाओं का आमना-सामना",
@@ -852,7 +852,27 @@ const mgdShortsData = [
     renderMGDShorts(root);
   }
 
-  window.MGDShorts = { init: initMGDShorts };
+  window.MGDShorts = {
+    init: initMGDShorts,
+    getConfig: function () { return Object.assign({}, mgdShortsConfig); },
+    getAll: function () { return mgdShortsData.map(function (item) { return Object.assign({}, item); }); },
+    setContent: function (configuration, data, enabled) {
+      mgdShortsConfig = Object.assign({}, mgdShortsConfig, configuration || {});
+      mgdShortsData = Array.isArray(data) ? data : [];
+      var root = document.getElementById("mgd-shorts-section");
+      if (!root) return;
+      Object.keys(state.pool).forEach(function (index) { destroyPlayer(Number(index)); });
+      state = {
+        cards: [], data: [], active: 0, target: -1, pool: {},
+        userStopped: -1, visible: false, gesture: false,
+        root: null, track: null, fill: null, count: null, prev: null, next: null,
+        raf: 0, settle: 0, warm: 0, idle: 0, kick: 0
+      };
+      root.dataset.mgdReady = "";
+      root.hidden = enabled === false;
+      if (enabled !== false) initMGDShorts();
+    },
+  };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initMGDShorts);
   else initMGDShorts();
 })();

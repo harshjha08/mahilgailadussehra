@@ -61,7 +61,7 @@ const noticeComplaint = document.getElementById('noticeComplaint');
 const noticeTicker = document.getElementById('noticeTicker');
 const noticeTickerTrack = document.getElementById('noticeTickerTrack');
 const posterOverlay = document.getElementById('posterOverlay');
-const notices = [
+let notices = [
   {
     titleHi: 'सूचना / Notice',
     titleEn: 'Notice',
@@ -76,6 +76,8 @@ let noticeInHindi = true;
 let activeNoticeIndex = 0;
 let noticeOpenSource = 'initial';
 let noticeReturnFocus = null;
+let noticesEnabled = true;
+let posterEnabled = true;
 function renderNoticeTickerGroup(isDuplicate = false) {
   const group = document.createElement('div');
   group.className = 'notice-ticker-group';
@@ -114,7 +116,7 @@ function updateNoticeLanguage() {
 }
 
 function openNotice(index, source = 'ticker') {
-  if (!Number.isInteger(index) || !notices[index]) return;
+  if (!noticesEnabled || !Number.isInteger(index) || !notices[index]) return;
   activeNoticeIndex = index;
   noticeInHindi = true;
   noticeOpenSource = source;
@@ -167,6 +169,7 @@ if (localStorage.getItem('mgd-notice-seen')) {
 }
 
 function showPoster() {
+  if (!posterEnabled) return;
   posterOverlay.classList.add('show');
   posterOverlay.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
@@ -176,6 +179,32 @@ function closePoster() {
   posterOverlay.classList.remove('show');
   posterOverlay.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
+}
+
+window.MGDNoticeStore = {
+  getAll: () => notices.map(notice => ({ ...notice })),
+  set(items, enabled = true) {
+    notices = Array.isArray(items) ? items.filter(item => item && typeof item === 'object') : [];
+    noticesEnabled = enabled && notices.length > 0;
+    activeNoticeIndex = 0;
+    renderNoticeTicker();
+    noticeTicker.hidden = !noticesEnabled;
+    if (noticesEnabled) {
+      updateNoticeLanguage();
+    } else {
+      noticeOverlay.classList.remove('show');
+      showPoster();
+    }
+  },
+  setPosterEnabled(enabled) {
+    posterEnabled = Boolean(enabled);
+    if (!posterEnabled) closePoster();
+  },
+};
+
+if (new URLSearchParams(location.search).has('mgd-admin-export')) {
+  noticeOverlay.classList.remove('show');
+  posterOverlay.classList.remove('show');
 }
 
 posterOverlay.addEventListener('click', (event) => {
@@ -189,8 +218,9 @@ document.addEventListener('keydown', (event) => {
 });
 
 /* ── COUNTDOWN ── */
+let countdownTargetDate = '2027-10-09T00:00:00';
 function updateCountdown() {
-  const target = new Date('2027-10-09T00:00:00').getTime();
+  const target = new Date(countdownTargetDate).getTime();
   const now = Date.now();
   const diff = target - now;
 
@@ -217,7 +247,7 @@ updateCountdown();
 setInterval(updateCountdown, 1000);
 
 /* ── GALLERY SLIDESHOW ── */
-const galleryHighlights = {
+let galleryHighlights = {
   eyebrow: '📸 आज की विशेष झलकियाँ',
   title: 'दशहरा महोत्सव 2026 नवरात्रि के पांचवे दिन',
   allPhotosLabel: 'सभी फ़ोटो देखें',
@@ -250,7 +280,7 @@ const galleryHighlights = {
     
   ],
 };
-const galleryImages = galleryHighlights.slides;
+let galleryImages = galleryHighlights.slides;
 let galleryIdx = 0;
 const heroGalleryImg = document.getElementById('heroGalleryImg');
 const dotsWrap = document.getElementById('galleryDots');
@@ -271,6 +301,12 @@ galleryImages.forEach((_, i) => {
 });
 
 function setGalleryImage(idx) {
+  if (!galleryImages.length) {
+    heroGalleryImg.removeAttribute('src');
+    heroGalleryImg.alt = '';
+    galleryImageCaption.textContent = '';
+    return;
+  }
   galleryIdx = (idx + galleryImages.length) % galleryImages.length;
   const slide = galleryImages[galleryIdx];
   heroGalleryImg.src = slide.src;
@@ -298,6 +334,67 @@ heroGalleryImg.addEventListener('error', () => {
 
 setGalleryImage(galleryIdx);
 setInterval(galleryNext, 4000);
+
+window.MGDGalleryStore = {
+  get: () => JSON.parse(JSON.stringify(galleryHighlights)),
+  set(next) {
+    galleryHighlights = { ...galleryHighlights, ...next };
+    galleryImages = Array.isArray(galleryHighlights.slides) ? galleryHighlights.slides : [];
+    document.getElementById('gallerySectionEyebrow').textContent = galleryHighlights.eyebrow || '';
+    document.getElementById('gallerySectionTitle').textContent = galleryHighlights.title || '';
+    document.querySelector('#galleryAllPhotos span').textContent = galleryHighlights.allPhotosLabel || '';
+    dotsWrap.replaceChildren();
+    galleryImages.forEach((_, index) => {
+      const dot = document.createElement('button');
+      dot.className = `gallery-dot${index === 0 ? ' active' : ''}`;
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `फ़ोटो ${index + 1} दिखाएँ`);
+      dot.setAttribute('aria-pressed', String(index === 0));
+      dot.addEventListener('click', () => setGalleryImage(index));
+      dotsWrap.appendChild(dot);
+    });
+    document.getElementById('gallery').hidden = galleryHighlights.enabled === false;
+    galleryIdx = 0;
+    setGalleryImage(0);
+  },
+};
+
+window.MGDEventStore = {
+  set(event) {
+    const section = document.getElementById('events');
+    section.hidden = event.enabled === false;
+    const eyebrow = section.querySelector('.section-eyebrow');
+    const title = section.querySelector('.section-title');
+    const badge = section.querySelector('.event-year-badge');
+    const eventTitle = section.querySelector('.event-title');
+    const dates = section.querySelector('.event-dates-list');
+    if (eyebrow) eyebrow.textContent = event.eyebrow || '';
+    if (title) title.textContent = event.title || '';
+    if (badge) badge.textContent = event.badge || '';
+    if (eventTitle) eventTitle.textContent = event.eventTitle || '';
+    const countdownName = document.getElementById('eventNameDisplay');
+    if (countdownName) countdownName.textContent = `🚩 ${event.badge || ''} 🚩`;
+    if (dates && Array.isArray(event.dates)) {
+      dates.replaceChildren(...event.dates.map(item => {
+        const row = document.createElement('li');
+        const dot = document.createElement('span');
+        dot.className = 'event-date-dot';
+        const name = document.createElement('span');
+        name.className = 'event-date-name';
+        name.textContent = item.name || '';
+        const value = document.createElement('span');
+        value.className = 'event-date-val';
+        value.textContent = item.date || '';
+        row.append(dot, name, value);
+        return row;
+      }));
+    }
+    if (event.countdownDate) countdownTargetDate = event.countdownDate;
+    const note = section.querySelector('.event-note');
+    if (note) note.textContent = event.note || '';
+    updateCountdown();
+  },
+};
 
 /* ── MODALS ── */
 function openModal(id) {

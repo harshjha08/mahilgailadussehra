@@ -60,6 +60,10 @@
     add: (video) => { VIDEOS.unshift(video); return video; },
     update: (index, patch) => Object.assign(VIDEOS[index], patch),
     remove: (index) => VIDEOS.splice(index, 1)[0],
+    setAll: (videos) => {
+      VIDEOS.splice(0, VIDEOS.length, ...videos);
+      window.dispatchEvent(new CustomEvent("mgd:videos-updated"));
+    },
 
     search(query = "", { type = "all", year = "all" } = {}) {
       const q = normalize(query);

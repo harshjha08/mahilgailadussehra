@@ -17,6 +17,7 @@ Visit the deployed site at [mahilgailadussehra.vercel.app](https://mahilgailadus
 - Light/dark theme selection saved in the browser and responsive navigation for smaller screens.
 - Hindi content with selected English labels and a Hindi/English toggle for the home-page notice.
 - Search engine metadata, Open Graph/Twitter sharing metadata, `robots.txt`, and `sitemap.xml`.
+- Password-protected admin portal for homepage content, schedules, scripts, media, links, cast visibility, and stats. The bulk photo archive remains file-based and unchanged.
 
 ## Technology
 
@@ -40,6 +41,8 @@ The site is static. Its build uses Sharp to generate optimized WebP sizes for ph
 | `scripts/mgd-shorts.js` | Shorts carousel, YouTube player, and fullscreen controls |
 | `scripts/gallery.js` | Gallery data and interactions |
 | `assets/` | Festival photos, posters, cast images, thumbnails, and public resources |
+| `admin/` | Securely authenticated content-management portal |
+| `supabase/setup.sql` | Database, access policies, and public media bucket setup |
 | `robots.txt` | Crawler access and sitemap location |
 | `sitemap.xml` | Public page URLs for search engines |
 
@@ -67,8 +70,27 @@ Open [http://localhost:8000](http://localhost:8000) in a browser. Stop the serve
 - Add 2026 Dussehra photos with any filenames to `assets/dussehra 2026/`. Supported formats are JPG, JPEG, PNG, GIF, WebP, and AVIF. The build discovers these files automatically and updates that gallery.
 - Update the home-page interactions in `scripts/script.js` and gallery entries/behavior in `scripts/gallery.js`.
 - Review event dates, contact details, and outbound social links before publishing. Some contact and social values in the current page markup are placeholders.
+- After configuring Supabase, manage homepage content at `/admin/`. The public photo archive (`pages/gallery.html` and its bulk image assets) remains unchanged; daily homepage highlights are managed separately and replace the previous highlight set.
 - If the public site URL changes, update canonical and social metadata, `robots.txt`, and `sitemap.xml`.
 
 ## Deployment
 
 Deploy the project with Vercel using the included `vercel.json`; its build command prepares the static files, generates optimized gallery images, and updates the 2026 photo manifest. After deployment, verify both pages and check that media paths containing spaces load correctly.
+
+### Admin portal backend setup
+
+The admin portal uses Supabase Auth, a row-level-security-protected JSON content record, and a public media bucket. A configured Supabase project is required for login, publishing, and uploads; until then, the current static website remains the public fallback.
+
+1. Create a Supabase project. In **SQL Editor**, run [`supabase/setup.sql`](./supabase/setup.sql).
+2. In **Authentication → Users**, create the admin account. Public sign-up is not part of this portal.
+3. Copy that user's UUID and allowlist it in the SQL Editor:
+
+   ```sql
+   insert into public.site_admins (user_id)
+   values ('ADMIN_USER_UUID');
+   ```
+
+4. Put the project URL and its public **anon/publishable key** in [`scripts/backend-config.js`](./scripts/backend-config.js). These browser-visible values are protected by the SQL row-level-security policies; never use a service-role key here.
+5. Run `npm run build`, deploy to Vercel, then sign in at `/admin/`. On first login, the portal imports the website's current content; publish it once to create the live content record.
+
+Uploaded images and PDFs are stored in Supabase Storage (20 MB maximum per file). Daily highlights are a single current set, not an archive. Supabase Auth, database, and storage usage are subject to your Supabase project's quotas and policies.
