@@ -95,7 +95,7 @@
     resources: "Pavitra granth cards aur unke PDF links manage karein.",
     shorts: "Homepage Shorts carousel ke videos aur section text manage karein.",
     contacts: "Contact details aur footer social links ek jagah update karein.",
-    cast: "Maujooda cast mein se homepage par dikhne wale log chunen; homepage statistics bhi yahan update honge.",
+    cast: "Homepage par rakhne ke liye artist ka 'Show on homepage' checkbox tick karein; baaki artists ko uncheck karke profile save rakhein. Add button se naye artists jodein. Homepage statistics bhi yahan update honge.",
   };
   const fixedScriptDays = [1, 2, 3, 4, 5, 6, 8, 9];
   const defaultNoticeTickerText = "यह वेबसाइट रामलीला कलाकारों एवं इच्छुक व्यक्तियों की सुविधा हेतु बनाई गई है। यह रामलीला वेलफेयर कमेटी माहिल गहिला द्वारा आधिकारिक रूप से संचालित नहीं है। सामग्री केवल सुविधा प्रदान करने के उद्देश्य से प्रकाशित की गई है।";
@@ -160,6 +160,14 @@
       });
     }
     return value;
+  }
+
+  function hasCastPeople(people) {
+    return Array.isArray(people) && people.some(person => person && [person.name, person.imageUrl].some(value => typeof value === "string" && value.trim()));
+  }
+
+  function hasResources(resources) {
+    return Array.isArray(resources) && resources.some(resource => resource && [resource.title, resource.url, resource.description].some(value => typeof value === "string" && value.trim()));
   }
 
   function pathValue(root, path) {
@@ -351,6 +359,7 @@
       const summary = summaryFor(item, index);
       const details = document.createElement("details");
       details.className = "editor-card";
+      details.open = path[0] === "cast";
       const summaryNode = document.createElement("summary");
       summaryNode.className = "record-heading";
       const headingText = document.createElement("h3");
@@ -512,10 +521,8 @@
     }
   }
 
-  async function importCurrentSite() {
-    contentNotice.hidden = false;
-    contentNotice.textContent = "Pehli baar setup: current website se existing content load ho raha hai…";
-    const exportReady = new Promise((resolve, reject) => {
+  function readCurrentSiteContent() {
+    return new Promise((resolve, reject) => {
       const timeout = window.setTimeout(() => reject(new Error("Website content import timed out.")), 20000);
       seedFrame.onload = () => {
         window.clearTimeout(timeout);
@@ -527,11 +534,20 @@
           reject(error);
         }
       };
+      seedFrame.onerror = () => {
+        window.clearTimeout(timeout);
+        reject(new Error("Website content import page load nahi hua."));
+      };
+      seedFrame.src = `../index.html?mgd-admin-export=1&v=${Date.now()}`;
     });
-    seedFrame.src = `../index.html?mgd-admin-export=1&v=${Date.now()}`;
+  }
+
+  async function importCurrentSite() {
+    contentNotice.hidden = false;
+    contentNotice.classList.remove("error");
+    contentNotice.textContent = "Pehli baar setup: current website se existing content load ho raha hai…";
     try {
-      content = await exportReady;
-      normalizeContent(content);
+      content = normalizeContent(await readCurrentSiteContent());
       hasSavedContent = false;
       contentNotice.textContent = "Existing website content load ho gaya. Publish changes dabane par ye Supabase mein save hoga.";
     } catch (error) {
@@ -550,10 +566,32 @@
       .maybeSingle();
     if (error) throw error;
     if (data && data.payload && typeof data.payload === "object") {
-      content = normalizeContent(data.payload);
+      const loadedContent = normalizeContent(data.payload);
+      const restoreCast = !hasCastPeople(loadedContent.cast?.people);
+      const restoreResources = !hasResources(loadedContent.resources);
+      content = loadedContent;
       publishedContent = clone(data.payload);
       hasSavedContent = true;
-      contentNotice.hidden = true;
+      if (restoreCast || restoreResources) {
+        contentNotice.hidden = false;
+        contentNotice.classList.remove("error");
+        contentNotice.textContent = "Homepage ke kuch cards published data mein khaali the. Maujooda website se content restore kiya ja raha hai…";
+        try {
+          const siteContent = normalizeContent(await readCurrentSiteContent());
+          if (restoreCast && hasCastPeople(siteContent.cast?.people)) {
+            content.cast = { ...(content.cast || {}), people: clone(siteContent.cast.people) };
+          }
+          if (restoreResources && hasResources(siteContent.resources)) {
+            content.resources = clone(siteContent.resources);
+          }
+          contentNotice.textContent = "मुख्य पात्र / पवित्र ग्रंथ की खाली सूची मौजूदा वेबसाइट से वापस लाई गई है। बदलाव स्थायी करने के लिए Publish changes दबाएँ।";
+        } catch (error) {
+          contentNotice.textContent = `Homepage content restore nahi ho saka: ${error.message}. Reload karke dobara try karein.`;
+          contentNotice.classList.add("error");
+        }
+      } else {
+        contentNotice.hidden = true;
+      }
       renderEditor();
       return;
     }

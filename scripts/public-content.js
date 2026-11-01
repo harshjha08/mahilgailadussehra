@@ -95,12 +95,14 @@
   function renderResources(resources) {
     const grid = document.querySelector(".spiritual-grid");
     if (!grid || !Array.isArray(resources)) return;
+    const hasResources = resources.some(resource => resource && [resource.title, resource.url, resource.description].some(value => typeof value === "string" && value.trim()));
+    if (!hasResources) return;
     const section = document.getElementById("spiritual");
-    const cards = resources.filter(resource => resource && (resource.title || resource.url || resource.description));
-    if (section) section.hidden = cards.length === 0;
+    const cards = resources.filter(resource => resource && [resource.title, resource.url, resource.description].some(value => typeof value === "string" && value.trim()));
+    if (section) section.hidden = false;
     grid.replaceChildren();
     cards.forEach((resource, index) => {
-      const card = createElement("article", "spiritual-card fade-up");
+      const card = createElement("article", "spiritual-card fade-up visible");
       card.style.animationDelay = `${Math.min(index, 8) * 0.06}s`;
       card.appendChild(createElement("div", "spiritual-card-strip"));
       const body = createElement("div", "spiritual-card-body");
@@ -121,12 +123,14 @@
   function renderCast(cast) {
     const grid = document.querySelector(".cast-grid");
     if (!grid || !Array.isArray(cast.people)) return;
+    const hasPeople = cast.people.some(person => person && [person.name, person.imageUrl].some(value => typeof value === "string" && value.trim()));
+    if (!hasPeople) return;
     const section = document.getElementById("cast");
-    const featuredPeople = cast.people.filter(person => person && person.featured !== false && (person.name || person.imageUrl));
+    const featuredPeople = cast.people.filter(person => person && person.featured !== false && [person.name, person.imageUrl].some(value => typeof value === "string" && value.trim()));
     if (section) section.hidden = featuredPeople.length === 0;
     grid.replaceChildren();
     featuredPeople.forEach((person, index) => {
-      const card = createElement("article", "cast-card fade-up");
+      const card = createElement("article", "cast-card fade-up visible");
       card.style.animationDelay = `${Math.min(index, 8) * 0.06}s`;
       const image = createElement("img", "cast-card-img");
       image.src = person.imageUrl || "";
