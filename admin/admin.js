@@ -98,6 +98,7 @@
     cast: "Maujooda cast mein se homepage par dikhne wale log chunen; homepage statistics bhi yahan update honge.",
   };
   const fixedScriptDays = [1, 2, 3, 4, 5, 6, 8, 9];
+  const defaultNoticeTickerText = "यह वेबसाइट रामलीला कलाकारों एवं इच्छुक व्यक्तियों की सुविधा हेतु बनाई गई है। यह रामलीला वेलफेयर कमेटी माहिल गहिला द्वारा आधिकारिक रूप से संचालित नहीं है। सामग्री केवल सुविधा प्रदान करने के उद्देश्य से प्रकाशित की गई है।";
   const navItems = [
     ["overview", "Overview", "fa-chart-pie"],
     ...Object.entries(labels).map(([key, label]) => [key, label, icons[key]]),
@@ -144,6 +145,20 @@
     if (value && Array.isArray(value.scripts)) {
       value.scripts = normalizeScriptDays(value.scripts);
     }
+    if (value && Array.isArray(value.notices)) {
+      value.notices = value.notices.map(notice => {
+        if (!notice || typeof notice !== "object") return notice;
+        const tickerText = [
+          notice.tickerText,
+          notice.bodyHi,
+          notice.bodyEn,
+          notice.titleHi,
+          notice.titleEn,
+          defaultNoticeTickerText,
+        ].find(text => typeof text === "string" && text.trim());
+        return { ...notice, tickerText: tickerText.trim() };
+      });
+    }
     return value;
   }
 
@@ -160,7 +175,7 @@
     if (existing.length) return clone(existing[0]);
     const key = path.join(".");
     const templates = {
-      notices: { enabled: true, titleHi: "सूचना", titleEn: "Notice", tickerText: "", bodyHi: "", bodyEn: "", complaintUrl: "", complaintLabel: "" },
+      notices: { enabled: true, titleHi: "सूचना", titleEn: "Notice", tickerText: defaultNoticeTickerText, bodyHi: "", bodyEn: "", complaintUrl: "", complaintLabel: "" },
       "highlights.slides": { src: "", alt: "", caption: "" },
       videos: { type: "dussehra", year: new Date().getFullYear(), title: "", thumb: "", url: "" },
       "event.dates": { name: "", date: "" },

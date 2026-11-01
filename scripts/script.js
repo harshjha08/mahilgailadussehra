@@ -61,12 +61,13 @@ const noticeComplaint = document.getElementById('noticeComplaint');
 const noticeTicker = document.getElementById('noticeTicker');
 const noticeTickerTrack = document.getElementById('noticeTickerTrack');
 const posterOverlay = document.getElementById('posterOverlay');
+const defaultNoticeTickerText = 'यह वेबसाइट रामलीला कलाकारों एवं इच्छुक व्यक्तियों की सुविधा हेतु बनाई गई है। यह रामलीला वेलफेयर कमेटी माहिल गहिला द्वारा आधिकारिक रूप से संचालित नहीं है। सामग्री केवल सुविधा प्रदान करने के उद्देश्य से प्रकाशित की गई है।';
 let notices = [
   {
     titleHi: 'सूचना / Notice',
     titleEn: 'Notice',
-    tickerText: 'यह वेबसाइट रामलीला कलाकारों एवं इच्छुक व्यक्तियों की सुविधा हेतु बनाई गई है। यह रामलीला वेलफेयर कमेटी माहिल गहिला द्वारा आधिकारिक रूप से संचालित नहीं है। सामग्री केवल सुविधा प्रदान करने के उद्देश्य से प्रकाशित की गई है।',
-    bodyHi: 'यह वेबसाइट रामलीला कलाकारों एवं इच्छुक व्यक्तियों की सुविधा हेतु बनाई गई है। यह रामलीला वेलफेयर कमेटी माहिल गहिला द्वारा आधिकारिक रूप से संचालित नहीं है। सामग्री केवल सुविधा प्रदान करने के उद्देश्य से प्रकाशित की गई है।',
+    tickerText: defaultNoticeTickerText,
+    bodyHi: defaultNoticeTickerText,
     bodyEn: 'This website has been created for the convenience of Ramleela performers and interested participants. It is not officially managed, sponsored, or endorsed by the Ramleela Welfare Committee Mahil Gaila. The content is provided solely for reference and convenience.',
     complaintUrl: 'https://forms.gle/V7MyPy6air9JkBq76',
     complaintLabel: 'शिकायत दर्ज करें',
@@ -184,7 +185,19 @@ function closePoster() {
 window.MGDNoticeStore = {
   getAll: () => notices.map(notice => ({ ...notice })),
   set(items, enabled = true) {
-    notices = Array.isArray(items) ? items.filter(item => item && typeof item === 'object') : [];
+    notices = Array.isArray(items)
+      ? items.filter(item => item && typeof item === 'object').map(item => ({
+        ...item,
+        tickerText: [
+          item.tickerText,
+          item.bodyHi,
+          item.bodyEn,
+          item.titleHi,
+          item.titleEn,
+          defaultNoticeTickerText,
+        ].find(value => typeof value === 'string' && value.trim())?.trim() || defaultNoticeTickerText,
+      }))
+      : [];
     noticesEnabled = enabled && notices.length > 0;
     activeNoticeIndex = 0;
     renderNoticeTicker();
